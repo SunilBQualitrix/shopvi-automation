@@ -1,0 +1,11 @@
+{
+    "ULTRA_WAIT": 1,
+    "SHORT_WAIT": 5,
+    "DEFAULT_WAIT": 10,
+    "LONG_WAIT": 60,
+    "SUPER_WAIT": 180,
+    "DYNAMIC_WAIT": 100,
+    "NEED_SCREENSHOTS_FOR_PASS": true,
+    "IMPLICIT_WAIT": 10,
+    "current_app_package": "com.mventus.selfcare.activity"
+}

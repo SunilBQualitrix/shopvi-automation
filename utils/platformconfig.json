@@ -1,0 +1,12 @@
+{
+  "android": {
+    "platformName": "Android",
+    "appium:deviceName": "POCO X6 5G",
+    "appium:automationName": "UiAutomator2",
+    "appium:app": "",
+    "noReset": true,
+    "fullReset": false,
+    "uiautomator2ServerInstallTimeout": 1000000,
+    "newCommandTimeout": 60
+  }
+}
