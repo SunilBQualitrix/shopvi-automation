@@ -54,7 +54,7 @@ retry = Retry(
 
 def pytest_addoption(parser):
     parser.addoption(
-        "--platform", action="store", default="android", help="platform to run test (Android)"
+        "--platform", action="store", default="android", help="platform to run test (Android)"  # noqa:E501
     )
     parser.addoption("--consecutive_failure_abort", default="true", action="store")
     parser.addoption("--consecutive_failure_count", default="5", action="store") #top stop the failures after 5runs
