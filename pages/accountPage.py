@@ -1,6 +1,6 @@
 import time
 from appium.webdriver.common.appiumby import AppiumBy
-from pages.actions.android_actions import AndroidAction
+from pages.base_page import BasePage
 
 locators_AP = {
     "BELL_ICON": (AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="DS_SHOP_https://vishop.myvi.in/documents/35161/38258 / notification-icon.webp"]'),  # noqa:E501
