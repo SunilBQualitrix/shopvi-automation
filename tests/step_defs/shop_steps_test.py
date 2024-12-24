@@ -10,7 +10,7 @@ import os
 # sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../pages')))  # noqa:E501
 
 # Load the feature file
-scenarios('../features/Shoptests.feature')
+scenarios('../features/Shop_Vi_Validations.feature')
 
 
 # ======== Fixtures ========
