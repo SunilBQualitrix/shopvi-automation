@@ -129,6 +129,7 @@ class AndroidActions(ActionsParent):
                 self.screenshotAttachment("element_cleared.jpg_{}.jpg".format(self.dynamic_number))
                 element.send_keys(text)
                 self.screenshotAttachment("element_dataset_{}.jpg".format(self.dynamic_number))
+                self.driver.hide_keyboard()
                 break
             except TimeoutException:
                 self.screenshotAttachment("element_not_found_Timeout_Exception.jpg")
@@ -551,6 +552,7 @@ class AndroidActions(ActionsParent):
             self.screenshotAttachment(f"Clicked keypad button with digit '{digit}'")
         except Exception as e:
             self.screenshotAttachment(f"Failed to click keypad button with digit '{digit}'. Error: {str(e)}")
+
     def sendNumberViaKeypad(self, number):
         """
         Sends a number by clicking on individual digits on a keypad with a delay between consecutive identical digits.

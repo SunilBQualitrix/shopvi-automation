@@ -348,7 +348,6 @@ def pytest_runtest_makereport(item, call):
     report = outcome.get_result()
     print("came for failed test case",report)
     if report.when == "call":
-        print("came for failed test case")
         driver = None
         app_driver = item.funcargs.get('setup_platform', None)
         # print("app_driver instance in tear down ====" , type(app_driver))
@@ -360,7 +359,7 @@ def pytest_runtest_makereport(item, call):
             print("coming to take screenshot for failure")
             if isinstance(driver, webdriver):
                 screenshot = driver.get_screenshot_as_png()
-                print("secnario is failed so trying to kill app and relaunch " ,readConstants("current_app_package"))
+                print("secnario is failed so trying to kill app and relaunch ", readConstants("current_app_package"))
                 # driver.terminate_app(readConstants("current_app_package"))
                 try:
                     # Attempt to terminate using Appium
@@ -384,10 +383,9 @@ def pytest_runtest_makereport(item, call):
         mode = 'a' if os.path.exists('failures') else 'w'
         try:
             with open('failures', mode) as f:
-                print("reach as scenrio is failed")
                 if driver:  
                     if isinstance(driver, webdriver):
-                        print("secnario is failed so trying to kill app and relaunch " ,readConstants("current_app_package"))
+                        print("secnario is failed so trying to kill app and relaunch ", readConstants("current_app_package"))
                         driver.terminate_app(readConstants("current_app_package"))
                         time.sleep(2)
                         print("app killed====lets relaunch")

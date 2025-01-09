@@ -1,14 +1,14 @@
-import random
 import time
 from appium.webdriver.common.appiumby import AppiumBy
-from selenium.common import TimeoutException
-from selenium.webdriver import ActionChains
-from selenium.webdriver.common.actions.action_builder import ActionBuilder
-from selenium.webdriver.common.actions.pointer_input import PointerInput
+from pages.base_page import BasePage
 
-from base.BasePage import BasePage
-import utils.CustomLogger as cl
-
+locators = {
+    "SEARCH_ICON": (AppiumBy.ACCESSIBILITY_ID, 'DS_SHOP_https://vishop.myvi.in/documents/35161/38258/search.png'),
+    "SEARCH_INPUT_FIELD": (AppiumBy.CLASS_NAME, 'android.widget.EditText'),
+    "NO_SEARCH_RESULTS": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Looks like there is no relevant products to your search.")'),
+    "FLIPKART_SEARCH_RESULTS": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().textContains("Flipkart Shopping")'),
+    "AMAZON_SEARCH_RESULTS": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().textContains("Amazon Shopping")')
+}
 
 class SearchPage(BasePage):
 
@@ -48,13 +48,28 @@ class SearchPage(BasePage):
     _SearchIcon2 = 'new UiSelector().className("android.widget.ImageView").instance(1)'
     _MyntraSearchloc2 = 'new UiSelector().className("android.view.ViewGroup").instance(34)'
 
+    def verify_search_icon(self):
+        return self.actions.is_element_displayed(*locators["SEARCH_ICON"])
+    
+    def click_search_icon(self):
+        self.actions.click_button(*locators["SEARCH_ICON"])
+        print("Search Icon Is clicked")
 
-    def NavtoSearch(self):
-        self.click_element_by_uiautomator(self._SearchIcon2)
-        time.sleep(1)
-        cl.allureLogs("Navigated to Search Page")
-        self.takeScreenshot("Navigated to Search Page")
+    def enter_search_input(self, search_text):
+        self.actions.enter_text(*locators["SEARCH_INPUT_FIELD"], search_text)
+        print(f"Entered search text: {search_text}")
 
+    def verify_no_search_results_are_displayed(self):
+        return self.actions.is_element_displayed(*locators['NO_SEARCH_RESULTS'])
+    
+    def verify_search_results_displayed_for_flipkart(self):
+        return self.actions.is_element_displayed(*locators['FLIPKART_SEARCH_RESULTS'])
+    
+    def verify_search_results_displayed_for_amazon(self):
+        Results = self.actions.is_element_displayed(*locators['AMAZON_SEARCH_RESULTS'])
+        for i in range(2):
+            self.driver.back()
+        return Results
 
     def VerifyandPrint_allitems_onSearchPage1(self):
         cl.allureLogs("Starting verification of all items on Search Page - Part 1")
