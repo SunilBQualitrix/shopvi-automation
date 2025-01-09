@@ -1,8 +1,16 @@
 import time
-from base.BasePage import BasePage
-import utils.CustomLogger as cl
+from pages.base_page import BasePage
+from appium.webdriver.common.appiumby import AppiumBy
 
-class ShopDashboard(BasePage):
+locators = {
+    "SHOP_BY_CATEGORY": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("shop by category")'),
+    "EXPLORE_TAB": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("explore")'),
+    "DEALS_TAB": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("deals")'),
+    "MY_ORDERS_TAB": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("my orders")'),
+}
+
+
+class ShopDashboardPage(BasePage):
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -59,12 +67,20 @@ class ShopDashboard(BasePage):
     _accountpage_restcategories4 = '//android.widget.TextView[@text="food"]'
     _accountpage_restcategories5 = '//android.widget.TextView[@text="shopping"]'
 
-    def NavtoShopDashBoard(self):
-        # Navigation to Shop Dashboard
-        self.clickElement(self._viShopButton, "xpath")
+    def verify_shop_dashborad_page(self):
+        return self.actions.is_element_displayed(*locators["SHOP_BY_CATEGORY"])
+    
+    def navigate_to_explore_tab(self):
+        self.actions.click_button(*locators["EXPLORE_TAB"])
         time.sleep(2)
-        cl.allureLogs("Navigated to Shop Dashboard")
-        self.takeScreenshot("Navigated to Shop Dashboard")
+    
+    def navigate_to_deals_tab(self):
+        self.actions.click_button(*locators["DEALS_TAB"])
+        time.sleep(2)
+
+    def navigate_to_my_orders_tab(self):
+        self.actions.click_button(*locators["MY_ORDERS_TAB"])
+        time.sleep(2)
 
     def print_allitems_onDashBoard1(self):
             # print the list of all items present on the Vi Shop Dashboard
