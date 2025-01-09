@@ -3,7 +3,7 @@ Feature: Vi Shop Testing - This feature tests the functionality of the Vi Shop a
 
 
 @ViShopRegression 
-Scenario Outline: SV001: Verify Tinder App Multiple Login Features
+Scenario Outline: SV001: Verify VI Shop App
     Given  I install vishop <application>
     Examples:
         | application |

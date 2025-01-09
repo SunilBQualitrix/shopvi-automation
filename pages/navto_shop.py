@@ -3,11 +3,11 @@ from appium.webdriver.common.appiumby import AppiumBy
 from pages.base_page import BasePage
 
 locators_ns = {
-    "NUMBER_INPUT_FIELD": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().textContains("enter mobile number")'),
-    "NUMBER_DIALOG_BOX": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().textContains("NONE OF THE ABOVE")'),
-    "SEND_OTP": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().textContains("send OTP")'),
-    "INPUT_OTP": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().textContains("login with OTP")'),
-    "SHOP_BUTTON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().textContains("shop")')
+    "NUMBER_INPUT_FIELD": (AppiumBy.XPATH, '//android.widget.TextView[@text="enter mobile number"]'),
+    "NUMBER_DIALOG_BOX": (AppiumBy.XPATH, '//android.widget.Button[@resource-id="com.google.android.gms:id/cancel"]'),
+    "SEND_OTP": (AppiumBy.XPATH, '//android.widget.TextView[@text="send OTP"]'),
+    "INPUT_OTP": (AppiumBy.XPATH, '//android.widget.TextView[@text="login with OTP"]'),
+    "SHOP_BUTTON": (AppiumBy.XPATH, '//android.widget.TextView[@text="shop"]')
 }
 
 

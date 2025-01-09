@@ -60,6 +60,7 @@ def pytest_addoption(parser):
     parser.addoption("--consecutive_failure_count", default="5", action="store") #top stop the failures after 5runs
     parser.addoption("--appFileName", action="store")
     parser.addoption("--app_package_name", action="store")
+    parser.addoption("--app_activity", action="store")
     parser.addoption("--screenShotToggle", default=True, action="store")
     parser.addoption("--enable_screen_recording", action="store_true", default=True, help='Enable screen recording')
 
@@ -233,7 +234,7 @@ def kill_process_on_port(port):
         print(f"Error killing process on port {port}: {e}")
 
 
-@pytest.fixture(scope="class", autouse=False)
+@pytest.fixture(scope="session", autouse=False)
 def setup_platform(env, request):
     is_screen_recording_enabled = request.config.getoption('--enable_screen_recording')  # noqa:E501
     driver = None
@@ -269,9 +270,10 @@ def setup_platform(env, request):
         # capabilities["appium:app"] = os.path.join(appPath, 'builds', appToLaunch)  # noqa:E501
         capabilities["appium:app"] = os.path.join(appPath, 'builds', appToLaunch)  # noqa:E501
         print('capabilities to load', capabilities)
-        # appPath = os.path.join('builds', appToLaunch)
-        # print("firetv app path====",appToLaunch)
-        # capabilities["appium:app"] = os.path.join(appPath)
+        appPackage = request.config.getoption("--app_package_name")
+        appActivity = request.config.getoption("--app_activity")
+        capabilities["appPackage"] = appPackage
+        capabilities["appActivity"] = appActivity
 
         options = UiAutomator2Options().load_capabilities(capabilities)
         print("loadingoptions ====", options)
@@ -444,14 +446,17 @@ def pytest_configure(config):
         consecutive_failure_count = int(config.getoption("--consecutive_failure_count"))
 
     app_file = config.getoption("--appFileName")
-  
     app_package_name = config.getoption("--app_package_name")
+    app_activity_name = config.getoption("--app_activity")
     current_platform = config.getoption("--platform")
     if not app_file:
         raise pytest.UsageError("--appFileName is required")
     
     if not app_package_name:
         raise pytest.UsageError("--app_package_name is required")
+
+    if not app_activity_name:
+        raise pytest.UsageError("--app_activity is required")
 
    
     isScreenshoreRequired = config.getoption("--screenShotToggle")

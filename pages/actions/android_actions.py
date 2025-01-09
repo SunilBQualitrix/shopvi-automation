@@ -537,3 +537,63 @@ class AndroidActions(ActionsParent):
         except (NoSuchElementException, TimeoutException):
             # If the element is not found or there's a timeout, return False
             return False
+
+    def clickKeypadButton(self, digit):
+        """
+        Clicks a specific button on an on-screen keypad by its text value.
+        Difference: Focuses on keypad interactions.
+        Usage: Use for numeric inputs where buttons appear on a keypad (e.g., entering PINs).
+        """
+        try:
+            locatorValue = f'//android.widget.TextView[@text="{digit}"]'
+            self.click_button("xpath", locator_value=locatorValue)
+            time.sleep(1)
+            self.screenshotAttachment(f"Clicked keypad button with digit '{digit}'")
+        except Exception as e:
+            self.screenshotAttachment(f"Failed to click keypad button with digit '{digit}'. Error: {str(e)}")
+    def sendNumberViaKeypad(self, number):
+        """
+        Sends a number by clicking on individual digits on a keypad with a delay between consecutive identical digits.
+        Difference: Uses delays for repeated digits.
+        Usage: Use to input multi-digit numbers like phone numbers via keypad, especially when consecutive digits are present.
+        """
+        try:
+            previous_digit = None
+            for digit in str(number):
+                if previous_digit == digit:
+                    time.sleep(1)
+                self.clickKeypadButton(digit)
+                previous_digit = digit
+            self.screenshotAttachment(f"Successfully sent number '{number}' via keypad")
+        except Exception as e:
+            self.screenshotAttachment(f"Failed to send number '{number}' via keypad. Error: {str(e)}")
+
+    def clickOtpButton(self, digit):
+        """
+        Clicks an OTP button on the keypad based on a specific digit's position.
+        Difference: Clicks second occurrence of a digit.
+        Usage: Use when needing to distinguish between repeated digits, often in OTP entry fields where each digit has multiple entries.
+        """
+        try:
+            locatorValue = f'(//android.widget.TextView[@text="{digit}"])[2]'
+            self.click_button("xpath", locator_value=locatorValue)
+            self.screenshotAttachment(f"Clicked OTP button with digit '{digit}'")
+        except Exception as e:
+            self.screenshotAttachment(f"Failed to click OTP button with digit '{digit}'. Error: {str(e)}")
+
+    def sendOtpViaKeypad(self, otp):
+        """
+        Sends an OTP via keypad, handling repeated digits with delays.
+        Difference:Focuses on OTPs with repeated digits.
+        Usage: Use to enter OTP codes, especially if digits might repeat consecutively.
+        """
+        try:
+            previous_digit = None
+            for digit in str(otp):
+                if previous_digit == digit:
+                    time.sleep(0.5)
+                self.clickOtpButton(digit)
+                previous_digit = digit
+            self.screenshotAttachment(f"Successfully sent OTP '{otp}' via keypad")
+        except Exception as e:
+            self.screenshotAttachment(f"Failed to send OTP '{otp}' via keypad. Error: {str(e)}")
