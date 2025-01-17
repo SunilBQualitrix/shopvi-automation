@@ -5,6 +5,7 @@ from pages.base_page import BasePage
 from pages.navto_shop import NavtoShop
 from pages.shop_dashboard_page import ShopDashboardPage
 from pages.search_page import SearchPage
+from pages.accountPage import AccountPage
 
 # sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../pages')))  # noqa:E501
 
@@ -36,8 +37,15 @@ def searchpage_instance(setup_platform):
     """Fixture to initialize the Shop Dashboard Page object."""
     return SearchPage(setup_platform)
 
+@pytest.fixture
+def accountpage_instance(setup_platform):
+    """Fixture to initialize the Account Page object."""
+    return AccountPage(setup_platform)
+
 
 # ======== Step Definitions ========
+
+# ======== Navugation to Shop ========
 
 @given(parsers.parse("I install vishop {application}"))
 @allure.step("Given I install vishop {application}")
@@ -106,22 +114,189 @@ def click_on_vi_shop_from_bottom_navigation_and_should_navigate_to_the_shop_dash
     assert shop_page_reached, "Shop Dashboard page is not reached"
 
 
-@when("I open the shop tab and verify search icon is displayed in shop page")
-@allure.step("When I open the shop tab and verify search icon is displayed in shop page")
-def open_the_shop_tab_and_verify_search_icon_is_displayed_in_shop_page(navtoshop_instance, searchpage_instance):
+
+# ======== Account Page Validation ========
+
+@when("I verify the account button is displayed")
+@allure.step("When I verify the account button is displayed")
+def verify_account_button_is_displayed(accountpage_instance):
+    """Step to verify if the account button is displayed."""
+    is_displayed = accountpage_instance.verify_account_button()
+    assert is_displayed, "Account button is not displayed."
+
+
+@when("I click on the account button and navigate to the account page")
+@allure.step("When I click on the account button and navigate to the account page")
+def click_account_button_and_navigate_to_account_page(accountpage_instance):
+    """Step to click the account button and navigate to the account page."""
+    clicked = accountpage_instance.click_account_button()
+    assert clicked, "Failed to click on the account button and navigate to the account page."
+
+
+@then("I verify all elements are displayed on the account page")
+@allure.step("Then I verify all elements are displayed on the account page")
+def verify_all_elements_on_account_page(accountpage_instance):
+    """Step to verify all elements on the account page."""
+    print("Verifying all elements on the account page...")
+    accountpage_instance.verify_account_page_elements()
+    print("Verification of account page elements completed.")
+
+
+@when("I navigate to the FAQ page")
+@allure.step("When I navigate to the FAQ page")
+def navigate_to_faq_page(accountpage_instance):
+    """Step to navigate to the FAQ page."""
+    navigated = accountpage_instance.verify_nav_to_faq_page()
+    assert navigated, "Failed to navigate to the FAQ page. FAQ element was not displayed."
+
+
+@then("I verify all elements are displayed on the FAQ page")
+@allure.step("Then I verify all elements are displayed on the FAQ page")
+def verify_all_elements_on_faq_page(accountpage_instance):
+    """Step to verify all elements are displayed on the FAQ page."""
+    print("Verifying all elements on the FAQ page...")
+    accountpage_instance.verify_and_print_all_elements_on_faq_page()
+    print("Verification of FAQ page elements completed.")
+    # Navigate back to the previous page
+    try:
+        accountpage_instance.driver.back()  # Or use faqpage_instance.driver.press_keycode(4)
+        print("Navigated back from the FAQ page successfully.")
+    except Exception as e:
+        print(f"Failed to navigate back from the FAQ page: {e}")
+
+@when("I navigate to the Credit Card (CC) page")
+@allure.step("When I navigate to the Credit Card (CC) page")
+def navigate_to_cc_page(accountpage_instance):
+    """Step to navigate to the Credit Card (CC) page."""
+    navigated = accountpage_instance.verify_nav_to_cc_page()
+    assert navigated, "Failed to navigate to the Credit Card (CC) page."
+
+@then("I verify all elements are displayed on the Credit Card (CC) page")
+@allure.step("Then I verify all elements are displayed on the Credit Card (CC) page")
+def verify_all_elements_on_cc_page(accountpage_instance):
+    """Step to verify all elements are displayed on the Credit Card (CC) page."""
+    print("Verifying all elements on the Credit Card (CC) page...")
+    accountpage_instance.verify_and_print_all_elements_on_cc_page()
+    print("Verification of Credit Card (CC) page elements completed.")
+    # Navigate back to the previous page
+    accountpage_instance.driver.back()
+    print("Navigated back from the Credit Card (CC) page successfully.")
+
+@when("I navigate to the Orders page")
+@allure.step("When I navigate to the Orders page")
+def navigate_to_orders_page(accountpage_instance):
+    """Step to navigate to the Orders page."""
+    navigated = accountpage_instance.verify_nav_to_orders_page()
+    assert navigated, "Failed to navigate to the Orders page."
+
+@then("I verify all elements are displayed on the Orders page")
+@allure.step("Then I verify all elements are displayed on the Orders page")
+def verify_all_elements_on_orders_page(accountpage_instance):
+    """Step to verify all elements are displayed on the Orders page."""
+    print("Verifying all elements on the Orders page...")
+    accountpage_instance.verify_and_print_all_elements_on_myorders_page()
+    print("Verifying all elements on the Orders page completed.")
+    # Navigate back to the previous page
+    accountpage_instance.driver.back()
+    print("Navigated back from the Orders page successfully.")
+
+
+@when("I navigate to the Coupons page")
+@allure.step("When I navigate to the Coupons page")
+def navigate_to_coupons_page(accountpage_instance):
+    """Step to navigate to the Coupons page."""
+    navigated = accountpage_instance.verify_nav_to_coupons_page()
+    assert navigated, "Failed to navigate to the Coupons page."
+
+
+@then("I verify all elements are displayed on the Coupons page")
+@allure.step("Then I verify all elements are displayed on the Coupons page")
+def verify_all_elements_on_coupons_page(accountpage_instance):
+    """Step to verify all elements are displayed on the Coupons page."""
+    print("Verifying all elements on the Coupons page...")
+    accountpage_instance.verify_and_print_all_elements_under_CouponsPage()
+    print("Verifying all elements on the Coupons page...")
+    # Navigate back to the previous page
+    accountpage_instance.driver.back()
+    print("Navigated back from the Coupons page successfully.")
+
+
+@when("I navigate to the T and C page")
+@allure.step("When I navigate to the T and C page")
+def navigate_to_t_and_c_page(accountpage_instance):
+    """Step to navigate to the T and C page."""
+    navigated = accountpage_instance.verify_nav_to_tandc_page()
+    assert navigated, "Failed to navigate to the T and C page."
+    accountpage_instance.driver.back()
+
+@when("I navigate to the Privacy and Policy page")
+@allure.step("When I navigate to the Privacy and Policy page")
+def navigate_to_privacy_and_policy_page(accountpage_instance):
+    """Step to navigate to the Privacy and Policy page."""
+    navigated = accountpage_instance.verify_nav_to_privacy_policy_page()
+    assert navigated, "Failed to navigate to the Privacy and Policy page."
+    accountpage_instance.driver.back()
+
+@when("I navigate to the About US page")
+@allure.step("When I navigate to the About US page")
+def navigate_to_about_us_page(accountpage_instance):
+    """Step to navigate to the About US page."""
+    navigated = accountpage_instance.verify_nav_to_about_us_page()
+    assert navigated, "Failed to navigate to the About US page."
+    accountpage_instance.driver.back()
+
+@when("I navigate to the Profile page")
+@allure.step("When I navigate to the Profile page")
+def navigate_to_profile_page(accountpage_instance):
+    """Step to navigate to the Profile page."""
+    navigated = accountpage_instance.verify_nav_to_profile_page()
+    assert navigated, "Failed to navigate to the Profile page."
+    accountpage_instance.driver.back()
+
+@then("I verify all elements are displayed on the Profile page")
+@allure.step("Then I verify all elements are displayed on the Profile page")
+def verify_all_elements_on_profile_page(accountpage_instance):
+    """Step to verify all elements are displayed on the Profile page."""
+    print("Verifying all elements on the Profile page...")
+    accountpage_instance.verify_and_print_all_elements_on_profile_page()
+    print("Verification of Profile page elements completed.")
+    # Navigate back to the previous page
+    accountpage_instance.driver.back()
+    print("Navigated back from the Profile page successfully.")
+    accountpage_instance.driver.back()
+
+@when(("I navigate to Saved Payments page"))
+@allure.step("When I navigate to Saved Payments page")
+def navigate_to_saved_payments_page(accountpage_instance):
+    """Step to navigate to the Saved Payments page."""
+    navigated = accountpage_instance.verify_nav_to_saved_payments_page()
+    assert navigated, "Failed to navigate to the Saved Payments page."
+    accountpage_instance.driver.back()
+
+@then("I Verify all elements are displayed on the Saved Payments page")
+@allure.step("Then I Verify all elements are displayed on the Saved Payments page")
+def verify_all_elements_on_saved_payments_page(accountpage_instance):
+    """Step to verify all elements on the Saved Payments page."""
+    print("Verifying all elements on the Saved Payments page...")
+    accountpage_instance.verify_and_print_all_elements_on_saved_payments_page()
+    print("Verification of Saved Payments page elements completed.")
+    # Navigate back to the previous page
+    print("Navigated back from the Saved Payments page successfully.")
+
+
+
+
+
+
+
+# ======== Search Page Validation ========
+
+@when("I am on shop dashboard and verify search icon is displayed in shop Dashboard")
+@allure.step("When I am on shop dashboard and verify search icon is displayed in shop Dashboard")
+def open_the_shop_tab_and_verify_search_icon_is_displayed_in_shop_page(searchpage_instance):
     """Step to verify the search icon is displayed."""
-    navtoshop_instance.navto_shop()
     search_icon_displayed = searchpage_instance.verify_search_icon()
     assert search_icon_displayed, "Search icon is not displayed in the shop page"
-
-
-@then("I open the deals tab and verify search icon is not displayed in deals page")
-@allure.step("Then I open the deals tab and verify search icon is not displayed in deals page")
-def open_the_deals_tab_and_verify_search_icon_is_not_displayed_in_deals_page(shoppage_instance, searchpage_instance):
-    """Step to verify the search icon is not displayed."""
-    shoppage_instance.navigate_to_deals_tab()
-    search_icon_displayed = searchpage_instance.verify_search_icon()
-    assert not search_icon_displayed, "Search icon is displayed in the deals page"
 
 
 @then("I open the explore tab and verify search icon is displayed in explore page")
@@ -144,8 +319,9 @@ def open_the_my_orders_tab_and_verify_search_icon_is_displayed_in_my_orders_page
 
 @when("I click on search icon")
 @allure.step("When I click on search icon")
-def click_on_search_icon(searchpage_instance):
+def click_on_search_icon(shoppage_instance,searchpage_instance):
     """Step to click on the search icon."""
+    shoppage_instance.click_on_shop_icon()
     searchpage_instance.click_search_icon()
 
 

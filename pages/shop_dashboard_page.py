@@ -7,6 +7,7 @@ locators = {
     "EXPLORE_TAB": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("explore")'),
     "DEALS_TAB": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("deals")'),
     "MY_ORDERS_TAB": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("my orders")'),
+    "VI_SHOP_ICON": (AppiumBy.XPATH, '//android.widget.TextView[@text="shop"]'),
 }
 
 
@@ -81,6 +82,13 @@ class ShopDashboardPage(BasePage):
     def navigate_to_my_orders_tab(self):
         self.actions.click_button(*locators["MY_ORDERS_TAB"])
         time.sleep(2)
+
+    def click_on_shop_icon(self):
+        self.actions.is_element_displayed(*locators["VI_SHOP_ICON"])
+        self.actions.click_button(*locators["VI_SHOP_ICON"])
+        time.sleep(2)
+
+
 
     def print_allitems_onDashBoard1(self):
             # print the list of all items present on the Vi Shop Dashboard

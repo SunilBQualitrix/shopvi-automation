@@ -3,7 +3,7 @@ from appium.webdriver.common.appiumby import AppiumBy
 from pages.base_page import BasePage
 
 locators = {
-    "SEARCH_ICON": (AppiumBy.ACCESSIBILITY_ID, 'DS_SHOP_https://vishop.myvi.in/documents/35161/38258/search.png'),
+    "SEARCH_ICON": (AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="DS_SHOP_https://vishop.myvi.in/documents/35161/38258/search.png"]'),
     "SEARCH_INPUT_FIELD": (AppiumBy.CLASS_NAME, 'android.widget.EditText'),
     "NO_SEARCH_RESULTS": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Looks like there is no relevant products to your search.")'),
     "FLIPKART_SEARCH_RESULTS": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().textContains("Flipkart Shopping")'),
