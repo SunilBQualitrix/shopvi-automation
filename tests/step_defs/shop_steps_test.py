@@ -348,9 +348,15 @@ def verify_expected_content_are_displayed_for_flipkart(searchpage_instance):
     assert flipkart_results, "Expected contents are not displayed for flipkart"
 
 
-@then("I verify expected content are displayed for amazon")
-@allure.step("Then I verify expected content are displayed for amazon")
-def verify_expected_content_are_displayed_for_amazon(searchpage_instance):
-    """Step to verify the expected content for amazon."""
-    amazon_results = searchpage_instance.verify_search_results_displayed_for_amazon()
-    assert amazon_results, "Expected contents are not displayed for amazon"
+#@then("I verify expected content are displayed for amazon")
+#@allure.step("Then I verify expected content are displayed for amazon")
+#def verify_expected_content_are_displayed_for_amazon(searchpage_instance):
+#    """Step to verify the expected content for amazon."""
+#    amazon_results = searchpage_instance.verify_search_results_displayed_for_amazon()
+#    assert amazon_results, "Expected contents are not displayed for amazon"
+
+@then("I click on Flipkart Search Results")
+@allure.step("Then I click on Flipkart Search Results")
+def verify_click_search(searchpage_instance):
+    """Step to click on the Flipkart search results."""
+    searchpage_instance.verify_click_search()

@@ -7,7 +7,8 @@ locators = {
     "SEARCH_INPUT_FIELD": (AppiumBy.CLASS_NAME, 'android.widget.EditText'),
     "NO_SEARCH_RESULTS": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Looks like there is no relevant products to your search.")'),
     "FLIPKART_SEARCH_RESULTS": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().textContains("Flipkart Shopping")'),
-    "AMAZON_SEARCH_RESULTS": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().textContains("Amazon Shopping")')
+    "AMAZON_SEARCH_RESULTS": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().textContains("Amazon Shopping")'),
+    "SEARCH_RESULTS_FLIPKART": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().textContains("Flipkart Shopping Voucher")'),
 }
 
 class SearchPage(BasePage):
@@ -64,7 +65,11 @@ class SearchPage(BasePage):
     
     def verify_search_results_displayed_for_flipkart(self):
         return self.actions.is_element_displayed(*locators['FLIPKART_SEARCH_RESULTS'])
-    
+
+    def verify_click_search(self):
+        flipkart_results = self.actions.wait_for_elements(*locators['SEARCH_RESULTS_FLIPKART'])
+        flipkart_results[0].click()
+
     def verify_search_results_displayed_for_amazon(self):
         Results = self.actions.is_element_displayed(*locators['AMAZON_SEARCH_RESULTS'])
         for i in range(2):

@@ -91,6 +91,7 @@ class AndroidActions(ActionsParent):
         again = 1
         while again < 3:
             try:
+                self.screenshotAttachment("waiting_for_element{}.jpg".format(self.dynamic_number))
                 return WebDriverWait(self.driver, timeout).until(EC.visibility_of_all_elements_located((locator, value)))
             except NoSuchElementException:
                 print("Inside no such element")

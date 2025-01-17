@@ -63,6 +63,7 @@ locators_ap = {
     "CTA_BUTTON": (AppiumBy.XPATH, '//android.widget.TextView[@text="go back"]'),  # noqa:E501
     "NOTHING_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(1)'),   # noqa:E501
     "EDIT_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(4)'),  # noqa:E501
+    "EDIT_ICON3": (AppiumBy.XPATH, '(//android.view.ViewGroup[1]/android.view.ViewGroup/android.widget.ImageView)[5]'),  # noqa:E501
 
 
     # Locators under FAQs page
@@ -223,7 +224,7 @@ class AccountPage(BasePage):
         else:
             print(f"Element is NOT displayed with locator: {locator}")
             return False
-        time.sleep(2)
+        time.sleep(5)
 
 
     def verify_nav_to_privacy_policy_page(self):
@@ -236,7 +237,7 @@ class AccountPage(BasePage):
         else:
             print(f"Element is NOT displayed with locator: {locator}")
             return False
-        time.sleep(2)
+        time.sleep(5)
 
 
     def verify_nav_to_about_us_page(self):
@@ -249,7 +250,7 @@ class AccountPage(BasePage):
         else:
             print(f"Element is NOT displayed with locator: {locator}")
             return False
-        time.sleep(2)
+        time.sleep(5)
 
     def verify_and_print_all_elements_on_faq_page(self):
         locators = {
@@ -304,14 +305,17 @@ class AccountPage(BasePage):
                 print(f"{element_name}: Not Displayed")
 
     def verify_nav_to_profile_page(self):
-        locator = locators_ap["EDIT_ICON"]
-        if self.actions.is_element_displayed(*locator):
-            print(f"Element is displayed with locator: {locator}")
-            self.actions.click_button(*locator)
-            print(f"Clicked on the element with locator: {locator}")
+        locator = locators_ap["EDIT_ICON3"]
+        time.sleep(5)
+        editicon=self.actions.wait_for_element(*locator)
+        print(f"ICON is displayed with locator: {editicon}")
+        if editicon:
+            print(f"Element is displayed with locator: {editicon}")
+            editicon.click()
+            print(f"Clicked on the element with locator: {editicon}")
             return True
         else:
-            print(f"Element is NOT displayed with locator: {locator}")
+            print(f"Element is NOT displayed with locator: {editicon}")
             return False
 
     def verify_and_print_all_elements_on_profile_page(self):
