@@ -69,6 +69,8 @@ class SearchPage(BasePage):
     def verify_click_search(self):
         flipkart_results = self.actions.wait_for_elements(*locators['SEARCH_RESULTS_FLIPKART'])
         flipkart_results[0].click()
+        self.actions.screenshotAttachment("Navigated to search results page")
+
 
     def verify_search_results_displayed_for_amazon(self):
         Results = self.actions.is_element_displayed(*locators['AMAZON_SEARCH_RESULTS'])

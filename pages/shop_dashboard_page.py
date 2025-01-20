@@ -2,13 +2,39 @@ import time
 from pages.base_page import BasePage
 from appium.webdriver.common.appiumby import AppiumBy
 
-locators = {
+locators_sd = {
     "SHOP_BY_CATEGORY": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("shop by category")'),
     "EXPLORE_TAB": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("explore")'),
     "DEALS_TAB": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("deals")'),
     "MY_ORDERS_TAB": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("my orders")'),
     "VI_SHOP_ICON": (AppiumBy.XPATH, '//android.widget.TextView[@text="shop"]'),
+    "VI_APP_HOME_BUTTON": (AppiumBy.XPATH, '//android.widget.TextView[@text="home"]'),
+
+    "MY_ORDER_P": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(1)'),
+    "ACCOUNT_ICON": (AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="DS_SHOPshop-account-icon.webp"]'),
+    "SEARCH_ICON": (AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="DS_SHOP_https://vishop.myvi.in/documents/35161/38258/search.png"]'),
+    "CART_ICON": (AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="DS_SHOP_https://vishop.myvi.in/documents/35161/38258/Cart.webp"]'),
+    "ACCOUNTS_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(0)'),
+    "CART_ICON1": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(2)'),
+    "DEALS_PAGE_TITLE": (AppiumBy.XPATH, '//android.widget.TextView[@text="offers"]'),
+    "DEALS_BACK_BUTTON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/back-arrow.webp")'),
+    "EXPLORE_PAGE_TITLE": (AppiumBy.XPATH, '//android.widget.TextView[@text="our store"]'),
+    "EXPLORE_CART_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/Cart.webp")'),
+    "EXPLORE_SEARCH_ICON": (AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="DS_SHOP_https://vishop.myvi.in/documents/35161/38258/search.png"]'),
+    "EXPLORE_CC_MENU": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(2)'),
+    "EXPLORE_MOVIES_MENU": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(3)'),
+    "EXPLORE_FOOD_MENU": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(4)'),
+    "EXPLORE_SHOPPING_MENU": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(5)'),
+    "EXPLORE_TRAVEL_MENU": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(6)'),
+    "MYORDERS_BACK_ARROW": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/back-arrow.webp")'),
+    "MYORDERS_PAGE_TITLE": (AppiumBy.XPATH, '//android.widget.TextView[@text="my orders"]'),
+    "MYORDERS_SEARCH_ICON": (AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="DS_SHOP_https://vishop.myvi.in/documents/35161/38258/search.png"]'),
+    "MYORDERS_SEARCH_BOX": (AppiumBy.XPATH, '//android.widget.EditText[@text="search for orders..."]'),
+
+
 }
+
+
 
 
 class ShopDashboardPage(BasePage):
@@ -17,197 +43,98 @@ class ShopDashboardPage(BasePage):
         super().__init__(driver)
         self.driver = driver
 
-    # Locators values in Vi Shop dashboard
-    _viAppHomeButton = '//android.widget.TextView[@text="home"]'  # xpath
-    _dealsButton = '//android.widget.TextView[@text="deals"]'  # xpath
-    _exploreButton = '//android.widget.TextView[@text="explore"]'  # xpath
-    _myOrdersButton = '//android.widget.TextView[@text="my orders"]'  # xpath
-    _viShopButton = '//android.widget.TextView[@text="shop"]'  # xpath
-
-    _deals_Pagetitle = '//android.widget.TextView[@text="offers"]'  # xpath
-
-    _myorders_pagetitle = '//android.widget.TextView[@text="your orders"]'  # xpath
-    _myorders_SearchBox = '//android.widget.EditText[@text="search for orders..."]'  # xpath
-
-    _accountsButton = '//android.view.ViewGroup[@content-desc="DS_SHOPshop-account-icon.webp"]'  # xpath
-    _searchicon = '//android.view.ViewGroup[@content-desc="DS_SHOP_https://vishop.myvi.in/documents/35161/38258/search.png"]'  # xpath
-    _cartIcon = '//android.view.ViewGroup[@content-desc="DS_SHOP_https://vishop.myvi.in/documents/35161/38258/Cart.webp"]'  # xpath
-
-    _accountsButton1 = 'new UiSelector().className("android.widget.ImageView").instance(0)'
-    _db_myorders_searchicon = 'new UiSelector().className("android.widget.ImageView").instance(1)'
-    _cartIcon1 = 'new UiSelector().className("android.widget.ImageView").instance(2)'
-
-    _backButton = '//android.view.ViewGroup[@content-desc="DS_SHOP_https://vishop.myvi.in/documents/35161/38258/back-arrow.webp"]'  # xpath
-    _deals_myorders_backButton = 'new UiSelector().className("android.widget.ImageView").instance(1)'
-
-    #explore page
-    _explore_pagetitle = '//android.widget.TextView[@text="our store"]'  # xpath
-    _explore_CartIcon = 'new UiSelector().className("android.widget.ImageView").instance(1)'
-    _explore_SearchIcon = 'new UiSelector().className("android.widget.ImageView").instance(0)'
-
-    _sdb_shopbycategory = '//android.widget.TextView[@text="shop by category"]'  # xpath
-    _sdb_sellingfast = '//android.widget.TextView[@text="selling fast"]'  # xpath
-    _sdb_sellingfast_seeallBTN = '(//android.widget.TextView[@text="see all"])[1]'  # xpath
-    _sdb_CC = '//android.widget.TextView[@text="credit cards"]'  # xpath
-    _sdb_CC_seeallBTN = '(//android.widget.TextView[@text="see all"])[2]'
-
-
-    _accountpage_recentlyviewed = '//android.widget.TextView[@text="recently viewed"]'
-    _accountpage_recentlyviewed_seeallBTN = '//android.widget.TextView[@text="see all"]'
-    _accountpage_bigsavings_section = '//android.widget.TextView[@text="big savings"]'
-    _accountpage_popular_section = '//android.widget.TextView[@text="super brands, super discounts"]'
-    _accountpage_newinstory = '//android.widget.TextView[@text="new in store"]'
-    _accountpage_newinstory_seeallBTN = '(//android.widget.TextView[@text="see all"])[1]'
-    _accountpage_moviesandOTT = '//android.widget.TextView[@text="movies & OTT"]'
-    _accountpage_moviesandOTT_seeallBTN = '(//android.widget.TextView[@text="see all"])[2]'
-    _accountpage_moreinstore = '//android.widget.TextView[@text="more in store"]'
-    _accountpage_moreinstore_seeallBTN = '//android.widget.TextView[@text="see all"]'
-    _accountpage_restcategories1 = '//android.widget.TextView[@text="all"]'
-    _accountpage_restcategories2 = '//android.widget.TextView[@text="credit cards"]'
-    _accountpage_restcategories3 = '//android.widget.TextView[@text="entertainment"]'
-    _accountpage_restcategories4 = '//android.widget.TextView[@text="food"]'
-    _accountpage_restcategories5 = '//android.widget.TextView[@text="shopping"]'
+    def click_on_shop_icon(self):
+        self.actions.is_element_displayed(*locators_sd["VI_SHOP_ICON"])
+        self.actions.click_button(*locators_sd["VI_SHOP_ICON"])
+        time.sleep(2)
 
     def verify_shop_dashborad_page(self):
-        return self.actions.is_element_displayed(*locators["SHOP_BY_CATEGORY"])
-    
-    def navigate_to_explore_tab(self):
-        self.actions.click_button(*locators["EXPLORE_TAB"])
-        time.sleep(2)
-    
+        return self.actions.is_element_displayed(*locators_sd["SHOP_BY_CATEGORY"])
+
+    def verify_all_items_on_shop_dashboard(self):
+        locators = {
+            "VI App Home Button": [locators_sd["VI_APP_HOME_BUTTON"]],
+            "Deals": [locators_sd["DEALS_TAB"]],
+            "Explore": [locators_sd["EXPLORE_TAB"]],
+            "My Orders": [locators_sd["MY_ORDERS_TAB"], locators_sd["MY_ORDER_P"]],
+            "Vi Shop Home": [locators_sd["VI_SHOP_ICON"]],
+            "Accounts Icon": [locators_sd["ACCOUNT_ICON"], locators_sd["ACCOUNTS_ICON"]],
+            "Search Icon": [locators_sd["SEARCH_ICON"]],
+            "Cart Icon": [locators_sd["CART_ICON"],locators_sd["CART_ICON1"]],
+        }
+        for element_name, locator_list in locators.items():
+            element_found = False
+            for locator in locator_list:
+                if self.actions.is_element_displayed(*locator):
+                    print(f"{element_name}: Displayed (Locator: {locator})")
+                    element_found = True
+                    break
+            if not element_found:
+                print(f"{element_name}: Not Displayed")
+
+
     def navigate_to_deals_tab(self):
-        self.actions.click_button(*locators["DEALS_TAB"])
+        self.actions.click_button(*locators_sd["DEALS_TAB"])
         time.sleep(2)
+
+    def verify_all_items_on_deals_tab(self):
+        locators = {
+            "DEALS Page Title": [locators_sd["DEALS_PAGE_TITLE"]],
+            "DEALS Back Button": [locators_sd["DEALS_BACK_BUTTON"]],
+            "DEALS Cart Icon": [locators_sd["CART_ICON"]],
+        }
+        for element_name, locator_list in locators.items():
+            element_found = False
+            for locator in locator_list:
+                if self.actions.is_element_displayed(*locator):
+                    print(f"{element_name}: Displayed (Locator: {locator})")
+                    element_found = True
+                    break
+            if not element_found:
+                print(f"{element_name}: Not Displayed")
+
+    def navigate_to_explore_tab(self):
+        self.actions.click_button(*locators_sd["EXPLORE_TAB"])
+        time.sleep(2)
+
+    def verify_all_items_on_explore_tab(self):
+        locators = {
+            "EXPLORE Page Title": [locators_sd["EXPLORE_PAGE_TITLE"]],
+            "EXPLORE Search Icon": [locators_sd["EXPLORE_SEARCH_ICON"]],
+            "EXPLORE Cart Icon": [locators_sd["EXPLORE_CART_ICON"]],
+            "EXPLORE CC Menu": [locators_sd["EXPLORE_CC_MENU"]],
+            "EXPLORE Movies Menu": [locators_sd["EXPLORE_MOVIES_MENU"]],
+            "EXPLORE Food Menu": [locators_sd["EXPLORE_FOOD_MENU"]],
+            "EXPLORE Shopping Menu": [locators_sd["EXPLORE_SHOPPING_MENU"]],
+            "EXPLORE Travel Menu": [locators_sd["EXPLORE_TRAVEL_MENU"]],
+        }
+        for element_name, locator_list in locators.items():
+            element_found = False
+            for locator in locator_list:
+                if self.actions.is_element_displayed(*locator):
+                    print(f"{element_name}: Displayed (Locator: {locator})")
+                    element_found = True
+                    break
+            if not element_found:
+                print(f"{element_name}: Not Displayed")
 
     def navigate_to_my_orders_tab(self):
-        self.actions.click_button(*locators["MY_ORDERS_TAB"])
+        self.actions.click_button(*locators_sd["MY_ORDERS_TAB"])
         time.sleep(2)
 
-    def click_on_shop_icon(self):
-        self.actions.is_element_displayed(*locators["VI_SHOP_ICON"])
-        self.actions.click_button(*locators["VI_SHOP_ICON"])
-        time.sleep(2)
-
-
-
-    def print_allitems_onDashBoard1(self):
-            # print the list of all items present on the Vi Shop Dashboard
-            cl.allureLogs("Checking all icons on the Vi Shop Dashboard")
-            elements = {
-                'Vi App Home Button': self._viShopButton,
-                'Deals': self._dealsButton,
-                'Explore': self._exploreButton,
-                'My Orders': self._myOrdersButton,
-                'Vi Home': self._viShopButton,
-            }
-            for name, locator in elements.items():
-                element_text = self.check_element(locator)
-                cl.allureLogs(f"{name}: {element_text}")
-            self.takeScreenshot("Print all elements on Shop Dashboard")
-
-    def print_allitems_onDashBoard2(self):
-            # print the list of all items present on the Vi Shop Dashboard
-            cl.allureLogs("Checking all icons on the Vi Shop Dashboard")
-            elements = {
-                'Accounts': self._accountsButton,
-                'Search Icon': self._searchicon,
-                'Cart Icon': self._cartIcon,
-            }
-            for name, locator in elements.items():
-                element_text = self.check_element(locator)
-                cl.allureLogs(f"{name}: {element_text}")
-            self.takeScreenshot("Print all Elements on Shop Dashboard")
-
-    def print_allitems_onDashBoard2Prod(self):
-            # Verify and print all items under My Orders Page (Ui automator locators used here)
-            cl.allureLogs("Verifying and printing all elements under My Orders Page (Part 2 Prod)")
-            elements = {
-                'Accounts': self._accountsButton1,
-                'Search Icon': self._db_myorders_searchicon,
-                'Cart Icon': self._cartIcon1,
-            }
-            for name, locator in elements.items():
-                element = self.findelement_by_uiautomator(locator)
-                element_text = element.text if element else "Element not found"
-                cl.allureLogs(f"{name}: {element_text}")
-            self.takeScreenshot("Print all Elements on Shop Dashboard")
-
-    def ShopDashboard_elements(self):
-        # print the options present on VI Shop Dashboard
-        cl.allureLogs("Checking all elements on the Vi Shop Dashboard")
-        elements = {
-            'Shop by Category': self._sdb_shopbycategory,
-            'Selling Fast': self._sdb_sellingfast,
-            'Selling Fast see all button': self._sdb_sellingfast_seeallBTN,
-            'Credit cards section': self._sdb_CC,
-            'Credit cards section see all button': self._sdb_CC_seeallBTN,
+    def verify_all_items_on_my_orders_tab(self):
+        locators = {
+            "MY ORDERS Page Title": [locators_sd["MYORDERS_PAGE_TITLE"]],
+            "MY ORDERS Search Icon": [locators_sd["MYORDERS_SEARCH_ICON"]],
+            "MY ORDERS Back Arrow": [locators_sd["MYORDERS_BACK_ARROW"]],
+            "MY ORDERS Search BOX": [locators_sd["MYORDERS_SEARCH_BOX"]],
         }
-        for name, locator in elements.items():
-            element_text = self.check_element(locator)
-            cl.allureLogs(f"{name}: {element_text}")
-        self.takeScreenshot("Print all elements on Shop Dashboard")
-
-    def NavtoDeals(self):
-        # Navigation to Deals page
-        cl.allureLogs("Navigating to Deals page")
-        self.clickElement(self._dealsButton, "xpath")
-        time.sleep(2)
-        cl.allureLogs("Navigated to Deals Page")
-        self.takeScreenshot("Navigated to Deals Page")
-
-    def print_allitems_onDealsPage(self):
-        # print "All items on Deals Page"
-        cl.allureLogs("Checking All items on Deals Page")
-        elements = {
-            'Deals Back Button': self._backButton,
-            'Deals Page Title': self._deals_Pagetitle,
-            'Deals Cart Icon': self._cartIcon
-        }
-        for name, locator in elements.items():
-            element_text = self.check_element(locator)
-            cl.allureLogs(f"{name}: {element_text}")
-        self.takeScreenshot("Print all elements on Deals Page")
-
-    def NavtoExplore(self):
-        # Navigation to Explore page
-        cl.allureLogs("Navigating to Explore Page")
-        self.clickElement(self._exploreButton, "xpath")
-        time.sleep(2)
-        cl.allureLogs("Navigated to Explore Page")
-        self.takeScreenshot("Navigated to Explore Page")
-
-    def print_allitems_onExplorePage(self):
-        # print "All items on Explore Page"
-        cl.allureLogs("Checking All items on Explore Page")
-
-        elements = {
-            'Explore Page Title': self._explore_pagetitle,
-            'Explore Search Icon': self._searchicon,
-            'Explore Cart Icon': self._cartIcon
-        }
-        for name, locator in elements.items():
-            element_text = self.check_element(locator)
-            cl.allureLogs(f"{name}: {element_text}")
-        self.takeScreenshot("Print all elements on Explore Page")
-
-    def NavtoMyOrders(self):
-        # Navigation to My Orders page
-        cl.allureLogs("Navigating to My Orders Page")
-        self.clickElement(self._myOrdersButton, "xpath")
-        time.sleep(2)
-        cl.allureLogs("Navigated to My Orders Page")
-        self.takeScreenshot("Navigated to My Orders Page")
-
-    def print_allitems_onMyOrders(self):
-        # print "All items on My Orders Page"
-        cl.allureLogs("Checking All items on My Orders Page")
-        elements = {
-            'My Orders Back Button': self._backButton,
-            'My Orders Page Title': self._myorders_pagetitle,
-            'My Orders Cart Icon': self._cartIcon,
-            'My Orders Search Box': self._myorders_SearchBox
-        }
-        for name, locator in elements.items():
-            element_text = self.check_element(locator)
-            cl.allureLogs(f"{name}: {element_text}")
-        self.takeScreenshot("Print all elements on My Orders Page")
+        for element_name, locator_list in locators.items():
+            element_found = False
+            for locator in locator_list:
+                if self.actions.is_element_displayed(*locator):
+                    print(f"{element_name}: Displayed (Locator: {locator})")
+                    element_found = True
+                    break
+            if not element_found:
+                print(f"{element_name}: Not Displayed")

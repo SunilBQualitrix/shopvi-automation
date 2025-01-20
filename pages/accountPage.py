@@ -64,6 +64,8 @@ locators_ap = {
     "NOTHING_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(1)'),   # noqa:E501
     "EDIT_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(4)'),  # noqa:E501
     "EDIT_ICON3": (AppiumBy.XPATH, '(//android.view.ViewGroup[1]/android.view.ViewGroup/android.widget.ImageView)[5]'),  # noqa:E501
+    "SAVED_CARDS": (AppiumBy.XPATH, '//android.widget.TextView[@text="saved cards"]'),  # noqa:E501
+    "CARD_DISPLAYED": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.ViewGroup").instance(37)'),  # noqa:E501
 
 
     # Locators under FAQs page
@@ -237,7 +239,7 @@ class AccountPage(BasePage):
         else:
             print(f"Element is NOT displayed with locator: {locator}")
             return False
-        time.sleep(5)
+            time.sleep(5)
 
 
     def verify_nav_to_about_us_page(self):
@@ -361,6 +363,8 @@ class AccountPage(BasePage):
             "TITLE_TEXT": locators_ap["TITLE_TEXT"],
             "CTA_BUTTON": locators_ap["CTA_BUTTON"],
             "NOTHING_ICON": locators_ap["NOTHING_ICON"],
+            "SAVED_CARDS": locators_ap["SAVED_CARDS"],
+            "CARD_DISPLAYED": locators_ap["CARD_DISPLAYED"],
         }
 
         for element_name, locator in locators.items():

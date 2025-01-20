@@ -11,7 +11,7 @@ Scenario Outline: VS001: Verify VI Shop App
 
 
 @ViShopRegression 
-Scenario Outline: VS002: Verify Trouble Signing in Functionality
+Scenario Outline: VS002: Verify Signing in Functionality
     Given I launch vishop Application
     Given I open the app and navigate to the mobile number input screen
     When  I close the mobile number dialog box
@@ -42,17 +42,25 @@ Scenario Outline: VS003: Verify Account Page Navigation and Elements
     When I navigate to the About US page
     When I navigate to Saved Payments page
     Then I Verify all elements are displayed on the Saved Payments page
-    When I navigate to the Profile page
-    Then I verify all elements are displayed on the Profile page
     Examples:
         | account_button |
         | true           |
 
-@ViShopRegression 
-Scenario Outline: VS004: Verify Search Functionality
-    When I am on shop dashboard and verify search icon is displayed in shop Dashboard
-    Then I open the explore tab and verify search icon is displayed in explore page
-    Then I open the my orders tab and verify search icon is displayed in my orders page
+@ViShopRegression
+Scenario Outline: VS004: Verify Navigation across the Tabs
+    When I am on shop dashboard and verify all items are displayed on shop dashboard
+    When I navigate to the deals tab
+    Then I verify all items are displayed on the deals tab
+    When I navigate to the explore tab
+    Then I verify all items are displayed on the explore tab
+    When I navigate to the my orders tab
+    Then I verify all items are displayed on the my orders tab
+    Examples:
+        | shop_dashboard |
+        | true           |
+
+@ViShopRegression
+Scenario Outline: VS005: Verify Search Functionality
     When I click on search icon
     When I enter the <invalid_input> in the search field
     Then I verify no search results are displayed

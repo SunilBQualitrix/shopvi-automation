@@ -245,33 +245,13 @@ def navigate_to_about_us_page(accountpage_instance):
     assert navigated, "Failed to navigate to the About US page."
     accountpage_instance.driver.back()
 
-@when("I navigate to the Profile page")
-@allure.step("When I navigate to the Profile page")
-def navigate_to_profile_page(accountpage_instance):
-    """Step to navigate to the Profile page."""
-    navigated = accountpage_instance.verify_nav_to_profile_page()
-    assert navigated, "Failed to navigate to the Profile page."
-    accountpage_instance.driver.back()
-
-@then("I verify all elements are displayed on the Profile page")
-@allure.step("Then I verify all elements are displayed on the Profile page")
-def verify_all_elements_on_profile_page(accountpage_instance):
-    """Step to verify all elements are displayed on the Profile page."""
-    print("Verifying all elements on the Profile page...")
-    accountpage_instance.verify_and_print_all_elements_on_profile_page()
-    print("Verification of Profile page elements completed.")
-    # Navigate back to the previous page
-    accountpage_instance.driver.back()
-    print("Navigated back from the Profile page successfully.")
-    accountpage_instance.driver.back()
-
 @when(("I navigate to Saved Payments page"))
 @allure.step("When I navigate to Saved Payments page")
 def navigate_to_saved_payments_page(accountpage_instance):
     """Step to navigate to the Saved Payments page."""
     navigated = accountpage_instance.verify_nav_to_saved_payments_page()
     assert navigated, "Failed to navigate to the Saved Payments page."
-    accountpage_instance.driver.back()
+
 
 @then("I Verify all elements are displayed on the Saved Payments page")
 @allure.step("Then I Verify all elements are displayed on the Saved Payments page")
@@ -282,39 +262,58 @@ def verify_all_elements_on_saved_payments_page(accountpage_instance):
     print("Verification of Saved Payments page elements completed.")
     # Navigate back to the previous page
     print("Navigated back from the Saved Payments page successfully.")
+    accountpage_instance.driver.back()
+    accountpage_instance.driver.back()
 
 
 
+# ======== Validation of navigation across Tabs ========
 
+@when(("I am on shop dashboard and verify all items are displayed on shop dashboard"))
+@allure.step("When I am on shop dashboard and verify all items are displayed on shop dashboard")
+def open_the_shop_tab_and_verify_all_items_are_displayed_on_shop_dashboard(shoppage_instance):
+    """Step to verify all items are displayed on the shop dashboard."""
+    shoppage_instance.verify_all_items_on_shop_dashboard()
 
+@when("I navigate to the deals tab")
+@allure.step("When I navigate to the deals tab")
+def navigate_to_deals_tab(shoppage_instance):
+    """Step to navigate to the deals tab."""
+    shoppage_instance.navigate_to_deals_tab()
 
+@then("I verify all items are displayed on the deals tab")
+@allure.step("Then I verify all items are displayed on the deals tab")
+def verify_all_items_are_displayed_on_the_deals_tab(shoppage_instance):
+    """Step to verify all items are displayed on the deals tab."""
+    shoppage_instance.verify_all_items_on_deals_tab()
 
-# ======== Search Page Validation ========
-
-@when("I am on shop dashboard and verify search icon is displayed in shop Dashboard")
-@allure.step("When I am on shop dashboard and verify search icon is displayed in shop Dashboard")
-def open_the_shop_tab_and_verify_search_icon_is_displayed_in_shop_page(searchpage_instance):
-    """Step to verify the search icon is displayed."""
-    search_icon_displayed = searchpage_instance.verify_search_icon()
-    assert search_icon_displayed, "Search icon is not displayed in the shop page"
-
-
-@then("I open the explore tab and verify search icon is displayed in explore page")
-@allure.step("Then I open the explore tab and verify search icon is displayed in explore page")
-def open_the_explore_tab_and_verify_search_icon_is_displayed_in_explore_page(shoppage_instance, searchpage_instance):
-    """Step to verify the search icon is displayed."""
+@when("I navigate to the explore tab")
+@allure.step("When I navigate to the explore tab")
+def navigate_to_explore_tab(shoppage_instance):
+    """Step to navigate to the explore tab."""
     shoppage_instance.navigate_to_explore_tab()
-    search_icon_displayed = searchpage_instance.verify_search_icon()
-    assert search_icon_displayed, "Search icon is not displayed in the explore page"
 
+@then("I verify all items are displayed on the explore tab")
+@allure.step("Then I verify all items are displayed on the explore tab")
+def verify_all_items_are_displayed_on_the_explore_tab(shoppage_instance):
+    """Step to verify all items are displayed on the explore tab."""
+    shoppage_instance.verify_all_items_on_explore_tab()
 
-@then("I open the my orders tab and verify search icon is displayed in my orders page")
-@allure.step("Then I open the my orders tab and verify search icon is displayed in my orders page")
-def open_the_my_orders_tab_and_verify_search_icon_is_displayed_in_my_orders_page(shoppage_instance, searchpage_instance):
-    """Step to verify the search icon is displayed."""
+@when("I navigate to the my orders tab")
+@allure.step("When I navigate to the my orders tab")
+def navigate_to_my_orders_tab(shoppage_instance):
+    """Step to navigate to the my orders tab."""
     shoppage_instance.navigate_to_my_orders_tab()
-    search_icon_displayed = searchpage_instance.verify_search_icon()
-    assert search_icon_displayed, "Search icon is not displayed in the my orders page"
+
+@then("I verify all items are displayed on the my orders tab")
+@allure.step("Then I verify all items are displayed on the my orders tab")
+def verify_all_items_are_displayed_on_the_my_orders_tab(shoppage_instance):
+    """Step to verify all items are displayed on the my orders tab."""
+    shoppage_instance.verify_all_items_on_my_orders_tab()
+
+
+
+# ======== Search page Validation ========
 
 
 @when("I click on search icon")
