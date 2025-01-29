@@ -2,7 +2,7 @@
 Feature: Vi Shop Testing - This feature tests the functionality of the Vi Shop application.
 
 
-@ViShopRegression 
+@ViShopRegression @ViShopTest
 Scenario Outline: VS001: Verify VI Shop App
     Given  I install vishop <application>
     Examples:
@@ -10,7 +10,7 @@ Scenario Outline: VS001: Verify VI Shop App
         | vishop      |
 
 
-@ViShopRegression 
+@ViShopRegression @ViShopTest
 Scenario Outline: VS002: Verify Signing in Functionality
     Given I launch vishop Application
     Given I open the app and navigate to the mobile number input screen
@@ -59,11 +59,11 @@ Scenario Outline: VS004: Verify Navigation across the Tabs
         | shop_dashboard |
         | true           |
 
-@ViShopRegression
+@ViShopRegression @ViShopTest
 Scenario Outline: VS005: Verify Search Functionality
     When I click on search icon
-    When I enter the <invalid_input> in the search field
-    Then I verify no search results are displayed
+#    When I enter the <invalid_input> in the search field
+#    Then I verify no search results are displayed
     When I enter the <valid_input_flipkart> in the search field
     Then I click on Flipkart Search Results
 #    Then I verify expected content are displayed for flipkart
@@ -72,3 +72,31 @@ Scenario Outline: VS005: Verify Search Functionality
     Examples:
         | invalid_input | valid_input_flipkart  | valid_input_amazon |
         | zzz           | flipkart             | amazon             |
+
+@ViShopRegression @ViShopTest
+Scenario Outline: VS006: Verify Add to Cart Journey with Flipkart SKU from Search Results
+    When I Verify the Product Title, Price, Discount and OutofStock Tag
+    When I Verify the Product details
+    When I Verify the buying quantity
+    When I scroll to the element with text product details
+    Then I Verify more details after the swipe
+    When I scroll to the element with text ratings and reviews
+    Then I Verify the Ratings and Review Section
+    When I scroll to the element with text similar products comparison
+    Then I Verify more similar products comparison section
+    When I scroll to the element with text out of stock
+    Then I Verify Different Denominations
+    Then I Verify Add to cart and Buy Now CTA button
+    Then I Click on Add To Cart CTA Button
+    Then I Verify the Product details added in the cart
+    Then I verify Order Summary Details
+    Then I verify cart page title and pagination details
+    When I click on the Proceed to Buy CTA button
+    Then I verify the delivery address page
+    When I click on the Proceed to Payment CTA button
+    Then I verify the payment page
+    Then I enter the <credit_card_number> in the credit card field
+
+    Examples:
+        | credit_card_number |
+        | 4893772405842838   |

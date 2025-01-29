@@ -31,7 +31,8 @@ from appium.options.android import UiAutomator2Options
 from appium.options.ios import XCUITestOptions
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
-
+import shutil
+import pytest
 import os
 from pathlib import Path
 import time
@@ -501,5 +502,46 @@ def updateConstantFile(contantKey, ConstantValue):
         costant_value = json.load(constant_file)
     costant_value[contantKey] = ConstantValue
     with open(constants_path, "w") as constant_file:
-        json.dump(costant_value, constant_file, indent=4) 
-    
+        json.dump(costant_value, constant_file, indent=4)
+
+@pytest.fixture(scope="session", autouse=True)
+def clear_screenshot_directory():
+    screenshotDirectory = "D:\\VIL\\shopvi-automation\\reports\\screenshot"
+    if os.path.exists(screenshotDirectory):
+        for filename in os.listdir(screenshotDirectory):
+            file_path = os.path.join(screenshotDirectory, filename)
+            try:
+                if os.path.isfile(file_path):
+                    os.unlink(file_path)  # Delete the file
+            except Exception as e:
+                print(f"Failed to delete {file_path}. Reason: {e}")
+    else:
+        os.makedirs(screenshotDirectory)
+
+@pytest.fixture(scope="session", autouse=True)
+def clean_reports():
+    """
+    Clears the allure-results directory, the HTML report, and the pytest.log file before the test session starts.
+    """
+    # Paths to directories and files
+    allure_results_dir = "allure-results"
+    html_report_path = "reports/report.html"
+    pytest_log_file = "pytest.log"
+
+    # Clear the allure-results directory
+    if os.path.exists(allure_results_dir):
+        shutil.rmtree(allure_results_dir)  # Delete the directory and its contents
+        os.makedirs(allure_results_dir)  # Recreate the directory
+
+    # Clear the HTML report
+    if os.path.exists(html_report_path):
+        os.remove(html_report_path)  # Delete the file
+
+    # Clear the pytest.log file
+    if os.path.exists(pytest_log_file):
+        try:
+            # Try to close the file before deletion
+            with open(pytest_log_file, "w") as log_file:
+                log_file.truncate(0)  # Clear the file content
+        except Exception as e:
+            print(f"Unable to clear pytest.log file: {e}")

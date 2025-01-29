@@ -1,4 +1,4 @@
-from pytest_bdd import given, when, then, scenarios, parsers
+from pytest_bdd import given, when, then, scenarios, parsers, step
 import allure
 import pytest
 from pages.base_page import BasePage
@@ -6,6 +6,9 @@ from pages.navto_shop import NavtoShop
 from pages.shop_dashboard_page import ShopDashboardPage
 from pages.search_page import SearchPage
 from pages.accountPage import AccountPage
+from pages.pdp_flipkart import ProductDetailsPageFlipkart
+from utils.custom_logger import allureLogs
+from pages.actions.android_actions import AndroidActions
 
 # sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../pages')))  # noqa:E501
 
@@ -25,6 +28,10 @@ def basepage_instance(setup_platform):
     """Fixture to initialize the BasePage object."""
     return BasePage(setup_platform)
 
+@pytest.fixture
+def androidactions_instance(setup_platform):
+    """Fixture to initialize the Android object."""
+    return AndroidActions(setup_platform)
 
 @pytest.fixture
 def shoppage_instance(setup_platform):
@@ -41,6 +48,11 @@ def searchpage_instance(setup_platform):
 def accountpage_instance(setup_platform):
     """Fixture to initialize the Account Page object."""
     return AccountPage(setup_platform)
+
+@pytest.fixture
+def pdpflipkart_instance(setup_platform):
+    """Fixture to initialize the PDP Flipkart Page object."""
+    return ProductDetailsPageFlipkart(setup_platform)
 
 
 # ======== Step Definitions ========
@@ -359,3 +371,118 @@ def verify_expected_content_are_displayed_for_flipkart(searchpage_instance):
 def verify_click_search(searchpage_instance):
     """Step to click on the Flipkart search results."""
     searchpage_instance.verify_click_search()
+
+# ======== Add to cart Journey with Product Page Validation from search page========
+
+@when("I Verify the Product Title, Price, Discount and OutofStock Tag")
+@allure.step("When I Verify the Product Title, Price, Discount and OutofStock Tag")
+def verify_product_title_price_discount_outofstock_tag(pdpflipkart_instance):
+    pdpflipkart_instance.verify_product_title_price_discount()
+
+@when("I Verify the Product details")
+@allure.step("When I Verify the Product details")
+def verify_product_details(pdpflipkart_instance):
+    pdpflipkart_instance.verify_product_details()
+
+@when("I Verify the buying quantity")
+@allure.step("When I Verify the buying quantity")
+def verify_buying_quantity(pdpflipkart_instance):
+    pdpflipkart_instance.verify_buying_quantity()
+
+
+@when('I scroll to the element with text product details')
+@allure.step('When I scroll to the element with text product details')
+def scroll_to_element(androidactions_instance):
+    """Step to scroll to an element by text."""
+    androidactions_instance.scroll_into_view("product details")
+
+@when('I scroll to the element with text ratings and reviews')
+@allure.step('When I scroll to the element with text ratings and reviews')
+def scroll_to_element(androidactions_instance):
+    """Step to scroll to an element by text."""
+    androidactions_instance.scroll_into_view("ratings and reviews")
+
+
+@when('I scroll to the element with text similar products comparison')
+@allure.step('When I scroll to the element with text similar products comparison')
+def scroll_to_element(androidactions_instance):
+    """Step to scroll to an element by text."""
+    androidactions_instance.scroll_into_view("similar products comparison")
+
+@when('I scroll to the element with text out of stock')
+@allure.step('When I scroll to the element with text out of stock')
+def scroll_to_element(androidactions_instance):
+    """Step to scroll to an element by text."""
+    androidactions_instance.scroll_into_view("out of stock")
+
+@then("I Verify more details after the swipe")
+@allure.step("Then I Verify more details after the swipe")
+def verify_more_details_after_swipe(pdpflipkart_instance):
+    pdpflipkart_instance.verify_more_details()
+
+@then("I Verify the Ratings and Review Section")
+@allure.step("Then I Verify the Ratings and Review Section")
+def verify_ratings_and_reviews_section(pdpflipkart_instance):
+    pdpflipkart_instance.verify_ratings_and_reviews()
+
+
+@then("I Verify more similar products comparison section")
+@allure.step("Then I Verify more similar products comparison section")
+def verify_similar_products_comparisoion(pdpflipkart_instance):
+    pdpflipkart_instance.verify_similar_products_comparision()
+
+
+@then("I Verify Add to cart and Buy Now CTA button")
+@allure.step("Then I Verify Add to cart and Buy Now CTA button")
+def verify_add_to_cart_buy_now_cta_button(pdpflipkart_instance):
+    pdpflipkart_instance.verify_addtocart_buynow_cta()
+
+@then("I Verify Different Denominations")
+@allure.step("Then I Verify Different Denominations")
+def verify_add_to_cart_buy_now_cta_button(pdpflipkart_instance):
+    pdpflipkart_instance.verify_change_denomination()
+
+@then("I Click on Add To Cart CTA Button")
+@allure.step("Then I Click on Add To Cart CTA Button")
+def verify_add_to_cart_buy_now_cta_button(pdpflipkart_instance):
+    pdpflipkart_instance.verify_click_addto_gotocart_cta()
+
+@then("I Verify the Product details added in the cart")
+@allure.step("Then I Verify the Product details added in the cart")
+def verify_added_product_details_in_cart(pdpflipkart_instance):
+    pdpflipkart_instance.verify_cart_page_product_details()
+
+@then("I verify Order Summary Details")
+@allure.step("Then I verify Order Summary Details")
+def verify_order_summary_details(pdpflipkart_instance):
+    pdpflipkart_instance.verify_cart_page_order_summary()
+
+@then("I verify cart page title and pagination details")
+@allure.step("Then I verify cart page title and pagination details")
+def verify_order_summary_details(pdpflipkart_instance):
+    pdpflipkart_instance.verify_cart_page_pagination()
+
+@when("I click on the Proceed to Buy CTA button")
+@allure.step("When I click on the Proceed to Buy CTA button")
+def verify_order_summary_details(pdpflipkart_instance):
+    pdpflipkart_instance.verify_click_proceed_to_buy_cta()
+@then("I verify the delivery address page")
+@allure.step("Then I verify the delivery address page")
+def verify_delivery_address_page(pdpflipkart_instance):
+    pdpflipkart_instance.verify_payment_page()
+
+@when("I click on the Proceed to Payment CTA button")
+@allure.step("When I click on the Proceed to Payment CTA button")
+def verify_delivery_address_page(pdpflipkart_instance):
+    pdpflipkart_instance.verify_proceed_to_payment_cta()
+
+@then("I verify the payment page")
+@allure.step("Then I verify the payment page")
+def verify_payment_page(pdpflipkart_instance):
+    pdpflipkart_instance.verify_credit_debit_card_payment_section()
+
+
+@then(parsers.parse("I enter the {input} in the credit card field"))
+@allure.step("Then I enter the {input} in the credit card field")
+def verify_payment_page_details(pdpflipkart_instance, input):
+    pdpflipkart_instance.verify_input_cc_number(input)

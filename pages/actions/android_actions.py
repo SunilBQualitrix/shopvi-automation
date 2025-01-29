@@ -1,6 +1,7 @@
 # from appium import webdriver
 import random
 import time
+import os
 # from appium.webdriver.common.touch_action import TouchAction
 # from selenium.webdriver.common.by import By
 # from appium.webdriver.common.appiumby import AppiumBy
@@ -8,12 +9,14 @@ import time
 import allure
 from allure_commons.types import AttachmentType
 import requests
+from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, NoSuchElementException, StaleElementReferenceException, ElementClickInterceptedException   # noqa:E501
 from pages.actions.actions_parent import ActionsParent
 from conftest import readConstants
+from utils.custom_logger import custom_logger as cl
 
 
 # from appium import webdriver
@@ -23,12 +26,14 @@ from conftest import readConstants
 
 
 class AndroidActions(ActionsParent):
+    log = cl()
+    screenshot_counter = 0
 
     def __init__(self, driver):
         self.driver = driver
         self.ultra_wait = WebDriverWait(self.driver, readConstants("ULTRA_WAIT"))
         self.short_wait = WebDriverWait(self.driver, readConstants("SHORT_WAIT"))
-        print("long wait ===", readConstants("LONG_WAIT"))
+        #print("long wait ===", readConstants("LONG_WAIT"))
         self.wait = WebDriverWait(self.driver, readConstants("DEFAULT_WAIT"))
         self.long_wait = WebDriverWait(self.driver, readConstants("LONG_WAIT"))
         self.super_wait = WebDriverWait(self.driver, readConstants("SUPER_WAIT"))
@@ -44,11 +49,6 @@ class AndroidActions(ActionsParent):
     def fluentWaitNew(self, ele, secs):
         WebDriverWait(self.driver, 60, poll_frequency=secs).until(EC.visibility_of_element_located(ele), 'Error')
 
-    def screenshotAttachment(self, ScreenshotName):
-        doIneedScreenshot = readConstants("NEED_SCREENSHOTS_FOR_PASS")
-        print("want to take scrrenshot after sending values ", doIneedScreenshot)
-        if str(doIneedScreenshot).lower() == 'true':
-            allure.attach(self.driver.get_screenshot_as_png(), name=ScreenshotName, attachment_type=AttachmentType.PNG)
 
     def wait_for_element(self, locator, value, timeout=60):
         """
@@ -108,114 +108,11 @@ class AndroidActions(ActionsParent):
             except Exception:
                 print("Exception occured")
 
-    def enter_text(self, locator_type, locator_value, text):
-        """
-        Enters text into an input field identified by the locator.
-        Arguments:
-        locator_type - Locator strategy.
-        locator_value - Locator value.
-        text - Text to enter into the input field.
-        """
-        print("passing locator_type", locator_type)
-
-        try_count = 1
-        while try_count < 5:
-            try:
-                print("locator_value  to enter_text ===", locator_value)
-                element = WebDriverWait(self.driver, 10).until(
-                    EC.presence_of_element_located((locator_type, locator_value)))
-                print("typeing values ===", text)
-                self.screenshotAttachment("element_before_clear_{}.jpg".format(self.dynamic_number))
-                element.clear()
-                self.screenshotAttachment("element_cleared.jpg_{}.jpg".format(self.dynamic_number))
-                element.send_keys(text)
-                self.screenshotAttachment("element_dataset_{}.jpg".format(self.dynamic_number))
-                self.driver.hide_keyboard()
-                break
-            except TimeoutException:
-                self.screenshotAttachment("element_not_found_Timeout_Exception.jpg")
-                print("Element Is Not Found To Perform Click Action Due To Timeout, Trying again after 2 seconds")
-                try_count = try_count + 1
-            except NoSuchElementException:
-                self.screenshotAttachment("element_not_found_NoSuchElementException.jpg")
-
-                print(
-                    "Element Is Not Found To Perform Click Action Due To NoSuchElementException, Trying again after 2 seconds")
-
-                try_count = try_count + 1
-            except ElementClickInterceptedException:
-                self.screenshotAttachment("element_not_clickable.jpg")
-                print("Click was itercepted, Trying again after 2 seconds")
-                try_count = try_count + 1
-                # self.long_wait.until(EC.element_to_be_clickable(ele)).click()
-            except StaleElementReferenceException:
-                print("Stale element, refreshed, trying again")
-                # self.driver.refresh()
-                try_count += 1
-
-    def click_button(self, locator_type, locator_value):
-        """
-        Clicks a button identified by the locator.
-        Arguments:
-        locator_type - Locator strategy.
-        locator_value - Locator value.
-        """
-        print("passing locator_type", locator_type)
-
-        try_count = 1
-        while try_count < 5:
-            try:
-
-                element = self.long_wait.until(
-                    EC.element_to_be_clickable(self.driver.find_element(locator_type, locator_value)))
-                print("*****  Click element: ", locator_type, locator_value, element)
-                self.screenshotAttachment("element_clickable_{}.jpg".format(self.dynamic_number))
-                element.click()
-                self.screenshotAttachment("after_element_click_{}.jpg".format(self.dynamic_number))
-
-                # if(name!="Element"):
-                #     print("Clicked on " + locator_value)
-                break
-            except TimeoutException:
-
-                self.screenshotAttachment(
-                    "element_not_clickable_NoSuchElementException{}.jpg".format(self.dynamic_number))
-
-                print("Element Is Not Found To Perform Click Action Due To Timeout, Trying again after 2 seconds")
-                try_count = try_count + 1
-            except NoSuchElementException:
-                self.screenshotAttachment("element_not_clickable_NoSuchElementException.jpg")
-
-                print(
-                    "Element Is Not Found To Perform Click Action Due To NoSuchElementException, Trying again after 2 seconds")
-
-                try_count = try_count + 1
-            except ElementClickInterceptedException:
-                self.screenshotAttachment("element_not_clickable.jpg")
-                print("Intercepted click_button, Trying again after 2 seconds")
-                try_count = try_count + 1
-                # self.long_wait.until(EC.element_to_be_clickable(ele)).click()
-            except StaleElementReferenceException:
-                print("Stale element, refreshed, trying again")
-                # self.driver.refresh()
-                try_count += 1
-
     def close_app(self):
         """
         Closes the application.
         """
         self.driver.close_app()
-
-    # def move_to(self, locator_type, locator_value):
-    #     """
-    #     Moves the touch action to an element identified by the locator.
-    #     Arguments:
-    #     locator_type - Locator strategy.
-    #     locator_value - Locator value.
-    #     """
-    #     element = self.driver.find_element(locator_type, locator_value)
-    #     action = TouchAction(self.driver)
-    #     action.move_to(element).perform()
 
     def open_app(self):
         """
@@ -263,8 +160,6 @@ class AndroidActions(ActionsParent):
 
         return ele_text
 
-
-
     def get_text(self, locator_type, locator_value):
         """
         Retrieves the text of an element identified by the locator.
@@ -277,7 +172,7 @@ class AndroidActions(ActionsParent):
         while try_count < 5:
             try:
                 print("before wait stattement===", locator_type)
-                self.long_wait.until(EC.presence_of_element_located((locator_type, locator_value)))
+                self.wait.until(EC.presence_of_element_located((locator_type, locator_value)))
                 # self.long_wait.until(EC.visibility_of_element_located((By.ID, locator_value)))
                 # WebDriverWait(self.driver, readConstants("LONG_WAIT")).until(EC.visibility_of_element_located((locator_type, locator_value)))
                 print("waiting for element to fetch text")
@@ -297,52 +192,6 @@ class AndroidActions(ActionsParent):
                 # self.driver.refresh()
                 try_count += 1
 
-    # def press(self, locator_type, locator_value):
-    #     """
-    #     Presses on an element identified by the locator.
-    #     Arguments:
-    #     locator_type - Locator strategy.
-    #     locator_value - Locator value.
-    #     """
-    #     element = self.long_wait.until(EC.visibility_of_element_located(locator_type, locator_value))
-    #     # self.long_wait.until(EC.visibility_of(element)).click()
-    #     # element = self.driver.find_element(locator_type, locator_value)
-    #     action = TouchAction(self.driver)
-    #     action.press(element).release().perform()
-
-    # def trigger_back_button_event(self, locator_type, locator_value):
-    #     element = self.driver.find_element(locator_type, locator_value)
-    #     element.press_keycode(4)
-
-    # def scroll(self, start_locator_type, start_locator_value, end_locator_type, end_locator_value):
-    #     """
-    #     Scrolls from one element to another.
-    #     Arguments:
-    #     start_locator_type: Locator strategy for the starting element.
-    #     start_locator_value: Locator value for the starting element.
-    #     end_locator_type: Locator strategy for the ending element.
-    #     end_locator_value: Locator value for the ending element.
-    #     """
-    #     start_element = self.driver.find_element(start_locator_type, start_locator_value)
-    #     end_element = self.driver.find_element(end_locator_type, end_locator_value)
-    #     action = TouchAction(self.driver)
-    #     action.press(start_element).move_to(end_element).release().perform()
-
-    # deprivated, wil use abstract method enter_text
-    # def set_text(self, locator_type, locator_value, text):
-    #     """
-    #     Clears and sets text in an input field identified by the locator.
-    #     Arguments:
-    #     locator_type - Locator strategy.
-    #     locator_value - Locator value.
-    #     text - Text to enter into the input field.
-    #     """
-    #     print("in android  settings chaange sedndi gvalue as ====", text)
-    #     element = self.long_wait.until(EC.element_to_be_clickable(self.driver.find_element(locator_type, locator_value)))
-    #     # element = self.driver.find_element(locator_type, locator_value)
-    #     element.clear()
-    #     print("in android  settings chaange sedndi after clear", text)
-    #     element.send_keys(text)
 
     def suspend_app(self, seconds):
         """
@@ -363,20 +212,23 @@ class AndroidActions(ActionsParent):
         duration - Duration of the swipe in milliseconds (default is 800).
         """
         self.screenshotAttachment("element_before_swipe_{}.jpg".format(self.dynamic_number))
+        allureLogs(f"Performing swipe from ({start_x}, {start_y}) to ({end_x}, {end_y}) with duration {duration}ms.")
         self.driver.swipe(start_x, start_y, end_x, end_y, duration)
         self.screenshotAttachment("element_after_swipe.jpg")
+        allureLogs(f"Swipe completed and screenshot attached after swipe.")
 
-    # def tap(self, locator_type, locator_value):
-    #     """
-    #     Taps a button identified by the locator.
-    #     Arguments:
-    #     locator_type - Locator strategy.
-    #     locator_value - Locator value.
-    #     """
-    #     self.screenshotAttachment("element_before_tap_{}.jpg".format(self.dynamic_number))
-    #     element = self.driver.find_element(locator_type, locator_value)
-    #     action = TouchAction(self.driver)
-    #     action.tap(element).perform()
+
+    def tap(self, locator_type, locator_value):
+        """
+        Taps a button identified by the locator.
+        Arguments:
+        locator_type - Locator strategy.
+        locator_value - Locator value.
+        """
+        self.screenshotAttachment("element_before_tap_{}.jpg".format(self.dynamic_number))
+        element = self.driver.find_element(locator_type, locator_value)
+        action = TouchAction(self.driver)
+        action.tap(element).perform()
 
     def validate_element_visitbilty_within_time(self, locator_type, locator_value, duration):
         """
@@ -425,27 +277,6 @@ class AndroidActions(ActionsParent):
             )
             return True
         except TimeoutException:
-            return False
-        except Exception as e:
-            print("Element is not visible within", e)
-            return False
-
-    def is_element_displayed(self, locator_type, locator_value):
-        """
-        Checks if an element is displayed on the page.
-        Arguments:
-        locator_type - Locator strategy.
-        locator_value - Locator value.
-        Returns : True if the element is displayed; False otherwise.
-        """
-        try:
-            WebDriverWait(self.driver, 30).until(
-                EC.visibility_of_element_located((locator_type, locator_value)))
-            # self.driver.find_element(locator_type, locator_value)
-            self.screenshotAttachment("element_displyed_{}.jpg".format(self.dynamic_number))
-            return True
-        except TimeoutException:
-            print("TimeoutException")
             return False
         except Exception as e:
             print("Element is not visible within", e)
@@ -540,63 +371,207 @@ class AndroidActions(ActionsParent):
             # If the element is not found or there's a timeout, return False
             return False
 
-    def clickKeypadButton(self, digit):
-        """
-        Clicks a specific button on an on-screen keypad by its text value.
-        Difference: Focuses on keypad interactions.
-        Usage: Use for numeric inputs where buttons appear on a keypad (e.g., entering PINs).
-        """
-        try:
-            locatorValue = f'//android.widget.TextView[@text="{digit}"]'
-            self.click_button("xpath", locator_value=locatorValue)
-            time.sleep(1)
-            self.screenshotAttachment(f"Clicked keypad button with digit '{digit}'")
-        except Exception as e:
-            self.screenshotAttachment(f"Failed to click keypad button with digit '{digit}'. Error: {str(e)}")
 
-    def sendNumberViaKeypad(self, number):
+    def click_button(self, locator_type, locator_value):
         """
-        Sends a number by clicking on individual digits on a keypad with a delay between consecutive identical digits.
-        Difference: Uses delays for repeated digits.
-        Usage: Use to input multi-digit numbers like phone numbers via keypad, especially when consecutive digits are present.
+        Clicks a button identified by the locator.
+        Arguments:
+        locator_type - Locator strategy.
+        locator_value - Locator value.
         """
-        try:
-            previous_digit = None
-            for digit in str(number):
-                if previous_digit == digit:
-                    time.sleep(1)
-                self.clickKeypadButton(digit)
-                previous_digit = digit
-            self.screenshotAttachment(f"Successfully sent number '{number}' via keypad")
-        except Exception as e:
-            self.screenshotAttachment(f"Failed to send number '{number}' via keypad. Error: {str(e)}")
+        self.log.info(f"Starting click_button method for locator: {locator_type} with value: {locator_value}")
+        print("Passing locator_type:", locator_type)
 
-    def clickOtpButton(self, digit):
-        """
-        Clicks an OTP button on the keypad based on a specific digit's position.
-        Difference: Clicks second occurrence of a digit.
-        Usage: Use when needing to distinguish between repeated digits, often in OTP entry fields where each digit has multiple entries.
-        """
-        try:
-            locatorValue = f'(//android.widget.TextView[@text="{digit}"])[2]'
-            self.click_button("xpath", locator_value=locatorValue)
-            self.screenshotAttachment(f"Clicked OTP button with digit '{digit}'")
-        except Exception as e:
-            self.screenshotAttachment(f"Failed to click OTP button with digit '{digit}'. Error: {str(e)}")
+        try_count = 1
+        while try_count < 5:
+            try:
+                # Log the attempt to click the element
+                self.log.info(f"Attempt {try_count}: Trying to find and click the element.")
 
-    def sendOtpViaKeypad(self, otp):
+                # Wait until the element is clickable
+                element = self.wait.until(
+                    EC.element_to_be_clickable(self.driver.find_element(locator_type, locator_value))
+                )
+                self.log.info(f"Element found and clickable: {locator_type} = {locator_value}. Clicking now.")
+
+                # Perform the click action
+                element.click()
+                self.log.info(f"Successfully clicked on the element: {locator_value}")
+                print("Clicked successfully on the element:", locator_value)
+                break  # Exit the loop after a successful click
+
+            except TimeoutException:
+                self.log.error(
+                    f"TimeoutException: Element not clickable after waiting. Retrying... (Attempt {try_count}/4)")
+            except NoSuchElementException:
+                self.log.error(
+                    f"NoSuchElementException: Could not find the element. Retrying... (Attempt {try_count}/4)")
+            except ElementClickInterceptedException:
+                self.log.error(
+                    f"ElementClickInterceptedException: Click intercepted. Retrying... (Attempt {try_count}/4)")
+            except StaleElementReferenceException:
+                self.log.error(
+                    f"StaleElementReferenceException: Stale reference for the element. Retrying... (Attempt {try_count}/4)")
+
+            try_count += 1  # Increment the retry counter
+
+        if try_count == 5:
+            self.log.error(f"Failed to click the element {locator_value} after {try_count - 1} attempts.")
+            self.screenshotAttachment(f"ClickButtonError_{locator_type}_{locator_value}")
+            print(f"Failed to click the element after {try_count - 1} attempts.")
+            assert False
+
+    def is_element_displayed(self, locator_type, locator_value):
         """
-        Sends an OTP via keypad, handling repeated digits with delays.
-        Difference:Focuses on OTPs with repeated digits.
-        Usage: Use to enter OTP codes, especially if digits might repeat consecutively.
+        Checks if an element is displayed on the page.
+        Arguments:
+        locator_type - Locator strategy.
+        locator_value - Locator value.
+        Returns: True if the element is displayed; False otherwise.
         """
+        self.log.info(f"Starting is_element_displayed method for locator: {locator_type} with value: {locator_value}")
         try:
-            previous_digit = None
-            for digit in str(otp):
-                if previous_digit == digit:
-                    time.sleep(0.5)
-                self.clickOtpButton(digit)
-                previous_digit = digit
-            self.screenshotAttachment(f"Successfully sent OTP '{otp}' via keypad")
+            # Wait until the element is visible
+            self.log.info(f"Waiting for element to be visible: {locator_type} = {locator_value}")
+            WebDriverWait(self.driver, 30).until(
+                EC.visibility_of_element_located((locator_type, locator_value))
+            )
+            self.log.info(f"Element is visible: {locator_type} = {locator_value}")
+            return True
+
+        except TimeoutException:
+            self.log.error(
+                f"TimeoutException: Element not visible within the timeout period: {locator_type} = {locator_value}")
+            return False
+
         except Exception as e:
-            self.screenshotAttachment(f"Failed to send OTP '{otp}' via keypad. Error: {str(e)}")
+            self.log.error(f"Exception occurred: {type(e).__name__} - {str(e)}")
+            self.log.error(f"Failed to check visibility of element: {locator_type} = {locator_value}")
+            # Capture a screenshot only when the method fails
+            self.takeScreenshot(f"ElementDisplayFailure_{locator_type}_{locator_value}")
+            return False
+
+    def screenshotAttachment(self, description):
+        """
+        Takes a screenshot based on a condition, saves it with a unique name,
+        and attaches it to the Allure report.
+        """
+        # Condition to check whether screenshots are needed
+        doIneedScreenshot = readConstants("NEED_SCREENSHOTS_FOR_PASS")
+        print(f"Want to take screenshot after sending values: {doIneedScreenshot}")
+
+        # Check if the condition allows taking screenshots
+        if str(doIneedScreenshot).lower() == 'true':
+            # Ensure the screenshot directory exists (but do not clear it here)
+            screenshotDirectory = "D:\\VIL\\shopvi-automation\\reports\\screenshot"
+            if not os.path.exists(screenshotDirectory):
+                os.makedirs(screenshotDirectory)
+
+            # Increment screenshot counter and create a unique filename
+            self.__class__.screenshot_counter += 1
+            filename = f"{self.__class__.screenshot_counter:03d}_{description}_{time.strftime('%d_%m_%Y_%H_%M_%S')}.png"
+            screenshotPath = os.path.join(screenshotDirectory, filename)
+
+            try:
+                # Take and save the screenshot
+                self.driver.save_screenshot(screenshotPath)
+
+                # Attach the screenshot to Allure report
+                allure.attach(self.driver.get_screenshot_as_png(), name=description, attachment_type=AttachmentType.PNG)
+
+                # Log the screenshot path
+                self.log.info(f"Screenshot taken and saved at '{screenshotPath}'")
+
+            except Exception as e:
+                # Handle errors if screenshot fails
+                self.log.error(f"Failed to take screenshot. Error: {str(e)}")
+        else:
+            print("Skipping screenshot as the condition is not met.")
+
+    def enter_text(self, locator_type, locator_value, text):
+        """
+        Enters text into an input field identified by the locator.
+        Arguments:
+        locator_type - Locator strategy.
+        locator_value - Locator value.
+        text - Text to enter into the input field.
+        """
+        self.log.info(f"Starting enter_text method for locator: {locator_type} with value: {locator_value}")
+        print(f"Attempting to enter text '{text}' in element located by {locator_type} = {locator_value}")
+
+        try_count = 1
+        while try_count <= 5:
+            try:
+                # Log the attempt
+                self.log.info(f"Attempt {try_count}: Trying to locate and interact with the element.")
+
+                # Wait until the element is present
+                element = self.wait.until(
+                    EC.presence_of_element_located((locator_type, locator_value))
+                )
+                self.log.info(f"Element located: {locator_type} = {locator_value}. Clearing any pre-existing text.")
+
+                # Clear existing text and enter the new text
+                element.clear()
+                self.log.info(f"Entering text: {text}")
+                element.send_keys(text)
+                self.log.info(f"Text '{text}' entered successfully.")
+
+                # Hide the keyboard
+                self.log.info("Hiding the keyboard.")
+                self.driver.hide_keyboard()
+
+                self.log.info(f"Successfully entered text '{text}' in element {locator_type} = {locator_value}")
+                print(f"Text '{text}' entered successfully in the element {locator_value}")
+                break  # Exit the loop after successfully entering text
+
+            except TimeoutException:
+                self.log.error(
+                    f"TimeoutException: Element not found within the time limit. Retrying... (Attempt {try_count}/5)")
+            except NoSuchElementException:
+                self.log.error(
+                    f"NoSuchElementException: Element {locator_type} = {locator_value} not found. Retrying... (Attempt {try_count}/5)")
+            except ElementClickInterceptedException:
+                self.log.error(
+                    f"ElementClickInterceptedException: Could not interact with the element. Retrying... (Attempt {try_count}/5)")
+            except StaleElementReferenceException:
+                self.log.error(
+                    f"StaleElementReferenceException: Stale reference for the element. Retrying... (Attempt {try_count}/5)")
+
+            # Increment retry count and continue
+            try_count += 1
+
+        # Check if the maximum retry limit was reached
+        if try_count > 5:
+            self.log.error(
+                f"Failed to enter text in element {locator_type} = {locator_value} after {try_count - 1} attempts.")
+            self.takeScreenshot(f"EnterTextError_{locator_type}_{locator_value}")
+            print(f"Failed to enter text '{text}' after {try_count - 1} attempts.")
+            assert False
+
+    def scroll_into_view(self, text):
+        """
+        Scrolls to an element by its visible text on a scrollable view.
+        Arguments:
+        text - The visible text of the element to scroll to.
+        Returns: The located element if successful; None otherwise.
+        """
+        self.log.info(f"Starting scroll_into_view method for text: {text}")
+        try:
+            # Scroll to the element using UiScrollable and UiSelector
+            self.log.info(f"Attempting to scroll to the element with text: {text}")
+            locator = (AppiumBy.ANDROID_UIAUTOMATOR,f'new UiScrollable(new UiSelector().scrollable(true).instance(0))'f'.scrollIntoView(new UiSelector().text("{text}"))')
+            element = WebDriverWait(self.driver, 30).until(EC.presence_of_element_located(locator))
+            self.log.info(f"Successfully scrolled to the element with text: {text}")
+            return element
+
+        except TimeoutException:
+            self.log.error(f"TimeoutException: Could not scroll to the element with text '{text}' within the timeout period.")
+            return None
+
+        except Exception as e:
+            self.log.error(f"Exception occurred: {type(e).__name__} - {str(e)}")
+            self.log.error(f"Failed to scroll to the element with text: {text}")
+            # Capture a screenshot for debugging
+            self.screenshotAttachment(f"ScrollIntoViewFailure_{text}")
+            return None
