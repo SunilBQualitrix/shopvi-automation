@@ -1,92 +1,100 @@
-# python-behave-appium
-BDD test project writen in python using the appium-python-client and behave to implement behavior driven development.
-Allure is added for reporting.
+# Mobile Automation Framework (Python + Appium + BDD)
 
-###  PreRequisites 
+This repository contains a **mobile automation framework** built using **Python, Appium, and BDD**. The framework is designed for testing Android applications and integrates **Allure reporting, pytest-html, and Jenkins** for automation execution and reporting.
+
+## 📌 Features
+- **Appium-based UI automation** for Android apps.
+- **BDD (Behavior-Driven Development)** using **pytest**.
+- **Page Object Model (POM)** for maintainability.
+- **Allure reporting** for detailed test reports.
+- **Pytest & Pytest-HTML integration**.
+- **Custom logger** for better debugging.
+
+---
+
+## 🛠 Setup Instructions
+
+### **1️⃣ Prerequisites**
+Ensure the following dependencies are installed:
+- **Python** (>=3.8)
+- **Appium Server** (installed and running)
+- **Android SDK & ADB** (configured in PATH)
+- **JDK 11 or later**
+- **Google ChromeDriver** (for WebView testing, if applicable)
+- **Git** (for version control)
+
+### **2️⃣ Clone the Repository**
+```sh
+ git clone <your-github-repo-url>
+ cd <your-repo-folder>
+```
+
+### **3️⃣ Create a Virtual Environment**
+```sh
+ python -m venv myenv
+ source myenv/bin/activate   # For Mac/Linux
+ myenv\Scripts\activate      # For Windows
+```
+
+### **4️⃣ Install Dependencies**
+```sh
+ pip install -r requirements.txt
+```
+
+---
+
+## 🚀 Running Tests
+
+### **1️⃣ Start Appium Server**
+Ensure Appium server is running before executing tests:
+```sh
+ appium &   # Run in background (Mac/Linux)
+ appium     # Run in foreground (Windows)
+```
+
+### **2️⃣ Run Pytest Tests**
+```sh
+ pytest -v -m ViShopRegression --platform=android --app_package_name=com.mventus.selfcare.activity --app_activity=com.mventus.selfcare.activity.MainActivity --appFileName=D:\PyProjects\PythonProject\ShopVI_Automation\builds\vishop.apk --full-trace
+```
+
+### **3️⃣ Generate Single file Allure Reports**
+```sh
+ allure generate --single-file shopvi-automation\allure-results --clean -o shopvi-automation\allure-report
+```
+
+---
+
+## 📂 Project Structure
+```
+.
+├── builds/                # APK builds
+├── pages/                 # Actions and Page Object Model (POM) implementation
+├── reports/               # Screenshots, HTML reports
+├── tests/                 # Step definitions and feature files
+├── utils/                 # Utilities (Customloger, prereq, platformconfig, constants etc.)
+├── conftest.py            # Pytest fixtures & setup
+├── requirements.txt       # Dependencies
+├── README.md              # Project Documentation
+```
+
+---
 
 
-###### For FireTV
- -  Install Android Studio
- -  Set Environment varable for ANDROID_HOME 
- - FireTV and Execution enviorment (Server/Laptop)should be in same Network
- - Install Node and Appium
- https://nodejs.org/en/download/package-manager
- https://appium.io/docs/en/2.0/quickstart/install/
- - install UIAtumator2 Driver
- https://appium.io/docs/en/2.0/quickstart/uiauto2-driver/
- - Indentidfy ip of FireTV
- - execute `adb connect <firetv_ip_address>`
+## 🛠 Troubleshooting
+### **Common Issues & Fixes**
+- **Appium server not starting?** Ensure Appium is installed and running (`appium -v` to check version).
+- **ADB device not found?** Check if the device is connected via USB and recognized (`adb devices`).
+- **StaleElementException?** Implement retries using explicit waits in `basepage.py`.
+- **Tests failing randomly?** Try increasing wait times or checking element locators.
 
- 
- ###### For Roku TV
--  Roku TV and Execution enviorment (Server/Laptop) should be in same Network
+---
 
-###### For IPAD
- 
--  Install XCODE
-- node and appium is required 
-- Pair Ipad to To execution device (server) via XCODE
-- iPad Should be conneced via USB
-- run WebDriverAgent in Xcode and let the Test Automation Agent run in Connected iPad
- 
+### **🔗 Useful Links**
+- [Appium Documentation](https://appium.io/docs/en/about-appium/)
+- [Pytest](https://docs.pytest.org/en/stable/)
+- [Selenium WebDriver](https://www.selenium.dev/documentation/)
+- [Allure Reports](https://docs.qameta.io/allure/)
 
+---
 
- 
-
-# Install:
-
-pip install -r requirements.txt
-
-
-
-# Execute - for FireTV :
-
-pytest -m <tagName> --plateform=fire_tv  --appFileName=apkfile_name
-* Valid Plateform Names - fire_tv,roku_tv,apple_tv,ipad 
-* file should place under src\builds*
-* additional Params : 
-**--qaserver ** : defailt q8 , server name to connect Admin 
-**--consecutive_failure_abort**- default is True , False -to  disable execution abortion
-**--consecutive_failure_count** -default is 5, if consecutive_failure_abort is true then execution abort after 5 consequitive failure
-**--screenShotToggle** -- default is False - to add All Screen shot for passed Test cases too (before and after every action)
-
-# Execute - for Roku TV :
-
-pytest -m <tagName> --plateform=roku_tv --appFileName=zipfile_name
-* Valid Plateform Names - fire_tv,roku_tv,apple_tv,ipad 
-* file should place under src\builds*
-* additional Params : 
-**--qaserver ** : defailt q8 , server name to connect Admin 
-**--consecutive_failure_abort**- default is True , False -to  disable execution abortion
-**--consecutive_failure_count** -default is 5, if consecutive_failure_abort is true then execution abort after 5 consequitive failure
-**--screenShotToggle** -- default is False - to add All Screen shot for passed Test cases too (before and after every action)
-
-# Report:
-
-
-allure generate
-
-allure serve
-
-allure open
-
-# Docker Setup
-
-docker run -p 9000:9000 -it -v  D:\Qualitrix\Indee\Indee_App_Automation:/home appautomation:1 /bin/bash 
-cd /home
-pip install -r requirements.txt
-touch /root/.Xauthority 
-Xvfb :99 -screen 0 1024x768x24 & export DISPLAY=:99  
-
-pytest -m GDAppValidations --platform=fire_tv --appFileName=/home/builds/Paramount_GD_QA8_7.0.1.apk
-
-pytest -m GDAppValidations --platform=roku_tv --roku_ip=192.168.1.68 --rokuUser=rokudev --rokuPass=Auto9876 --appFileName=/home/builds/Indee_Paramount_GD_Staff_Login_2024_07_10.zip
-
-# References:
-appium-python-client: https://pypi.org/project/Appium-Python-Client/
-
-behave: https://behave.readthedocs.io/en/latest/
-
-allure: https://allurereport.org/docs/behave/
-
-Android Studio has been used to emulate device
+🎯 **Happy Testing! 🚀**
