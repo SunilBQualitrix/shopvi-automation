@@ -1,4 +1,4 @@
-from pytest_bdd import given, when, then, scenarios, parsers, step
+from pytest_bdd import given, when, then, scenarios, parsers
 import allure
 import pytest
 from pages.base_page import BasePage
@@ -7,7 +7,6 @@ from pages.shop_dashboard_page import ShopDashboardPage
 from pages.search_page import SearchPage
 from pages.accountPage import AccountPage
 from pages.pdp_flipkart import ProductDetailsPageFlipkart
-from utils.custom_logger import allureLogs
 from pages.actions.android_actions import AndroidActions
 
 # sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../pages')))  # noqa:E501
@@ -44,6 +43,7 @@ def searchpage_instance(setup_platform):
     """Fixture to initialize the Shop Dashboard Page object."""
     return SearchPage(setup_platform)
 
+
 @pytest.fixture
 def accountpage_instance(setup_platform):
     """Fixture to initialize the Account Page object."""
@@ -55,7 +55,7 @@ def pdpflipkart_instance(setup_platform):
     return ProductDetailsPageFlipkart(setup_platform)
 
 
-# ======== Step Definitions ========
+# ======== Step Definitions ===========================
 
 # ======== Navugation to Shop ========
 
@@ -75,11 +75,11 @@ def launch_vishop_application(basepage_instance):
 
 
 @given("I open the app and navigate to the mobile number input screen")
-@allure.step("Given I open the app and navigate to the mobile number input screen")  
+@allure.step("Given I open the app and navigate to the mobile number input screen")       # noqa:E501
 def open_app_and_navigate_to_mobile_number_input_screen(navtoshop_instance):
     """Step to navigate to the mobile number input screen."""
     enter_mobile_number = navtoshop_instance.click_number_input_field()
-    assert enter_mobile_number, "Mobile number input screen is not displayed after lanuching the vishop application"
+    assert enter_mobile_number, "Mobile number input screen is not displayed after lanuching the vishop application"          # noqa:E501
 
 
 @when("I close the mobile number dialog box")
@@ -117,14 +117,13 @@ def log_into_the_app_using_login_with_otp_cta_button(navtoshop_instance):
     navtoshop_instance.login_wotp_button()
 
 
-@then("I click on VI Shop from Bottom Navigation and should navigate to the shop Dashboard")  
-@allure.step("Then I click on VI Shop from Bottom Navigation and should navigate to the shop Dashboard") 
-def click_on_vi_shop_from_bottom_navigation_and_should_navigate_to_the_shop_dashboard(navtoshop_instance, shoppage_instance):
+@then("I click on VI Shop from Bottom Navigation and should navigate to the shop Dashboard")      # noqa:E501
+@allure.step("Then I click on VI Shop from Bottom Navigation and should navigate to the shop Dashboard")      # noqa:E501
+def click_on_vi_shop_from_bottom_navigation_and_should_navigate_to_the_shop_dashboard(navtoshop_instance, shoppage_instance):     # noqa:E501
     """Step to navigate to the shop dashboard."""
     navtoshop_instance.navto_shop()
     shop_page_reached = shoppage_instance.verify_shop_dashborad_page()
     assert shop_page_reached, "Shop Dashboard page is not reached"
-
 
 
 # ======== Account Page Validation ========
@@ -138,11 +137,11 @@ def verify_account_button_is_displayed(accountpage_instance):
 
 
 @when("I click on the account button and navigate to the account page")
-@allure.step("When I click on the account button and navigate to the account page")
+@allure.step("When I click on the account button and navigate to the account page")   # noqa:E501
 def click_account_button_and_navigate_to_account_page(accountpage_instance):
     """Step to click the account button and navigate to the account page."""
     clicked = accountpage_instance.click_account_button()
-    assert clicked, "Failed to click on the account button and navigate to the account page."
+    assert clicked, "Failed to click on the account button and navigate to the account page."     # noqa:E501
 
 
 @then("I verify all elements are displayed on the account page")
@@ -159,7 +158,7 @@ def verify_all_elements_on_account_page(accountpage_instance):
 def navigate_to_faq_page(accountpage_instance):
     """Step to navigate to the FAQ page."""
     navigated = accountpage_instance.verify_nav_to_faq_page()
-    assert navigated, "Failed to navigate to the FAQ page. FAQ element was not displayed."
+    assert navigated, "Failed to navigate to the FAQ page. FAQ element was not displayed."    # noqa:E501
 
 
 @then("I verify all elements are displayed on the FAQ page")
@@ -171,7 +170,7 @@ def verify_all_elements_on_faq_page(accountpage_instance):
     print("Verification of FAQ page elements completed.")
     # Navigate back to the previous page
     try:
-        accountpage_instance.driver.back()  # Or use faqpage_instance.driver.press_keycode(4)
+        accountpage_instance.driver.back()  # Or use faqpage_instance.driver.press_keycode(4)     # noqa:E501
         print("Navigated back from the FAQ page successfully.")
     except Exception as e:
         print(f"Failed to navigate back from the FAQ page: {e}")
@@ -278,12 +277,11 @@ def verify_all_elements_on_saved_payments_page(accountpage_instance):
     accountpage_instance.driver.back()
 
 
-
 # ======== Validation of navigation across Tabs ========
 
-@when(("I am on shop dashboard and verify all items are displayed on shop dashboard"))
-@allure.step("When I am on shop dashboard and verify all items are displayed on shop dashboard")
-def open_the_shop_tab_and_verify_all_items_are_displayed_on_shop_dashboard(shoppage_instance):
+@when(("I am on shop dashboard and verify all items are displayed on shop dashboard"))   # noqa:E501
+@allure.step("When I am on shop dashboard and verify all items are displayed on shop dashboard")          # noqa:E501
+def open_the_shop_tab_and_verify_all_items_are_displayed_on_shop_dashboard(shoppage_instance):        # noqa:E501
     """Step to verify all items are displayed on the shop dashboard."""
     shoppage_instance.verify_all_items_on_shop_dashboard()
 
@@ -293,11 +291,13 @@ def navigate_to_deals_tab(shoppage_instance):
     """Step to navigate to the deals tab."""
     shoppage_instance.navigate_to_deals_tab()
 
+
 @then("I verify all items are displayed on the deals tab")
 @allure.step("Then I verify all items are displayed on the deals tab")
 def verify_all_items_are_displayed_on_the_deals_tab(shoppage_instance):
     """Step to verify all items are displayed on the deals tab."""
     shoppage_instance.verify_all_items_on_deals_tab()
+
 
 @when("I navigate to the explore tab")
 @allure.step("When I navigate to the explore tab")
@@ -305,17 +305,20 @@ def navigate_to_explore_tab(shoppage_instance):
     """Step to navigate to the explore tab."""
     shoppage_instance.navigate_to_explore_tab()
 
+
 @then("I verify all items are displayed on the explore tab")
 @allure.step("Then I verify all items are displayed on the explore tab")
 def verify_all_items_are_displayed_on_the_explore_tab(shoppage_instance):
     """Step to verify all items are displayed on the explore tab."""
     shoppage_instance.verify_all_items_on_explore_tab()
 
+
 @when("I navigate to the my orders tab")
 @allure.step("When I navigate to the my orders tab")
 def navigate_to_my_orders_tab(shoppage_instance):
     """Step to navigate to the my orders tab."""
     shoppage_instance.navigate_to_my_orders_tab()
+
 
 @then("I verify all items are displayed on the my orders tab")
 @allure.step("Then I verify all items are displayed on the my orders tab")
@@ -324,13 +327,12 @@ def verify_all_items_are_displayed_on_the_my_orders_tab(shoppage_instance):
     shoppage_instance.verify_all_items_on_my_orders_tab()
 
 
-
 # ======== Search page Validation ========
 
 
 @when("I click on search icon")
 @allure.step("When I click on search icon")
-def click_on_search_icon(shoppage_instance,searchpage_instance):
+def click_on_search_icon(shoppage_instance,searchpage_instance):    # noqa:E501
     """Step to click on the search icon."""
     shoppage_instance.click_on_shop_icon()
     searchpage_instance.click_search_icon()
@@ -347,7 +349,7 @@ def enter_the_input_in_the_search_field(searchpage_instance, input):
 @allure.step("Then I verify no search results are displayed")
 def verify_no_search_results_are_displayed(searchpage_instance):
     """Step to verify no search results are displayed."""
-    no_search_results = searchpage_instance.verify_no_search_results_are_displayed()
+    no_search_results = searchpage_instance.verify_no_search_results_are_displayed()    # noqa:E501
     assert no_search_results, "Search results are displayed"
 
 
@@ -355,16 +357,17 @@ def verify_no_search_results_are_displayed(searchpage_instance):
 @allure.step("Then I verify expected content are displayed for flipkart")
 def verify_expected_content_are_displayed_for_flipkart(searchpage_instance):
     """Step to verify the expected content for flipkart."""
-    flipkart_results = searchpage_instance.verify_search_results_displayed_for_flipkart()
+    flipkart_results = searchpage_instance.verify_search_results_displayed_for_flipkart()   # noqa:E501
     assert flipkart_results, "Expected contents are not displayed for flipkart"
 
 
-#@then("I verify expected content are displayed for amazon")
-#@allure.step("Then I verify expected content are displayed for amazon")
-#def verify_expected_content_are_displayed_for_amazon(searchpage_instance):
-#    """Step to verify the expected content for amazon."""
-#    amazon_results = searchpage_instance.verify_search_results_displayed_for_amazon()
-#    assert amazon_results, "Expected contents are not displayed for amazon"
+'''@then("I verify expected content are displayed for amazon")
+@allure.step("Then I verify expected content are displayed for amazon")
+def verify_expected_content_are_displayed_for_amazon(searchpage_instance):
+    """Step to verify the expected content for amazon."""
+    amazon_results = searchpage_instance.verify_search_results_displayed_for_amazon()     # noqa:E501
+    assert amazon_results, "Expected contents are not displayed for amazon"'''
+
 
 @then("I click on Flipkart Search Results")
 @allure.step("Then I click on Flipkart Search Results")
@@ -372,17 +375,20 @@ def verify_click_search(searchpage_instance):
     """Step to click on the Flipkart search results."""
     searchpage_instance.verify_click_search()
 
-# ======== Add to cart Journey with Product Page Validation from search page========
+# ==== Add to cart Journey with Product Page Validation from search page====
+
 
 @when("I Verify the Product Title, Price, Discount and OutofStock Tag")
-@allure.step("When I Verify the Product Title, Price, Discount and OutofStock Tag")
+@allure.step("When I Verify the Product Title, Price, Discount and OutofStock Tag")  # noqa:E501
 def verify_product_title_price_discount_outofstock_tag(pdpflipkart_instance):
     pdpflipkart_instance.verify_product_title_price_discount()
+
 
 @when("I Verify the Product details")
 @allure.step("When I Verify the Product details")
 def verify_product_details(pdpflipkart_instance):
     pdpflipkart_instance.verify_product_details()
+
 
 @when("I Verify the buying quantity")
 @allure.step("When I Verify the buying quantity")
@@ -395,6 +401,7 @@ def verify_buying_quantity(pdpflipkart_instance):
 def scroll_to_element(androidactions_instance):
     """Step to scroll to an element by text."""
     androidactions_instance.scroll_into_view("product details")
+
 
 @when('I scroll to the element with text ratings and reviews')
 @allure.step('When I scroll to the element with text ratings and reviews')
@@ -409,16 +416,19 @@ def scroll_to_element(androidactions_instance):
     """Step to scroll to an element by text."""
     androidactions_instance.scroll_into_view("similar products comparison")
 
+
 @when('I scroll to the element with text out of stock')
 @allure.step('When I scroll to the element with text out of stock')
 def scroll_to_element(androidactions_instance):
     """Step to scroll to an element by text."""
     androidactions_instance.scroll_into_view("out of stock")
 
+
 @then("I Verify more details after the swipe")
 @allure.step("Then I Verify more details after the swipe")
 def verify_more_details_after_swipe(pdpflipkart_instance):
     pdpflipkart_instance.verify_more_details()
+
 
 @then("I Verify the Ratings and Review Section")
 @allure.step("Then I Verify the Ratings and Review Section")
@@ -437,44 +447,54 @@ def verify_similar_products_comparisoion(pdpflipkart_instance):
 def verify_add_to_cart_buy_now_cta_button(pdpflipkart_instance):
     pdpflipkart_instance.verify_addtocart_buynow_cta()
 
+
 @then("I Verify Different Denominations")
 @allure.step("Then I Verify Different Denominations")
 def verify_add_to_cart_buy_now_cta_button(pdpflipkart_instance):
     pdpflipkart_instance.verify_change_denomination()
+
 
 @then("I Click on Add To Cart CTA Button")
 @allure.step("Then I Click on Add To Cart CTA Button")
 def verify_add_to_cart_buy_now_cta_button(pdpflipkart_instance):
     pdpflipkart_instance.verify_click_addto_gotocart_cta()
 
+
 @then("I Verify the Product details added in the cart")
 @allure.step("Then I Verify the Product details added in the cart")
 def verify_added_product_details_in_cart(pdpflipkart_instance):
     pdpflipkart_instance.verify_cart_page_product_details()
+
 
 @then("I verify Order Summary Details")
 @allure.step("Then I verify Order Summary Details")
 def verify_order_summary_details(pdpflipkart_instance):
     pdpflipkart_instance.verify_cart_page_order_summary()
 
+
 @then("I verify cart page title and pagination details")
 @allure.step("Then I verify cart page title and pagination details")
 def verify_order_summary_details(pdpflipkart_instance):
     pdpflipkart_instance.verify_cart_page_pagination()
 
+
 @when("I click on the Proceed to Buy CTA button")
 @allure.step("When I click on the Proceed to Buy CTA button")
 def verify_order_summary_details(pdpflipkart_instance):
     pdpflipkart_instance.verify_click_proceed_to_buy_cta()
+
+
 @then("I verify the delivery address page")
 @allure.step("Then I verify the delivery address page")
 def verify_delivery_address_page(pdpflipkart_instance):
     pdpflipkart_instance.verify_payment_page()
 
+
 @when("I click on the Proceed to Payment CTA button")
 @allure.step("When I click on the Proceed to Payment CTA button")
 def verify_delivery_address_page(pdpflipkart_instance):
     pdpflipkart_instance.verify_proceed_to_payment_cta()
+
 
 @then("I verify the payment page")
 @allure.step("Then I verify the payment page")
