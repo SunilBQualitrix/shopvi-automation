@@ -1,8 +1,6 @@
 from pages.actions.android_actions import AndroidActions
 from appium import webdriver
-import time
-from selenium import webdriver as browserDriver
-from appium.webdriver.common.appiumby import AppiumBy
+
 
 keycodes = {
     "KEYCODE_DPAD_UP": 19,  # up arrow key

@@ -1,7 +1,7 @@
 import time
 from appium.webdriver.common.appiumby import AppiumBy
 from pages.base_page import BasePage
-from utils.custom_logger import custom_logger, allureLogs
+from utils.custom_logger import allureLogs
 from pages.actions.android_actions import AndroidActions
 
 locators_ap = {
@@ -89,6 +89,7 @@ locators_ap = {
     "FAQ10": (AppiumBy.XPATH, '//android.widget.TextView[@text="How can I cancel or exchange a digital product?"]'),  # noqa:E501
 }
 
+
 class AccountPage(BasePage):
 
     def __init__(self, driver):
@@ -98,7 +99,7 @@ class AccountPage(BasePage):
 
     def verify_account_button(self):
         allureLogs("Verifying if the account button is displayed.")
-        locators = [locators_ap["ACCOUNT_BUTTON1"], locators_ap["ACCOUNT_BUTTON2"]]
+        locators = [locators_ap["ACCOUNT_BUTTON1"], locators_ap["ACCOUNT_BUTTON2"]]   # noqa:E501
         for locator in locators:
             if self.actions.is_element_displayed(*locator):
                 allureLogs(f"Account button is DISPLAYED")
@@ -110,18 +111,17 @@ class AccountPage(BasePage):
 
     def click_account_button(self):
         allureLogs("Clicking on the account button.")
-        locators = [locators_ap["ACCOUNT_BUTTON1"], locators_ap["ACCOUNT_BUTTON2"]]
+        locators = [locators_ap["ACCOUNT_BUTTON1"], locators_ap["ACCOUNT_BUTTON2"]]   # noqa:E501
         for locator in locators:
-            if self.actions.is_element_displayed(*locator):  # Verify if the element is displayed
+            if self.actions.is_element_displayed(*locator):
                 allureLogs(f"Account button is DISPLAYED")
                 self.actions.click_button(*locator)  # Click the element
                 allureLogs(f"Clicked on the account button")
-                self.actions.screenshotAttachment("Clicked on the account button")
+                self.actions.screenshotAttachment("Clicked on the account button")    # noqa:E501
                 return True  # Return True after clicking
         allureLogs("Account button is not clicked.")
         self.actions.screenshotAttachment("Account Button Not clicked")
-        raise Exception("No account button is available to click")  # Raise an exception if none are found
-
+        raise Exception("No account button is available to click")
 
     def verify_account_page_elements(self):
         allureLogs("Verifying All Elements are displayed on Account Page")
@@ -147,54 +147,52 @@ class AccountPage(BasePage):
             "Account Page Savings Banner": locators_ap["SAVINGS_BANNER"],
         }
         for element_name, locator in locators.items():
-            if self.actions.is_element_displayed(*locator):  # Check if the element is displayed
+            if self.actions.is_element_displayed(*locator):
                 elements = self.driver.find_elements(*locator)
                 value = elements[0].text if elements else "No Text Available"
-                allureLogs(f"Element {element_name} is DISPLAYED | (Value: {value})")
+                allureLogs(f"Element {element_name} is DISPLAYED | (Value: {value})")     # noqa:E501
             else:
                 allureLogs(f"Element {element_name} is NOT DISPLAYED")
-        self.actions.screenshotAttachment("All Elements are displayed on Account Page")
-
+        self.actions.screenshotAttachment("All Elements are displayed on Account Page")   # noqa:E501
 
     def verify_savings_banner(self):
         allureLogs("Verifying if the savings banner is displayed.")
-        locator = locators_ap["SAVINGS_BANNER"]  # Single locator
-        if self.actions.is_element_displayed(*locator):  # Check if the element is displayed
-            allureLogs(f"Savings banner is DISPLAYED")  # Print success message
-            self.actions.screenshotAttachment("Savings Banner Displayed")  # Capture screenshot of the displayed banner
+        locator = locators_ap["SAVINGS_BANNER"]
+        if self.actions.is_element_displayed(*locator):
+            allureLogs("Savings banner is DISPLAYED")
+            self.actions.screenshotAttachment("Savings Banner Displayed")
             return True  # Return True if displayed
         else:
-            allureLogs("Savings banner is not displayed")  # Print failure message
-            self.actions.screenshotAttachment("Savings Banner Not Displayed")  # Capture screenshot of the non-displayed banner
+            allureLogs("Savings banner is not displayed")
+            self.actions.screenshotAttachment("Savings Banner Not Displayed")
             return False  # Return False if not displayed
-
 
     def verify_nav_to_orders_page(self):
         allureLogs("Navigating to the orders page.")
         locator = locators_ap["YOUR_ORDERS"]
         if self.actions.is_element_displayed(*locator):
-            allureLogs(f"Element is DISPLAYED")
+            allureLogs("Element is DISPLAYED")
             self.actions.click_button(*locator)
-            allureLogs(f"CLICKED on the element")
+            allureLogs("CLICKED on the element")
             self.actions.screenshotAttachment("Navigated to Orders Page")
             return True
         else:
             allureLogs(f"Element is NOT DISPLAYED with locator: {locator}")
-            self.actions.screenshotAttachment("Failed to Navigate to Orders Page")
+            self.actions.screenshotAttachment("Failed to Navigate to Orders Page")    # noqa:E501
             return False
 
     def verify_nav_to_cc_page(self):
         allureLogs("Navigating to the credit cards page.")
         locator = locators_ap["CC"]
         if self.actions.is_element_displayed(*locator):
-            allureLogs(f"Element is DISPLAYED")
+            allureLogs("Element is DISPLAYED")
             self.actions.click_button(*locator)
-            allureLogs(f"CLICKED on the element")
+            allureLogs("CLICKED on the element")
             self.actions.screenshotAttachment("Navigated to Credit Cards Page")
             return True
         else:
             allureLogs(f"Element is NOT DISPLAYED with locator: {locator}")
-            self.actions.screenshotAttachment("Failed to Navigate to Credit Cards Page")
+            self.actions.screenshotAttachment("Failed to Navigate to Credit Cards Page")      # noqa:E501
             return False
 
     def verify_nav_to_coupons_page(self):
@@ -215,75 +213,73 @@ class AccountPage(BasePage):
         allureLogs("Navigating to the saved payments page.")
         locator = locators_ap["SAVEDPAY"]
         if self.actions.is_element_displayed(*locator):
-            allureLogs(f"Element is DISPLAYED")
+            allureLogs("Element is DISPLAYED")
             self.actions.click_button(*locator)
-            allureLogs(f"CLCIKED on the element")
-            self.actions.screenshotAttachment("Navigated to Saved Payments Page")
+            allureLogs("CLCIKED on the element")
+            self.actions.screenshotAttachment("Navigated to Saved Payments Page")     # noqa:E501
             return True
         else:
             allureLogs(f"Element is NOT DISPLAYED with locator: {locator}")
-            self.actions.screenshotAttachment("Failed to Navigate to Saved Payments Page")
+            self.actions.screenshotAttachment("Failed to Navigate to Saved Payments Page")    # noqa:E501
             return False
 
     def verify_nav_to_help_and_support_page(self):
         allureLogs("Navigating to the help and support page.")
         locator = locators_ap["HELPANDSUPPORT"]
         if self.actions.is_element_displayed(*locator):
-            allureLogs(f"Element is DISPLAYED")
+            allureLogs("Element is DISPLAYED")
             self.actions.click_button(*locator)
-            allureLogs(f"CLICKED on the element")
-            self.actions.screenshotAttachment("Navigated to Help and Support Page")
+            allureLogs("CLICKED on the element")
+            self.actions.screenshotAttachment("Navigated to Help and Support Page")   # noqa:E501
             return True
         else:
             allureLogs(f"Element is NOT DISPLAYED with locator: {locator}")
-            self.actions.screenshotAttachment("Failed to Navigate to Help and Support Page")
+            self.actions.screenshotAttachment("Failed to Navigate to Help and Support Page")      # noqa:E501
             return False
 
     def verify_nav_to_faq_page(self):
         allureLogs("Navigating to the FAQs page.")
         locator = locators_ap["FAQ"]
         if self.actions.is_element_displayed(*locator):
-            allureLogs(f"Element is DISPALYED")
+            allureLogs("Element is DISPALYED")
             self.actions.click_button(*locator)
-            allureLogs(f"CLICKED on the element")
+            allureLogs("CLICKED on the element")
             self.actions.screenshotAttachment("Navigated to FAQs Page")
             return True
         else:
             allureLogs(f"Element is NOT DISPLAYED with locator: {locator}")
-            self.actions.screenshotAttachment("Failed to Navigate to FAQs Page")
+            self.actions.screenshotAttachment("Failed to Navigate to FAQs Page")      # noqa:E501
             return False
 
     def verify_nav_to_tandc_page(self):
         allureLogs("Navigating to the terms and conditions page.")
         locator = locators_ap["TANDC"]
         if self.actions.is_element_displayed(*locator):
-            allureLogs(f"Element is DISPLAYED")
+            allureLogs("Element is DISPLAYED")
             self.actions.click_button(*locator)
-            allureLogs(f"CLCIKED on the element")
+            allureLogs("CLCIKED on the element")
             time.sleep(5)
-            self.actions.screenshotAttachment("Navigated to Terms and Conditions Page")
+            self.actions.screenshotAttachment("Navigated to Terms and Conditions Page")   # noqa:E501
             return True
         else:
             allureLogs(f"Element is NOT DISPLAYED with locator: {locator}")
-            self.actions.screenshotAttachment("Failed to Navigate to Terms and Conditions Page")
+            self.actions.screenshotAttachment("Failed to Navigate to Terms and Conditions Page")      # noqa:E501
             return False
-
 
     def verify_nav_to_privacy_policy_page(self):
         allureLogs("Navigating to the privacy policy page.")
         locator = locators_ap["PRIVACY_POLICY"]
         if self.actions.is_element_displayed(*locator):
-            allureLogs(f"Element is DISPLAYED")
+            allureLogs("Element is DISPLAYED")
             self.actions.click_button(*locator)
-            allureLogs(f"CLICKED on the element")
+            allureLogs("CLICKED on the element")
             time.sleep(5)
-            self.actions.screenshotAttachment("Navigated to Privacy Policy Page")
+            self.actions.screenshotAttachment("Navigated to Privacy Policy Page")     # noqa:E501
             return True
         else:
             allureLogs(f"Element is NOT DISPLAYED with locator: {locator}")
-            self.actions.screenshotAttachment("Failed to Navigate to Privacy Policy Page")
+            self.actions.screenshotAttachment("Failed to Navigate to Privacy Policy Page")    # noqa:E501
             return False
-
 
     def verify_nav_to_about_us_page(self):
         allureLogs("Navigating to the about us page.")
@@ -297,7 +293,7 @@ class AccountPage(BasePage):
             return True
         else:
             allureLogs(f"Element is NOT DISPLAYED with locator: {locator}")
-            self.actions.screenshotAttachment("Failed to Navigate to About Us Page")
+            self.actions.screenshotAttachment("Failed to Navigate to About Us Page")      # noqa:E501
             return False
 
     def verify_and_print_all_elements_on_faq_page(self):
@@ -321,13 +317,13 @@ class AccountPage(BasePage):
             "FAQ Q10": locators_ap["FAQ10"],
         }
         for element_name, locator in locators.items():
-            if self.actions.is_element_displayed(*locator):  # Check if the element is displayed
+            if self.actions.is_element_displayed(*locator):
                 elements = self.driver.find_elements(*locator)
                 value = elements[0].text if elements else "No Text Available"
-                allureLogs(f"Element {element_name} is DISPLAYED | (Value: {value})")
+                allureLogs(f"Element {element_name} is DISPLAYED | (Value: {value})")     # noqa:E501
             else:
                 allureLogs(f"Element {element_name} is NOT DISPLAYED")
-        self.actions.screenshotAttachment("All Elements are displayed on FAQ Page")
+        self.actions.screenshotAttachment("All Elements are displayed on FAQ Page")   # noqa:E501
 
     def verify_and_print_all_elements_on_myorders_page(self):
         allureLogs("Verify All Elements are displayed on My Orders Page")
@@ -338,13 +334,13 @@ class AccountPage(BasePage):
             "Order Page Filter Icon": locators_ap["ORDERSPAGEFILTERICON"],
         }
         for element_name, locator in locators.items():
-            if self.actions.is_element_displayed(*locator):  # Check if the element is displayed
+            if self.actions.is_element_displayed(*locator):
                 elements = self.driver.find_elements(*locator)
                 value = elements[0].text if elements else "No Text Available"
-                allureLogs(f"Element {element_name} is DISPLAYED | (Value: {value})")
+                allureLogs(f"Element {element_name} is DISPLAYED | (Value: {value})")     # noqa:E501
             else:
                 allureLogs(f"Element {element_name} is NOT DISPLAYED")
-        self.actions.screenshotAttachment("All Elements are displayed on My Orders Page")
+        self.actions.screenshotAttachment("All Elements are displayed on My Orders Page")   # noqa:E501
 
     def verify_and_print_all_elements_on_cc_page(self):
         allureLogs("Verify All Elements are displayed on Credit Card Page")
@@ -353,19 +349,19 @@ class AccountPage(BasePage):
             "CC Resume Application": locators_ap["CCPAGETITLE"],
         }
         for element_name, locator in locators.items():
-            if self.actions.is_element_displayed(*locator):  # Check if the element is displayed
+            if self.actions.is_element_displayed(*locator):
                 elements = self.driver.find_elements(*locator)
                 value = elements[0].text if elements else "No Text Available"
-                allureLogs(f"Element {element_name} is DISPLAYED | (Value: {value})")
+                allureLogs(f"Element {element_name} is DISPLAYED | (Value: {value})")     # noqa:E501
             else:
                 allureLogs(f"Element {element_name} is NOT DISPLAYED")
-        self.actions.screenshotAttachment("All Elements are displayed on Credit Card Page")
+        self.actions.screenshotAttachment("All Elements are displayed on Credit Card Page")   # noqa:E501
 
     def verify_nav_to_profile_page(self):
         allureLogs("Navigating to the profile page.")
         locator = locators_ap["EDIT_ICON3"]
         self.actions.wait(5)
-        editicon=self.actions.wait_for_element(*locator)
+        editicon = self.actions.wait_for_element(*locator)
         allureLogs(f"ICON is displayed with locator: {editicon}")
         if editicon:
             allureLogs(f"Element is displayed with locator: {editicon}")
@@ -387,13 +383,13 @@ class AccountPage(BasePage):
             "Email ID Field": locators_ap["EMAILIDFIELD"],
         }
         for element_name, locator in locators.items():
-            if self.actions.is_element_displayed(*locator):  # Check if the element is displayed
+            if self.actions.is_element_displayed(*locator):
                 elements = self.driver.find_elements(*locator)
                 value = elements[0].text if elements else "No Text Available"
-                allureLogs(f"Element {element_name} is DISPLAYED | (Value: {value})")
+                allureLogs(f"Element {element_name} is DISPLAYED | (Value: {value})")     # noqa:E501
             else:
                 allureLogs(f"Element {element_name} is NOT DISPLAYED")
-        self.actions.screenshotAttachment("All Elements are displayed on Profile Page")
+        self.actions.screenshotAttachment("All Elements are displayed on Profile Page")   # noqa:E501
 
     def verify_and_print_all_elements_under_CouponsPage(self):
         allureLogs("Verify All Elements are displayed on Coupon Page")
@@ -401,23 +397,23 @@ class AccountPage(BasePage):
             "Coupon Page Title": locators_ap["COUPONS_PAGETITLE"],
             "Coupon Page Back Arrow": locators_ap["Back_arrow"],
             "Coupon Page Search Icon": locators_ap["SEARCH_ICON"],
-            "Coupons not available Text": locators_ap["COUPONS_NOTAVAVAILABLETEXT"],
-            "Coupons not available Text Description": locators_ap["COUPONS_NOTAVAVAILABLETEXT_DESC"],
+            "Coupons not available Text": locators_ap["COUPONS_NOTAVAVAILABLETEXT"],      # noqa:E501
+            "Coupons not available Text Description": locators_ap["COUPONS_NOTAVAVAILABLETEXT_DESC"],     # noqa:E501
             "Coupons Page Explore": locators_ap["COUPONS_XPLORE_STORES"],
-            "Coupons Page Filter 1": locators_ap["COUPONS_XPLORE_STORES_FILTER1"],
-            "Coupons Page Filter 2": locators_ap["COUPONS_XPLORE_STORES_FILTER2"],
-            "Coupons Page Filter 3": locators_ap["COUPONS_XPLORE_STORES_FILTER3"],
-            "Coupons Page Filter 4": locators_ap["COUPONS_XPLORE_STORES_FILTER4"],
-            "Coupons Page Filter 5": locators_ap["COUPONS_XPLORE_STORES_FILTER5"],
+            "Coupons Page Filter 1": locators_ap["COUPONS_XPLORE_STORES_FILTER1"],    # noqa:E501
+            "Coupons Page Filter 2": locators_ap["COUPONS_XPLORE_STORES_FILTER2"],    # noqa:E501
+            "Coupons Page Filter 3": locators_ap["COUPONS_XPLORE_STORES_FILTER3"],    # noqa:E501
+            "Coupons Page Filter 4": locators_ap["COUPONS_XPLORE_STORES_FILTER4"],    # noqa:E501
+            "Coupons Page Filter 5": locators_ap["COUPONS_XPLORE_STORES_FILTER5"],    # noqa:E501
         }
         for element_name, locator in locators.items():
-            if self.actions.is_element_displayed(*locator):  # Check if the element is displayed
+            if self.actions.is_element_displayed(*locator):
                 elements = self.driver.find_elements(*locator)
                 value = elements[0].text if elements else "No Text Available"
-                allureLogs(f"Element {element_name} is DISPLAYED | (Value: {value})")
+                allureLogs(f"Element {element_name} is DISPLAYED | (Value: {value})")     # noqa:E501
             else:
                 allureLogs(f"Element {element_name} is NOT DISPLAYED")
-        self.actions.screenshotAttachment("All Elements are displayed on Coupon Page")
+        self.actions.screenshotAttachment("All Elements are displayed on Coupon Page")    # noqa:E501
 
     def verify_and_print_all_elements_on_saved_payments_page(self):
         allureLogs("Verify All Saved Payments page elements are displayed")
@@ -431,14 +427,14 @@ class AccountPage(BasePage):
         }
 
         for element_name, locator in locators.items():
-            if self.actions.is_element_displayed(*locator):  # Verify if the element is displayed
+            if self.actions.is_element_displayed(*locator):
                 if element_name == "CTA_BUTTON":
-                    self.actions.click_button(*locator)  # Click the CTA button if available
+                    self.actions.click_button(*locator)
                     allureLogs(f"CLICKED on the CTA button")
                 else:
-                    allureLogs(f"{element_name} is DISPLAYED")  # Print success for other elements
+                    allureLogs(f"{element_name} is DISPLAYED")
             else:
-                allureLogs(f"{element_name} is NOT DISPLAYED with locator: {locator}")  # Print failure message for elements not found
-        self.actions.screenshotAttachment("All Saved Payments Page Elements Displayed")
+                allureLogs(f"{element_name} is NOT DISPLAYED with locator: {locator}")    # noqa:E501
+        self.actions.screenshotAttachment("All Saved Payments Page Elements Displayed")   # noqa:E501
         allureLogs("All saved payments page elements are displayed.")
 

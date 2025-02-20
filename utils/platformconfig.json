@@ -9,6 +9,8 @@
     "noReset": true,
     "fullReset": false,
     "uiautomator2ServerInstallTimeout": 1000000,
-    "newCommandTimeout": 60
+    "newCommandTimeout": 60,
+    "ignoreHiddenApiPolicyError" : true,
+    "skipServerInstallation"  : true
   }
 }

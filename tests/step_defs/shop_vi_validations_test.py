@@ -27,10 +27,12 @@ def basepage_instance(setup_platform):
     """Fixture to initialize the BasePage object."""
     return BasePage(setup_platform)
 
+
 @pytest.fixture
 def androidactions_instance(setup_platform):
     """Fixture to initialize the Android object."""
     return AndroidActions(setup_platform)
+
 
 @pytest.fixture
 def shoppage_instance(setup_platform):
@@ -48,6 +50,7 @@ def searchpage_instance(setup_platform):
 def accountpage_instance(setup_platform):
     """Fixture to initialize the Account Page object."""
     return AccountPage(setup_platform)
+
 
 @pytest.fixture
 def pdpflipkart_instance(setup_platform):
@@ -79,7 +82,7 @@ def launch_vishop_application(basepage_instance):
 def open_app_and_navigate_to_mobile_number_input_screen(navtoshop_instance):
     """Step to navigate to the mobile number input screen."""
     enter_mobile_number = navtoshop_instance.click_number_input_field()
-    assert enter_mobile_number, "Mobile number input screen is not displayed after lanuching the vishop application"          # noqa:E501
+    assert enter_mobile_number, "Mobile number input screen is not displayed after launching the vishop application"          # noqa:E501
 
 
 @when("I close the mobile number dialog box")
@@ -89,7 +92,7 @@ def close_the_mobile_number_dialog_box(navtoshop_instance):
     navtoshop_instance.click_dialog_box()
 
 
-@when(parsers.parse("I input a valid 10-digit mobile number {mobile_number}"))  
+@when(parsers.parse("I input a valid 10-digit mobile number {mobile_number}"))
 @allure.step("When I input a valid 10-digit mobile number {mobile_number}")
 def input_a_valid_mobile_number(navtoshop_instance, mobile_number):
     """Step to input a valid mobile number."""
@@ -175,6 +178,7 @@ def verify_all_elements_on_faq_page(accountpage_instance):
     except Exception as e:
         print(f"Failed to navigate back from the FAQ page: {e}")
 
+
 @when("I navigate to the Credit Card (CC) page")
 @allure.step("When I navigate to the Credit Card (CC) page")
 def navigate_to_cc_page(accountpage_instance):
@@ -182,10 +186,11 @@ def navigate_to_cc_page(accountpage_instance):
     navigated = accountpage_instance.verify_nav_to_cc_page()
     assert navigated, "Failed to navigate to the Credit Card (CC) page."
 
+
 @then("I verify all elements are displayed on the Credit Card (CC) page")
-@allure.step("Then I verify all elements are displayed on the Credit Card (CC) page")
+@allure.step("Then I verify all elements are displayed on the Credit Card (CC) page")     # noqa:E501
 def verify_all_elements_on_cc_page(accountpage_instance):
-    """Step to verify all elements are displayed on the Credit Card (CC) page."""
+    """Step to verify all elements are displayed on the Credit Card (CC) page."""         # noqa:E501
     print("Verifying all elements on the Credit Card (CC) page...")
     accountpage_instance.verify_and_print_all_elements_on_cc_page()
     print("Verification of Credit Card (CC) page elements completed.")
@@ -193,12 +198,14 @@ def verify_all_elements_on_cc_page(accountpage_instance):
     accountpage_instance.driver.back()
     print("Navigated back from the Credit Card (CC) page successfully.")
 
+
 @when("I navigate to the Orders page")
 @allure.step("When I navigate to the Orders page")
 def navigate_to_orders_page(accountpage_instance):
     """Step to navigate to the Orders page."""
     navigated = accountpage_instance.verify_nav_to_orders_page()
     assert navigated, "Failed to navigate to the Orders page."
+
 
 @then("I verify all elements are displayed on the Orders page")
 @allure.step("Then I verify all elements are displayed on the Orders page")
@@ -240,6 +247,7 @@ def navigate_to_t_and_c_page(accountpage_instance):
     assert navigated, "Failed to navigate to the T and C page."
     accountpage_instance.driver.back()
 
+
 @when("I navigate to the Privacy and Policy page")
 @allure.step("When I navigate to the Privacy and Policy page")
 def navigate_to_privacy_and_policy_page(accountpage_instance):
@@ -248,6 +256,7 @@ def navigate_to_privacy_and_policy_page(accountpage_instance):
     assert navigated, "Failed to navigate to the Privacy and Policy page."
     accountpage_instance.driver.back()
 
+
 @when("I navigate to the About US page")
 @allure.step("When I navigate to the About US page")
 def navigate_to_about_us_page(accountpage_instance):
@@ -255,6 +264,7 @@ def navigate_to_about_us_page(accountpage_instance):
     navigated = accountpage_instance.verify_nav_to_about_us_page()
     assert navigated, "Failed to navigate to the About US page."
     accountpage_instance.driver.back()
+
 
 @when(("I navigate to Saved Payments page"))
 @allure.step("When I navigate to Saved Payments page")
@@ -265,7 +275,7 @@ def navigate_to_saved_payments_page(accountpage_instance):
 
 
 @then("I Verify all elements are displayed on the Saved Payments page")
-@allure.step("Then I Verify all elements are displayed on the Saved Payments page")
+@allure.step("Then I Verify all elements are displayed on the Saved Payments page")       # noqa:E501
 def verify_all_elements_on_saved_payments_page(accountpage_instance):
     """Step to verify all elements on the Saved Payments page."""
     print("Verifying all elements on the Saved Payments page...")
@@ -284,6 +294,7 @@ def verify_all_elements_on_saved_payments_page(accountpage_instance):
 def open_the_shop_tab_and_verify_all_items_are_displayed_on_shop_dashboard(shoppage_instance):        # noqa:E501
     """Step to verify all items are displayed on the shop dashboard."""
     shoppage_instance.verify_all_items_on_shop_dashboard()
+
 
 @when("I navigate to the deals tab")
 @allure.step("When I navigate to the deals tab")
@@ -332,7 +343,7 @@ def verify_all_items_are_displayed_on_the_my_orders_tab(shoppage_instance):
 
 @when("I click on search icon")
 @allure.step("When I click on search icon")
-def click_on_search_icon(shoppage_instance,searchpage_instance):    # noqa:E501
+def click_on_search_icon(shoppage_instance, searchpage_instance):    # noqa:E501
     """Step to click on the search icon."""
     shoppage_instance.click_on_shop_icon()
     searchpage_instance.click_search_icon()
@@ -411,7 +422,7 @@ def scroll_to_element(androidactions_instance):
 
 
 @when('I scroll to the element with text similar products comparison')
-@allure.step('When I scroll to the element with text similar products comparison')
+@allure.step('When I scroll to the element with text similar products comparison')        # noqa:E501
 def scroll_to_element(androidactions_instance):
     """Step to scroll to an element by text."""
     androidactions_instance.scroll_into_view("similar products comparison")

@@ -1,37 +1,37 @@
 import time
 from pages.base_page import BasePage
 from appium.webdriver.common.appiumby import AppiumBy
-from utils.custom_logger import custom_logger, allureLogs
+from utils.custom_logger import allureLogs
 from pages.actions.android_actions import AndroidActions
 
 locators_sd = {
-    "SHOP_BY_CATEGORY": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("shop by category")'),
-    "EXPLORE_TAB": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("explore")'),
-    "DEALS_TAB": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("deals")'),
-    "MY_ORDERS_TAB": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("my orders")'),
-    "VI_SHOP_ICON": (AppiumBy.XPATH, '//android.widget.TextView[@text="shop"]'),
-    "VI_APP_HOME_BUTTON": (AppiumBy.XPATH, '//android.widget.TextView[@text="home"]'),
+    "SHOP_BY_CATEGORY": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("shop by category")'),      # noqa:E501
+    "EXPLORE_TAB": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("explore")'),    # noqa:E501
+    "DEALS_TAB": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("deals")'),  # noqa:E501
+    "MY_ORDERS_TAB": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("my orders")'),  # noqa:E501
+    "VI_SHOP_ICON": (AppiumBy.XPATH, '//android.widget.TextView[@text="shop"]'),    # noqa:E501
+    "VI_APP_HOME_BUTTON": (AppiumBy.XPATH, '//android.widget.TextView[@text="home"]'),  # noqa:E501
 
-    "MY_ORDER_P": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(1)'),
-    "ACCOUNT_ICON": (AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="DS_SHOPshop-account-icon.webp"]'),
-    "SEARCH_ICON": (AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="DS_SHOP_https://vishop.myvi.in/documents/35161/38258/search.png"]'),
-    "CART_ICON": (AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="DS_SHOP_https://vishop.myvi.in/documents/35161/38258/Cart.webp"]'),
-    "ACCOUNTS_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(0)'),
-    "CART_ICON1": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(2)'),
-    "DEALS_PAGE_TITLE": (AppiumBy.XPATH, '//android.widget.TextView[@text="offers"]'),
-    "DEALS_BACK_BUTTON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/back-arrow.webp")'),
-    "EXPLORE_PAGE_TITLE": (AppiumBy.XPATH, '//android.widget.TextView[@text="our store"]'),
-    "EXPLORE_CART_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/Cart.webp")'),
-    "EXPLORE_SEARCH_ICON": (AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="DS_SHOP_https://vishop.myvi.in/documents/35161/38258/search.png"]'),
-    "EXPLORE_CC_MENU": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(2)'),
-    "EXPLORE_MOVIES_MENU": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(3)'),
-    "EXPLORE_FOOD_MENU": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(4)'),
-    "EXPLORE_SHOPPING_MENU": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(5)'),
-    "EXPLORE_TRAVEL_MENU": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(6)'),
-    "MYORDERS_BACK_ARROW": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/back-arrow.webp")'),
-    "MYORDERS_PAGE_TITLE": (AppiumBy.XPATH, '//android.widget.TextView[@text="my orders"]'),
-    "MYORDERS_SEARCH_ICON": (AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="DS_SHOP_https://vishop.myvi.in/documents/35161/38258/search.png"]'),
-    "MYORDERS_SEARCH_BOX": (AppiumBy.XPATH, '//android.widget.EditText[@text="search for orders..."]'),
+    "MY_ORDER_P": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(1)'), # noqa:E501
+    "ACCOUNT_ICON": (AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="DS_SHOPshop-account-icon.webp"]'),    # noqa:E501
+    "SEARCH_ICON": (AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="DS_SHOP_https://vishop.myvi.in/documents/35161/38258/search.png"]'),   # noqa:E501
+    "CART_ICON": (AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="DS_SHOP_https://vishop.myvi.in/documents/35161/38258/Cart.webp"]'),  # noqa:E501
+    "ACCOUNTS_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(0)'),  # noqa:E501
+    "CART_ICON1": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(2)'), # noqa:E501
+    "DEALS_PAGE_TITLE": (AppiumBy.XPATH, '//android.widget.TextView[@text="offers"]'),  # noqa:E501
+    "DEALS_BACK_BUTTON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/back-arrow.webp")'),    # noqa:E501
+    "EXPLORE_PAGE_TITLE": (AppiumBy.XPATH, '//android.widget.TextView[@text="our store"]'), # noqa:E501
+    "EXPLORE_CART_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/Cart.webp")'),  # noqa:E501
+    "EXPLORE_SEARCH_ICON": (AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="DS_SHOP_https://vishop.myvi.in/documents/35161/38258/search.png"]'),   # noqa:E501
+    "EXPLORE_CC_MENU": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(2)'),    # noqa:E501
+    "EXPLORE_MOVIES_MENU": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(3)'),    # noqa:E501
+    "EXPLORE_FOOD_MENU": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(4)'),  # noqa:E501
+    "EXPLORE_SHOPPING_MENU": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(5)'),  # noqa:E501
+    "EXPLORE_TRAVEL_MENU": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(6)'),    # noqa:E501
+    "MYORDERS_BACK_ARROW": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/back-arrow.webp")'),  # noqa:E501
+    "MYORDERS_PAGE_TITLE": (AppiumBy.XPATH, '//android.widget.TextView[@text="my orders"]'),    # noqa:E501
+    "MYORDERS_SEARCH_ICON": (AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="DS_SHOP_https://vishop.myvi.in/documents/35161/38258/search.png"]'),  # noqa:E501
+    "MYORDERS_SEARCH_BOX": (AppiumBy.XPATH, '//android.widget.EditText[@text="search for orders..."]'), # noqa:E501
 
 
 }
@@ -52,8 +52,8 @@ class ShopDashboardPage(BasePage):
         self.actions.screenshotAttachment("Shop Dashboard Page")
         time.sleep(2)
 
-    def verify_shop_dashborad_page(self): #this method is used only to verify the user is on shop dashboard page
-        onshop=self.actions.is_element_displayed(*locators_sd["SHOP_BY_CATEGORY"])
+    def verify_shop_dashborad_page(self):   # this method is used only to verify the user is on shop dashboard page   # noqa:E501
+        onshop = self.actions.is_element_displayed(*locators_sd["SHOP_BY_CATEGORY"])    # noqa:E501
         allureLogs("Shop Dashboard Page is displayed")
         return onshop
 
@@ -63,11 +63,11 @@ class ShopDashboardPage(BasePage):
             "VI App Home Button": [locators_sd["VI_APP_HOME_BUTTON"]],
             "Deals": [locators_sd["DEALS_TAB"]],
             "Explore": [locators_sd["EXPLORE_TAB"]],
-            "My Orders": [locators_sd["MY_ORDERS_TAB"], locators_sd["MY_ORDER_P"]],
+            "My Orders": [locators_sd["MY_ORDERS_TAB"], locators_sd["MY_ORDER_P"]],     # noqa:E501
             "Vi Shop Home": [locators_sd["VI_SHOP_ICON"]],
-            "Accounts Icon": [locators_sd["ACCOUNT_ICON"], locators_sd["ACCOUNTS_ICON"]],
+            "Accounts Icon": [locators_sd["ACCOUNT_ICON"], locators_sd["ACCOUNTS_ICON"]],   # noqa:E501
             "Search Icon": [locators_sd["SEARCH_ICON"]],
-            "Cart Icon": [locators_sd["CART_ICON"],locators_sd["CART_ICON1"]],
+            "Cart Icon": [locators_sd["CART_ICON"],locators_sd["CART_ICON1"]],  # noqa:E501
         }
         for element_name, locator_list in locators.items():
             element_found = False
@@ -75,13 +75,13 @@ class ShopDashboardPage(BasePage):
                 if self.actions.is_element_displayed(*locator):
                     element = self.driver.find_element(*locator)
                     value = element.text.strip() if element.text else "No Text"
-                    allureLogs(f"Element {element_name} is DISPLAYED | [Value: {value}]")
+                    allureLogs(f"Element {element_name} is DISPLAYED | [Value: {value}]")   # noqa:E501
                     element_found = True
                     break
             if not element_found:
                 allureLogs(f"Element {element_name} is NOT DISPLAYED")
-                self.actions.screenshotAttachment(f"{element_name}: NOT DISPLAYED")
-        self.actions.screenshotAttachment("Verified All items on Shop Dashboard Page")
+                self.actions.screenshotAttachment(f"{element_name}: NOT DISPLAYED")   # noqa:E501
+        self.actions.screenshotAttachment("Verified All items on Shop Dashboard Page")  # noqa:E501
 
     def navigate_to_deals_tab(self):
         self.actions.click_button(*locators_sd["DEALS_TAB"])
@@ -107,7 +107,7 @@ class ShopDashboardPage(BasePage):
                     break
             if not element_found:
                 allureLogs(f"Element {element_name} is NOT DISPLAYED")
-                self.actions.screenshotAttachment(f"{element_name}: NOT DISPLAYED")
+                self.actions.screenshotAttachment(f"{element_name}: NOT DISPLAYED")  # noqa:E501
         self.actions.screenshotAttachment("Verified All items on Deals TAB")
 
     def navigate_to_explore_tab(self):
@@ -134,12 +134,12 @@ class ShopDashboardPage(BasePage):
                 if self.actions.is_element_displayed(*locator):
                     element = self.driver.find_element(*locator)
                     value = element.text.strip() if element.text else "No Text"
-                    allureLogs(f"Element {element_name} is DISPLAYED | [Value: {value}]")
+                    allureLogs(f"Element {element_name} is DISPLAYED | [Value: {value}]")   # noqa:E501
                     element_found = True
                     break
             if not element_found:
                 allureLogs(f"Element {element_name} is NOT DISPLAYED")
-                self.actions.screenshotAttachment(f"{element_name}: NOT DISPLAYED")
+                self.actions.screenshotAttachment(f"{element_name}: NOT DISPLAYED")     # noqa:E501
         self.actions.screenshotAttachment("Verified All items on Explore TAB")
 
     def navigate_to_my_orders_tab(self):
@@ -162,10 +162,10 @@ class ShopDashboardPage(BasePage):
                 if self.actions.is_element_displayed(*locator):
                     element = self.driver.find_element(*locator)
                     value = element.text.strip() if element.text else "No Text"
-                    allureLogs(f"Element {element_name} is DISPLAYED | (Value: {value})")
+                    allureLogs(f"Element {element_name} is DISPLAYED | (Value: {value})")   # noqa:E501
                     element_found = True
                     break
             if not element_found:
                 allureLogs(f"Element {element_name} is NOT DISPLAYED")
-                self.actions.screenshotAttachment(f"{element_name}: NOT DISPLAYED")
-        self.actions.screenshotAttachment("Verified All items on MY Orders TAB")
+                self.actions.screenshotAttachment(f"{element_name}: NOT DISPLAYED")  # noqa:E501
+        self.actions.screenshotAttachment("Verified All items on MY Orders TAB")    # noqa:E501
