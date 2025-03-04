@@ -12,15 +12,15 @@ locators_sd = {
     "VI_SHOP_ICON": (AppiumBy.XPATH, '//android.widget.TextView[@text="shop"]'),    # noqa:E501
     "VI_APP_HOME_BUTTON": (AppiumBy.XPATH, '//android.widget.TextView[@text="home"]'),  # noqa:E501
 
-    "MY_ORDER_P": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(1)'), # noqa:E501
+    "MY_ORDER_P": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(1)'),  # noqa:E501
     "ACCOUNT_ICON": (AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="DS_SHOPshop-account-icon.webp"]'),    # noqa:E501
     "SEARCH_ICON": (AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="DS_SHOP_https://vishop.myvi.in/documents/35161/38258/search.png"]'),   # noqa:E501
     "CART_ICON": (AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="DS_SHOP_https://vishop.myvi.in/documents/35161/38258/Cart.webp"]'),  # noqa:E501
     "ACCOUNTS_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(0)'),  # noqa:E501
-    "CART_ICON1": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(2)'), # noqa:E501
+    "CART_ICON1": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(2)'),     # noqa:E501
     "DEALS_PAGE_TITLE": (AppiumBy.XPATH, '//android.widget.TextView[@text="offers"]'),  # noqa:E501
     "DEALS_BACK_BUTTON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/back-arrow.webp")'),    # noqa:E501
-    "EXPLORE_PAGE_TITLE": (AppiumBy.XPATH, '//android.widget.TextView[@text="our store"]'), # noqa:E501
+    "EXPLORE_PAGE_TITLE": (AppiumBy.XPATH, '//android.widget.TextView[@text="our store"]'),     # noqa:E501
     "EXPLORE_CART_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/Cart.webp")'),  # noqa:E501
     "EXPLORE_SEARCH_ICON": (AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="DS_SHOP_https://vishop.myvi.in/documents/35161/38258/search.png"]'),   # noqa:E501
     "EXPLORE_CC_MENU": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(2)'),    # noqa:E501
@@ -31,7 +31,7 @@ locators_sd = {
     "MYORDERS_BACK_ARROW": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/back-arrow.webp")'),  # noqa:E501
     "MYORDERS_PAGE_TITLE": (AppiumBy.XPATH, '//android.widget.TextView[@text="my orders"]'),    # noqa:E501
     "MYORDERS_SEARCH_ICON": (AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="DS_SHOP_https://vishop.myvi.in/documents/35161/38258/search.png"]'),  # noqa:E501
-    "MYORDERS_SEARCH_BOX": (AppiumBy.XPATH, '//android.widget.EditText[@text="search for orders..."]'), # noqa:E501
+    "MYORDERS_SEARCH_BOX": (AppiumBy.XPATH, '//android.widget.EditText[@text="search for orders..."]'),     # noqa:E501
 
 
 }
@@ -67,7 +67,7 @@ class ShopDashboardPage(BasePage):
             "Vi Shop Home": [locators_sd["VI_SHOP_ICON"]],
             "Accounts Icon": [locators_sd["ACCOUNT_ICON"], locators_sd["ACCOUNTS_ICON"]],   # noqa:E501
             "Search Icon": [locators_sd["SEARCH_ICON"]],
-            "Cart Icon": [locators_sd["CART_ICON"],locators_sd["CART_ICON1"]],  # noqa:E501
+            "Cart Icon": [locators_sd["CART_ICON"], locators_sd["CART_ICON1"]],  # noqa:E501
         }
         for element_name, locator_list in locators.items():
             element_found = False
@@ -102,7 +102,7 @@ class ShopDashboardPage(BasePage):
                 if self.actions.is_element_displayed(*locator):
                     element = self.driver.find_element(*locator)
                     value = element.text.strip() if element.text else "No Text"
-                    allureLogs(f"Element {element_name} is DISPLAYED | [Value: {value}]")
+                    allureLogs(f"Element {element_name} is DISPLAYED | [Value: {value}]")     # noqa:E501
                     element_found = True
                     break
             if not element_found:

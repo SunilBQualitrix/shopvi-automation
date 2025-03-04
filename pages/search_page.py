@@ -26,7 +26,7 @@ class SearchPage(BasePage):
         allureLogs("Search Icon is displayed")
         self.actions.screenshotAttachment("Search Icon is displayed")
         return searchicon
-    
+
     def click_search_icon(self):
         self.actions.click_button(*locators["SEARCH_ICON"])
         allureLogs("Search Icon Is clicked")
@@ -36,7 +36,7 @@ class SearchPage(BasePage):
         self.actions.enter_text(*locators["SEARCH_INPUT_FIELD"], search_text)
         allureLogs(f"Entered search text: {search_text}")
         self.actions.screenshotAttachment(f"Entered search text: {search_text}")      # noqa:E501
-        
+
     def verify_click_search(self):
         flipkart_results = self.actions.wait_for_elements(*locators['SEARCH_RESULTS_FLIPKART'])      # noqa:E501
         flipkart_results[0].click()

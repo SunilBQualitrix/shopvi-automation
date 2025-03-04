@@ -13,7 +13,7 @@ locators_pdpf = {
     "PRODUCT_PRICE": (AppiumBy.XPATH, '//android.widget.TextView[contains(@text, "₹")]'),     # noqa:E501
     "PRODUCT_DISCOUNT": (AppiumBy.XPATH, '//android.widget.TextView[contains(@text, "% off")]'),      # noqa:E501
 
-    #Denominations
+    # Denominations
     "DENOMINATION_W/OFFER1": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("₹980").instance(1)'),     # noqa:E501
     "DENOMINATION_WO/OFFER1": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("₹1000").instance(1)'),   # noqa:E501
     "DENOMINATION_W/OFFER2": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("₹4900.0")'),      # noqa:E501
@@ -109,7 +109,7 @@ locators_pdpf = {
     "CART_APPLY_COUPON_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(7)'),   # noqa:E501
     "CART_APPLY_COUPON_ARROW_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(8)'),     # noqa:E501
 
-    #ORder Summary
+    # ORder Summary
     "ORDER_SUMMARY_TITLE": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("order summary")'),      # noqa:E501
     "OREDER_SUMMARY_DISCOUNT": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("discount")'),   # noqa:E501
     "VIEW_PRICE_BREAK_UP": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("view price breakup")'),     # noqa:E501
@@ -244,7 +244,7 @@ class ProductDetailsPageFlipkart(BasePage):
                 if len(elements) > 1:  # Multiple elements case (e.g., for prices)  # noqa:E501
                     values = [el.text for el in elements]
                     details[detail_name] = values
-                    allureLogs(f"Element {detail_name} is DISPLAYED | (Multiple Values: {values})") # noqa:E501
+                    allureLogs(f"Element {detail_name} is DISPLAYED | (Multiple Values: {values})")  # noqa:E501
                 else:  # Single element case
                     value = elements[0].text
                     details[detail_name] = value
@@ -276,7 +276,7 @@ class ProductDetailsPageFlipkart(BasePage):
                 if len(elements) > 1:  # Multiple elements case (e.g., for prices)  # noqa:E501
                     values = [el.text for el in elements]
                     details[detail_name] = values
-                    allureLogs(f"Element {detail_name} is DISPLAYED | (Multiple Values: {values})") # noqa:E501
+                    allureLogs(f"Element {detail_name} is DISPLAYED | (Multiple Values: {values})")     # noqa:E501
                 else:  # Single element case
                     value = elements[0].text
                     details[detail_name] = value
@@ -307,7 +307,7 @@ class ProductDetailsPageFlipkart(BasePage):
                 if len(elements) > 1:  # Multiple elements case (e.g., for prices)  # noqa:E501
                     values = [el.text for el in elements]
                     details[detail_name] = values
-                    allureLogs(f"Element {detail_name} is DISPLAYED | (Multiple Values: {values})") # noqa:E501
+                    allureLogs(f"Element {detail_name} is DISPLAYED | (Multiple Values: {values})")     # noqa:E501
                 else:  # Single element case
                     value = elements[0].text
                     details[detail_name] = value
@@ -315,7 +315,7 @@ class ProductDetailsPageFlipkart(BasePage):
             else:
                 details[detail_name] = None
                 allureLogs(f"Element {detail_name} is NOT DISPLAYED")
-        self.actions.screenshotAttachment("Ratings and Reviews section Verification completed") # noqa:E501
+        self.actions.screenshotAttachment("Ratings and Reviews section Verification completed")     # noqa:E501
         return details
 
     def verify_addtocart_buynow_cta(self):
@@ -332,7 +332,7 @@ class ProductDetailsPageFlipkart(BasePage):
                 if len(elements) > 1:  # Multiple elements case (e.g., for prices)  # noqa:E501
                     values = [el.text for el in elements]
                     details[detail_name] = values
-                    allureLogs(f"Element {detail_name} is DISPLAYED | (Multiple Values: {values})") # noqa:E501
+                    allureLogs(f"Element {detail_name} is DISPLAYED | (Multiple Values: {values})")     # noqa:E501
                 else:  # Single element case
                     value = elements[0].text
                     details[detail_name] = value
@@ -346,9 +346,9 @@ class ProductDetailsPageFlipkart(BasePage):
     def verify_similar_products_comparision(self):
         allureLogs("Verifying more details")
         locators = {
-            "Similar Products Comparision Title": locators_pdpf["SIMILAR_PRODUCTS_COMPARISON"], # noqa:E501
+            "Similar Products Comparision Title": locators_pdpf["SIMILAR_PRODUCTS_COMPARISON"],     # noqa:E501
             "Custom Compare CTA Button": locators_pdpf["CUSTOM_COMPARE_CTA"],
-            "Custom Compare CTA Description": locators_pdpf["CUSTOM_COMPARE_DESC"], # noqa:E501
+            "Custom Compare CTA Description": locators_pdpf["CUSTOM_COMPARE_DESC"],     # noqa:E501
             "Custom Compare CTA Image": locators_pdpf["CUSTOM_COMPARE_IMAGE"],
         }
         details = {}
@@ -359,7 +359,7 @@ class ProductDetailsPageFlipkart(BasePage):
                 if len(elements) > 1:  # Multiple elements case (e.g., for prices)  # noqa:E501
                     values = [el.text for el in elements]
                     details[detail_name] = values
-                    allureLogs(f"Element {detail_name} is DISPLAYED | (Multiple Values: {values})") # noqa:E501
+                    allureLogs(f"Element {detail_name} is DISPLAYED | (Multiple Values: {values})")     # noqa:E501
                 else:  # Single element case
                     value = elements[0].text
                     details[detail_name] = value
@@ -388,7 +388,7 @@ class ProductDetailsPageFlipkart(BasePage):
         """
         try:
             # Scroll to the text "out of stock"
-            out_of_stock_element = self.actions.scroll_into_view("out of stock")
+            out_of_stock_element = self.actions.scroll_into_view("out of stock")      # noqa:E501
 
             if out_of_stock_element:
                 allureLogs("'Out of stock' text is found after scrolling")
@@ -398,10 +398,10 @@ class ProductDetailsPageFlipkart(BasePage):
                     allureLogs("Denominations are displayed")
                     denomination_amount[4].click()  # Click on the 5th denomination (index 4)   # noqa:E501
                     allureLogs("Clicked on the second Denomination")
-                    self.actions.screenshotAttachment("Clicked on second Denomination") # noqa:E501
+                    self.actions.screenshotAttachment("Clicked on second Denomination")     # noqa:E501
                 else:
                     allureLogs("Denominations are not sufficient to perform the action")    # noqa:E501
-                    self.actions.screenshotAttachment("Not enough denominations available") # noqa:E501
+                    self.actions.screenshotAttachment("Not enough denominations available")     # noqa:E501
             else:
                 allureLogs("'Out of stock' text not found")
                 # Scroll to the text "product details" if "out of stock" is not found   # noqa:E501
@@ -435,9 +435,9 @@ class ProductDetailsPageFlipkart(BasePage):
             "CART Page Product Title": locators_pdpf["CART_PRODUCT_TITLE"],
             "CART Page Product Quantity": locators_pdpf["CART_PRODUCT_QUANTITY"],   # noqa:E501
             "CART Page Product Price": locators_pdpf["CART_PRODUCT_PRICE"],
-            "CART Page Product Price Saved": locators_pdpf["CUSTOM_COMPARE_IMAGE"], # noqa:E501
+            "CART Page Product Price Saved": locators_pdpf["CUSTOM_COMPARE_IMAGE"],     # noqa:E501
             "CART Page Product Buying For": locators_pdpf["CART_BUYING_FOR"],
-            "CART Page Product Buying For Myself": locators_pdpf["CART_BUYING_FOR_MYSELF"], # noqa:E501
+            "CART Page Product Buying For Myself": locators_pdpf["CART_BUYING_FOR_MYSELF"],     # noqa:E501
             "CART Page Product Edit Icon": locators_pdpf["CART_EDIT_ICON"],
             "CART Page Product Remove from Cart": locators_pdpf["CART_REMOVE_FROM_CART"],   # noqa:E501
             "CART Page Product Image": locators_pdpf["CART_PRODUCT_IMAGE"],
@@ -468,7 +468,7 @@ class ProductDetailsPageFlipkart(BasePage):
                         if len(elements) > 1:  # Multiple elements case (e.g., for prices)  # noqa:E501
                             values = [el.text for el in elements]
                             details[detail_name] = values
-                            allureLogs(f"Element {detail_name} is DISPLAYED | (Multiple Values: {values})") # noqa:E501
+                            allureLogs(f"Element {detail_name} is DISPLAYED | (Multiple Values: {values})")     # noqa:E501
                         else:  # Single element case
                             value = elements[0].text
                             details[detail_name] = value
@@ -481,7 +481,7 @@ class ProductDetailsPageFlipkart(BasePage):
 
                 except StaleElementReferenceException:
                     retries += 1
-                    allureLogs(f"StaleElementReferenceException: Retrying {retries}/{max_retries}") # noqa:E501
+                    allureLogs(f"StaleElementReferenceException: Retrying {retries}/{max_retries}")     # noqa:E501
 
                 except TimeoutException:
                     allureLogs(f"TimeoutException: Element {detail_name} NOT found in time.")   # noqa:E501
@@ -494,12 +494,12 @@ class ProductDetailsPageFlipkart(BasePage):
         allureLogs("Verifying more details")
         locators = {
             "CART Page Order Summary Title": locators_pdpf["ORDER_SUMMARY_TITLE"],  # noqa:E501
-            "CART Page Discount Availed": locators_pdpf["OREDER_SUMMARY_DISCOUNT"], # noqa:E501
+            "CART Page Discount Availed": locators_pdpf["OREDER_SUMMARY_DISCOUNT"],     # noqa:E501
             "View Price Break Up": locators_pdpf["VIEW_PRICE_BREAK_UP"],
             "View Price Break Up Icon": locators_pdpf["VIEW_PRICE_BREAK_UP_ICON"],  # noqa:E501
             "Recommended For You Tray": locators_pdpf["RECOMMENDED_FOR_YOU"],
-            "Recommended For You Tray See ALL Text": locators_pdpf["RECOMMENDED_FOR_YOU_SEE_ALL_TEXT"], # noqa:E501
-            "Recommended For You Tray See All Icon": locators_pdpf["RECOMMENDED_FOR_YOU_SEE_ALL_ICON"], # noqa:E501
+            "Recommended For You Tray See ALL Text": locators_pdpf["RECOMMENDED_FOR_YOU_SEE_ALL_TEXT"],     # noqa:E501
+            "Recommended For You Tray See All Icon": locators_pdpf["RECOMMENDED_FOR_YOU_SEE_ALL_ICON"],     # noqa:E501
         }
         details = {}
         for detail_name, locator in locators.items():
@@ -509,7 +509,7 @@ class ProductDetailsPageFlipkart(BasePage):
                 if len(elements) > 1:  # Multiple elements case (e.g., for prices)  # noqa:E501
                     values = [el.text for el in elements]
                     details[detail_name] = values
-                    allureLogs(f"Element {detail_name} is DISPLAYED | (Multiple Values: {values})") # noqa:E501
+                    allureLogs(f"Element {detail_name} is DISPLAYED | (Multiple Values: {values})")     # noqa:E501
                 else:  # Single element case
                     value = elements[0].text
                     details[detail_name] = value
@@ -539,7 +539,7 @@ class ProductDetailsPageFlipkart(BasePage):
                 if len(elements) > 1:  # Multiple elements case (e.g., for prices)  # noqa:E501
                     values = [el.text for el in elements]
                     details[detail_name] = values
-                    allureLogs(f"Element {detail_name} is DISPLAYED | (Multiple Values: {values})") # noqa:E501
+                    allureLogs(f"Element {detail_name} is DISPLAYED | (Multiple Values: {values})")     # noqa:E501
                 else:  # Single element case
                     value = elements[0].text
                     details[detail_name] = value
@@ -557,7 +557,7 @@ class ProductDetailsPageFlipkart(BasePage):
 
     def verify_payment_page(self):
         allureLogs("Verifying if user is on Payment Page")
-        self.actions.is_element_displayed(*locators_pdpf["ADDRESS_FOR_COMMUNICATION1"]) # noqa:E501
+        self.actions.is_element_displayed(*locators_pdpf["ADDRESS_FOR_COMMUNICATION1"])     # noqa:E501
         allureLogs("Verifying more details")
         locators = {
             "PURCHASE Details Will be sent to": locators_pdpf["ADDRESS_FOR_COMMUNICATION1"],    # noqa:E501
@@ -579,7 +579,7 @@ class ProductDetailsPageFlipkart(BasePage):
                 if len(elements) > 1:  # Multiple elements case (e.g., for prices)  # noqa:E501
                     values = [el.text for el in elements]
                     details[detail_name] = values
-                    allureLogs(f"Element {detail_name} is DISPLAYED | (Multiple Values: {values})") # noqa:E501
+                    allureLogs(f"Element {detail_name} is DISPLAYED | (Multiple Values: {values})")     # noqa:E501
                 else:  # Single element case
                     value = elements[0].text
                     details[detail_name] = value
@@ -642,7 +642,7 @@ class ProductDetailsPageFlipkart(BasePage):
         return details
 
     def verify_input_cc_number(self, card_number):
-        self.actions.click_button(*locators_pdpf["CREDIT_DEBIT_CARD_NUMBER_ARROW"])     # noqa:E501 
+        self.actions.click_button(*locators_pdpf["CREDIT_DEBIT_CARD_NUMBER_ARROW"])     # noqa:E501
         max_retries = 2
         retries = 0
         cc_locator = locators_pdpf["INPUT_CREDIT_DEBIT_CARD_NUMBER_FIELD"]
