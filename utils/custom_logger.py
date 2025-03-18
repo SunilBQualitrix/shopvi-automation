@@ -3,7 +3,7 @@ import allure
 import os
 
 # Define log file path
-LOG_DIR = "D:\\VIL\\shopvi-automation"
+LOG_DIR = "D:\\shopvi-automation"
 LOG_FILE = os.path.join(LOG_DIR, "testreport.log")
 # Ensure the log file is cleared before the script starts
 if os.path.exists(LOG_FILE):

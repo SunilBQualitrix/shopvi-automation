@@ -11,6 +11,7 @@
     "uiautomator2ServerInstallTimeout": 1000000,
     "newCommandTimeout": 60,
     "ignoreHiddenApiPolicyError" : true,
-    "skipServerInstallation"  : true
+    "skipServerInstallation"  : true,
+    "autoGrantPermissions": true
   }
 }

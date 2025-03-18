@@ -215,7 +215,7 @@ def kill_process_on_port(port):
 
 
 @pytest.fixture(scope="session", autouse=False)
-def setup_platform(env, request):
+def setup_platform(env, request):   # noqa: C901
     is_screen_recording_enabled = request.config.getoption('--enable_screen_recording')  # noqa:E501
     driver = None
     """
@@ -241,6 +241,8 @@ def setup_platform(env, request):
         if not appium_service.is_running:
             raise Exception("Appium server did not start!")
 
+        elif appium_service.is_running:
+            print("Appium service started successfully!")
         # yield
         # appium_service.stop()
         # config_name = os.getenv('CONFIG_NAME', 'currentApp')
@@ -299,17 +301,17 @@ def setup_platform(env, request):
         print('after yielding driver')
         if isinstance(driver, androidDriver.Remote):
             print('Inside tear down')
-            if is_screen_recording_enabled:
-                video_data = driver.stop_recording_screen()
-                if video_data:
-                    print("Video recorded")
-                # Attach video data to Allure
-                allure.attach(
-                    base64.b64decode(video_data),  # Decode the base64 video data   # noqa:E501
-                    name="Screen Recording",
-                    attachment_type=allure.attachment_type.MP4,
-                    extension=".mp4",
-                )
+            # if is_screen_recording_enabled:
+            #     video_data = driver.stop_recording_screen()
+            #     if video_data:
+            #         print("Video recorded")
+            #     # Attach video data to Allure
+            #     allure.attach(
+            #         base64.b64decode(video_data),  # Decode the base64 video data   # noqa:E501
+            #         name="Screen Recording",
+            #         attachment_type=allure.attachment_type.MP4,
+            #         extension=".mp4",
+            #     )
             driver.quit()
             appium_service.stop()
         if currentPlatform == 'android':
@@ -322,7 +324,7 @@ def setup_platform(env, request):
 
 
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
-def pytest_runtest_makereport(item, call):
+def pytest_runtest_makereport(item, call):      # noqa: C901
     # execute all other hooks to obtain the report object
     outcome = yield
     report = outcome.get_result()
@@ -477,7 +479,7 @@ def updateConstantFile(contantKey, ConstantValue):
 
 @pytest.fixture(scope="session", autouse=True)
 def clear_screenshot_directory():
-    screenshotDirectory = "D:\\VIL\\shopvi-automation\\reports\\screenshot"
+    screenshotDirectory = "D:\\shopvi-automation\\reports\\screenshot"
     if os.path.exists(screenshotDirectory):
         for filename in os.listdir(screenshotDirectory):
             file_path = os.path.join(screenshotDirectory, filename)

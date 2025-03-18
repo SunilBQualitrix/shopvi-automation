@@ -32,13 +32,13 @@ class NavtoShop(BasePage):
         allureLogs("Starting click_number_input_field method.")
 
         # Check if USB Debugging popup is displayed
-        '''usb_debugging_popup = self.actions.is_element_displayed(*locators_ns["USB_DEBUGGING_POPUP"])   # noqa:E501
+        usb_debugging_popup = self.actions.is_element_displayed(*locators_ns["USB_DEBUGGING_POPUP"])   # noqa:E501
         if usb_debugging_popup:
             allureLogs("USB Debugging Popup is displayed.")
             self.actions.click_button(*locators_ns["USB_DEBUGGING_CHECKBOX"])
             allureLogs("Clicked on the USB Debugging checkbox.")
             self.actions.click_button(*locators_ns["PROCEED_BUTTON"])
-            allureLogs("Clicked on the Proceed button.")'''
+            allureLogs("Clicked on the Proceed button.")
 
         # Check if Mobile Number Input field is displayed
         allureLogs("Checking if the Mobile Number Input Field is displayed.")
