@@ -11,6 +11,7 @@ locators = {
     "FLIPKART_SEARCH_RESULTS": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().textContains("Flipkart Shopping")'),    # noqa:E501
     "AMAZON_SEARCH_RESULTS": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().textContains("Amazon Shopping")'),    # noqa:E501
     "SEARCH_RESULTS_FLIPKART": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().textContains("Flipkart Shopping Voucher")'),    # noqa:E501
+    "SEARCH_ICON1": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(1)'),     # noqa:E501
 }
 
 
@@ -22,15 +23,35 @@ class SearchPage(BasePage):
         self.actions = AndroidActions(driver)
 
     def verify_search_icon(self):
-        searchicon = self.actions.is_element_displayed(*locators["SEARCH_ICON"])  # noqa:E501
-        allureLogs("Search Icon is displayed")
-        self.actions.screenshotAttachment("Search Icon is displayed")
-        return searchicon
+        """
+        Verify that the search icon is displayed by checking multiple locators.
+        Returns True if found, otherwise False.
+        """
+        locators_list = [locators["SEARCH_ICON"], locators["SEARCH_ICON1"]]    # noqa:E501
+        for locator in locators_list:
+            if self.actions.is_element_displayed(*locator):
+                allureLogs("Search Icon found")
+                self.actions.screenshotAttachment("Search Icon found")
+                return True
+        allureLogs("Search Icon not found with any locator")
+        self.actions.screenshotAttachment("Search Icon not found")
+        return False
 
     def click_search_icon(self):
-        self.actions.click_button(*locators["SEARCH_ICON"])
-        allureLogs("Search Icon Is clicked")
-        self.actions.screenshotAttachment("Search Icon Is clicked")
+        """
+        Click the search icon using the first available locator.
+        Returns True after a successful click; otherwise, False.
+        """
+        locators_list = [locators["SEARCH_ICON"], locators["SEARCH_ICON1"]]
+        for locator in locators_list:
+            if self.actions.is_element_displayed(*locator):
+                self.actions.click_button(*locator)
+                allureLogs("Search Icon clicked")
+                self.actions.screenshotAttachment("Search Icon clicked")
+                return True
+        allureLogs("Search Icon not found to click")
+        self.actions.screenshotAttachment("Search Icon not clickable")
+        return False
 
     def enter_search_input(self, search_text):
         self.actions.enter_text(*locators["SEARCH_INPUT_FIELD"], search_text)

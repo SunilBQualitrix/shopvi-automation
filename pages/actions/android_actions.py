@@ -413,7 +413,7 @@ class AndroidActions(ActionsParent):
         # Check if the condition allows taking screenshots
         if str(doIneedScreenshot).lower() == 'true':
             # Ensure the screenshot directory exists (but do not clear it here)
-            screenshotDirectory = "D:\\VIL\\shopvi-automation\\reports\\screenshot"   # noqa:E501
+            screenshotDirectory = "D:\\shopvi-automation\\reports\\screenshot"   # noqa:E501
             if not os.path.exists(screenshotDirectory):
                 os.makedirs(screenshotDirectory)
 

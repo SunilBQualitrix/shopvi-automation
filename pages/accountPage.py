@@ -7,7 +7,7 @@ from pages.actions.android_actions import AndroidActions
 locators_ap = {
     "BELL_ICON": (AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="DS_SHOP_https://vishop.myvi.in/documents/35161/38258 / notification-icon.webp"]'),  # noqa:E501
     "BELL_ICON1": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(1)'),  # noqa:E501
-    "Back_arrow": (AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="DS_SHOP_https://vishop.myvi.in/documents/35161/38258/back-arrow.webp"]'),  # noqa:E501
+    "BACK_ARROW1": (AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="DS_SHOP_https://vishop.myvi.in/documents/35161/38258/back-arrow.webp"]'),  # noqa:E501
     "BACK_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(0)'),  # noqa:E501
     "SEARCH_ICON": (AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="DS_SHOP_https://vishop.myvi.in/documents/35161/38258/search.png"]'),  # noqa:E501
     "SEARCH_ICON1": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(2)'),  # noqa:E501
@@ -25,10 +25,11 @@ locators_ap = {
     "TANDC": (AppiumBy.XPATH, '//android.widget.TextView[@text="terms & conditions"]'),  # noqa:E501
     "PRIVACY_POLICY": (AppiumBy.XPATH, '//android.widget.TextView[@text="privacy policy"]'),  # noqa:E501
     "ABOUT_US": (AppiumBy.XPATH, '//android.widget.TextView[@text="about us"]'),  # noqa:E501
-    "POWERED_BY": (AppiumBy.XPATH, '//android.widget.TextView[@text="powered by Vodafone Idea Business Service Ltd."]'),  # noqa:E501
+    "POWERED_BY": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("powered by Vodafone Idea Business Services Ltd.")'),  # noqa:E501
     "PROFILE_NUMBER": (AppiumBy.XPATH, '//android.widget.TextView[@text="7507233095"]'),  # noqa:E501
     "EDIT_ICON1": (AppiumBy.XPATH, '//android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup/android.widget.ImageView'),  # noqa:E501
     "SAVINGS_BANNER": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(5)'),  # noqa:E501
+    "BACK_ARROW": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(0)'),  # noqa:E501
 
     # Locators under orders page
     "ORDERSEARCHBOX": (AppiumBy.XPATH, '//android.widget.EditText[@text="search for orders..."]'),  # noqa:E501
@@ -50,6 +51,7 @@ locators_ap = {
     "COUPONS_XPLORE_STORES_FILTER3": (AppiumBy.XPATH, '//android.widget.TextView[@text="food"]'),  # noqa:E501
     "COUPONS_XPLORE_STORES_FILTER4": (AppiumBy.XPATH, '//android.widget.TextView[@text="shopping"]'),  # noqa:E501
     "COUPONS_XPLORE_STORES_FILTER5": (AppiumBy.XPATH, '//android.widget.TextView[@text="travel"]'),  # noqa:E501
+    "COUPONS_BACK_ARROW": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(0)'),  # noqa:E501
 
     # Locators under profile page
     "SAVEBUTTON": (AppiumBy.XPATH, '//android.widget.TextView[@text="save"]'),
@@ -72,10 +74,10 @@ locators_ap = {
 
     # Locators under FAQs page
     "FAQSEARCHBOX": (AppiumBy.XPATH, '//android.widget.EditText[@text="search for questions"]'),  # noqa:E501
-    "FAQALLFILTER": (AppiumBy.XPATH, '//android.widget.TextView[@text="ALL"]'),
-    "FAQACCOUNTFILTER": (AppiumBy.XPATH, '//android.widget.TextView[@text="Account"]'),  # noqa:E501
-    "FAQCANCELLATIONFILTER": (AppiumBy.XPATH, '//android.widget.TextView[@text="Cancellation"]'),  # noqa:E501
-    "FAQREFUNDFILTER": (AppiumBy.XPATH, '//android.widget.TextView[@text="Refund"]'),  # noqa:E501
+    "FAQ_ALL_FILTER": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("all")'),     # noqa:E501
+    "FAQ_ORDER_RELATED_FILTER": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("order related")'),  # noqa:E501
+    "FAQ_PRODUCTS_FILTER": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("products")'),  # noqa:E501
+    "FAQ_SUPPORT_FILTER": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("support")'),  # noqa:E501
     "FAQPAGETITLE": (AppiumBy.XPATH, '//android.widget.TextView[@text="FAQs"]'),  # noqa:E501
     "FAQ1": (AppiumBy.XPATH, '//android.widget.TextView[@text="How to make a purchase on Vi Shop?"]'),  # noqa:E501
     "FAQ2": (AppiumBy.XPATH, '//android.widget.TextView[@text="Where can I find the terms & conditions?"]'),  # noqa:E501
@@ -102,7 +104,7 @@ class AccountPage(BasePage):
         locators = [locators_ap["ACCOUNT_BUTTON1"], locators_ap["ACCOUNT_BUTTON2"]]   # noqa:E501
         for locator in locators:
             if self.actions.is_element_displayed(*locator):
-                allureLogs(f"Account button is DISPLAYED")
+                allureLogs("Account button is DISPLAYED")
                 self.actions.screenshotAttachment("Account Button Displayed")
                 return True
         allureLogs("Account button is not displayed.")
@@ -114,9 +116,9 @@ class AccountPage(BasePage):
         locators = [locators_ap["ACCOUNT_BUTTON1"], locators_ap["ACCOUNT_BUTTON2"]]   # noqa:E501
         for locator in locators:
             if self.actions.is_element_displayed(*locator):
-                allureLogs(f"Account button is DISPLAYED")
+                allureLogs("Account button is DISPLAYED")
                 self.actions.click_button(*locator)  # Click the element
-                allureLogs(f"Clicked on the account button")
+                allureLogs("Clicked on the account button")
                 self.actions.screenshotAttachment("Clicked on the account button")    # noqa:E501
                 return True  # Return True after clicking
         allureLogs("Account button is not clicked.")
@@ -127,7 +129,7 @@ class AccountPage(BasePage):
         allureLogs("Verifying All Elements are displayed on Account Page")
         locators = {
             "Account Page Title": locators_ap["PAGE_TITLE"],
-            "Account Page Back Arrow": locators_ap["Back_arrow"],
+            "Account Page Back Arrow": locators_ap["BACK_ARROW1"],
             "Account Page Bell Icon1": locators_ap["BELL_ICON"],
             "Account Page Bell Icon2": locators_ap["BELL_ICON1"],
             "Account Page Search Icon": locators_ap["SEARCH_ICON"],
@@ -150,9 +152,9 @@ class AccountPage(BasePage):
             if self.actions.is_element_displayed(*locator):
                 elements = self.driver.find_elements(*locator)
                 value = elements[0].text if elements else "No Text Available"
-                allureLogs(f"Element {element_name} is DISPLAYED | (Value: {value})")     # noqa:E501
+                allureLogs(f"Element: {element_name} is DISPLAYED | (Value: {value})")     # noqa:E501
             else:
-                allureLogs(f"Element {element_name} is NOT DISPLAYED")
+                allureLogs(f"Element: {element_name} is NOT DISPLAYED")
         self.actions.screenshotAttachment("All Elements are displayed on Account Page")   # noqa:E501
 
     def verify_savings_banner(self):
@@ -199,9 +201,9 @@ class AccountPage(BasePage):
         allureLogs("Navigating to the coupons page.")
         locator = locators_ap["COUPOUNS"]
         if self.actions.is_element_displayed(*locator):
-            allureLogs(f"Element is DISPLAYED")
+            allureLogs("Element is DISPLAYED")
             self.actions.click_button(*locator)
-            allureLogs(f"CLCIKED on the element")
+            allureLogs("CLCIKED on the element")
             self.actions.screenshotAttachment("Navigated to Coupons Page")
             return True
         else:
@@ -285,25 +287,25 @@ class AccountPage(BasePage):
         allureLogs("Navigating to the about us page.")
         locator = locators_ap["ABOUT_US"]
         if self.actions.is_element_displayed(*locator):
-            allureLogs(f"Element is displayed with locator: {locator}")
+            allureLogs("Element is DISPLAYED")
             self.actions.click_button(*locator)
-            allureLogs(f"Clicked on the element with locator: {locator}")
+            allureLogs("CLICKED on the element")
             time.sleep(5)
-            self.actions.screenshotAttachment("Navigated to About Us Page")
+            self.actions.screenshotAttachment("Navigated to About US Page")     # noqa:E501
             return True
         else:
             allureLogs(f"Element is NOT DISPLAYED with locator: {locator}")
-            self.actions.screenshotAttachment("Failed to Navigate to About Us Page")      # noqa:E501
+            self.actions.screenshotAttachment("Failed to Navigates to About US Page")    # noqa:E501
             return False
 
     def verify_and_print_all_elements_on_faq_page(self):
         allureLogs("Verify All Elements are displayed on FAQ Page")
         locators = {
             "FAQ Search Box": locators_ap["FAQSEARCHBOX"],
-            "FAQ All Filter": locators_ap["FAQALLFILTER"],
-            "FAQ Account Filter": locators_ap["FAQACCOUNTFILTER"],
-            "FAQ Cancellation Filter": locators_ap["FAQCANCELLATIONFILTER"],
-            "FAQ Refund Filter": locators_ap["FAQREFUNDFILTER"],
+            "FAQ All Filter": locators_ap["FAQ_ALL_FILTER"],
+            "FAQ Order Related Filter": locators_ap["FAQ_ORDER_RELATED_FILTER"],      # noqa:E501
+            "FAQ Products Filter": locators_ap["FAQ_PRODUCTS_FILTER"],
+            "FAQ Support Filter": locators_ap["FAQ_SUPPORT_FILTER"],
             "FAQ Page Title": locators_ap["FAQPAGETITLE"],
             "FAQ Q1": locators_ap["FAQ1"],
             "FAQ Q2": locators_ap["FAQ2"],
@@ -320,9 +322,9 @@ class AccountPage(BasePage):
             if self.actions.is_element_displayed(*locator):
                 elements = self.driver.find_elements(*locator)
                 value = elements[0].text if elements else "No Text Available"
-                allureLogs(f"Element {element_name} is DISPLAYED | (Value: {value})")     # noqa:E501
+                allureLogs(f"Element: {element_name} is DISPLAYED | (Value: {value})")     # noqa:E501
             else:
-                allureLogs(f"Element {element_name} is NOT DISPLAYED")
+                allureLogs(f"Element: {element_name} is NOT DISPLAYED")
         self.actions.screenshotAttachment("All Elements are displayed on FAQ Page")   # noqa:E501
 
     def verify_and_print_all_elements_on_myorders_page(self):
@@ -337,9 +339,9 @@ class AccountPage(BasePage):
             if self.actions.is_element_displayed(*locator):
                 elements = self.driver.find_elements(*locator)
                 value = elements[0].text if elements else "No Text Available"
-                allureLogs(f"Element {element_name} is DISPLAYED | (Value: {value})")     # noqa:E501
+                allureLogs(f"Element: {element_name} is DISPLAYED | (Value: {value})")     # noqa:E501
             else:
-                allureLogs(f"Element {element_name} is NOT DISPLAYED")
+                allureLogs(f"Element: {element_name} is NOT DISPLAYED")
         self.actions.screenshotAttachment("All Elements are displayed on My Orders Page")   # noqa:E501
 
     def verify_and_print_all_elements_on_cc_page(self):
@@ -386,17 +388,16 @@ class AccountPage(BasePage):
             if self.actions.is_element_displayed(*locator):
                 elements = self.driver.find_elements(*locator)
                 value = elements[0].text if elements else "No Text Available"
-                allureLogs(f"Element {element_name} is DISPLAYED | (Value: {value})")     # noqa:E501
+                allureLogs(f"Element: {element_name} is DISPLAYED | (Value: {value})")     # noqa:E501
             else:
-                allureLogs(f"Element {element_name} is NOT DISPLAYED")
+                allureLogs(f"Element: {element_name} is NOT DISPLAYED")
         self.actions.screenshotAttachment("All Elements are displayed on Profile Page")   # noqa:E501
 
     def verify_and_print_all_elements_under_CouponsPage(self):
         allureLogs("Verify All Elements are displayed on Coupon Page")
         locators = {
             "Coupon Page Title": locators_ap["COUPONS_PAGETITLE"],
-            "Coupon Page Back Arrow": locators_ap["Back_arrow"],
-            "Coupon Page Search Icon": locators_ap["SEARCH_ICON"],
+            "Coupon Page Back Arrow": locators_ap["COUPONS_BACK_ARROW"],
             "Coupons not available Text": locators_ap["COUPONS_NOTAVAVAILABLETEXT"],      # noqa:E501
             "Coupons not available Text Description": locators_ap["COUPONS_NOTAVAVAILABLETEXT_DESC"],     # noqa:E501
             "Coupons Page Explore": locators_ap["COUPONS_XPLORE_STORES"],
@@ -410,9 +411,9 @@ class AccountPage(BasePage):
             if self.actions.is_element_displayed(*locator):
                 elements = self.driver.find_elements(*locator)
                 value = elements[0].text if elements else "No Text Available"
-                allureLogs(f"Element {element_name} is DISPLAYED | (Value: {value})")     # noqa:E501
+                allureLogs(f"Element: {element_name} is DISPLAYED | (Value: {value})")     # noqa:E501
             else:
-                allureLogs(f"Element {element_name} is NOT DISPLAYED")
+                allureLogs(f"Element: {element_name} is NOT DISPLAYED")
         self.actions.screenshotAttachment("All Elements are displayed on Coupon Page")    # noqa:E501
 
     def verify_and_print_all_elements_on_saved_payments_page(self):
@@ -430,11 +431,10 @@ class AccountPage(BasePage):
             if self.actions.is_element_displayed(*locator):
                 if element_name == "CTA_BUTTON":
                     self.actions.click_button(*locator)
-                    allureLogs(f"CLICKED on the CTA button")
+                    allureLogs("CLICKED on the CTA button")
                 else:
-                    allureLogs(f"{element_name} is DISPLAYED")
+                    allureLogs(f"Element: {element_name} is DISPLAYED")
             else:
-                allureLogs(f"{element_name} is NOT DISPLAYED with locator: {locator}")    # noqa:E501
+                allureLogs(f"Element: {element_name} is NOT DISPLAYED with locator: {locator}")    # noqa:E501
         self.actions.screenshotAttachment("All Saved Payments Page Elements Displayed")   # noqa:E501
         allureLogs("All saved payments page elements are displayed.")
-
