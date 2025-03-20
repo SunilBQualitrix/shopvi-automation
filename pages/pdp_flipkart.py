@@ -8,6 +8,8 @@ from selenium.webdriver.support import expected_conditions as EC
 
 locators_pdpf = {
 
+    "SHOP_BY_CATEGORY": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("shop by category")'),      # noqa:E501
+
     "PRODUCT_TITLE": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("flipkart shopping voucher")'),    # noqa:E501
     "OUT_OF_STOCK": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("out of stock")'),      # noqa:E501
     "PRODUCT_PRICE": (AppiumBy.XPATH, '//android.widget.TextView[contains(@text, "₹")]'),     # noqa:E501
@@ -148,6 +150,14 @@ locators_pdpf = {
     "CREDIT_DEBIT_CARD_NUMBER_ARROW": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(5)'),   # noqa:E501
     "INPUT_CREDIT_DEBIT_CARD_NUMBER": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("card number")'),     # noqa:E501
     "INPUT_CREDIT_DEBIT_CARD_NUMBER_FIELD": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("TextInput_EditText_card number")'),     # noqa:E501
+
+    "SHOW_BREAKUP": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("show breakup0")'),    # noqa:E501
+    "SUB_TOTAL": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("subtotal")'),    # noqa:E501
+    "CONVENIENCE_FEE": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("convenience fee ")'),    # noqa:E501
+    "HIDE_BREAKUP": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("hide breakup0")'),    # noqa:E501
+    "YES_EXIT": (AppiumBy.XPATH, "//android.widget.TextView[@text='yes, exit']"),    # noqa:E501
+
+
 }
 
 
@@ -174,14 +184,14 @@ class ProductDetailsPageFlipkart(BasePage):
                 if len(elements) > 1:  # Multiple elements case (e.g., for prices)    # noqa:E501
                     values = [el.text for el in elements]
                     details[detail_name] = values
-                    allureLogs(f"Element {detail_name} is DISPLAYED | (Multiple Values: {values})")   # noqa:E501
+                    allureLogs(f"✅ Element {detail_name} is DISPLAYED | (Multiple Values: {values})")   # noqa:E501
                 else:  # Single element case
                     value = elements[0].text
                     details[detail_name] = value
-                    allureLogs(f"Element {detail_name} is DISPLAYED | (Value: {value})")      # noqa:E501
+                    allureLogs(f"✅ Element {detail_name} is DISPLAYED | (Value: {value})")      # noqa:E501
             else:
                 details[detail_name] = None
-                allureLogs(f"Element {detail_name} is NOT DISPLAYED")
+                allureLogs(f"❌ Element {detail_name} is NOT DISPLAYED")
         self.actions.screenshotAttachment("Product Title, Price, Discount and Out of Stock Tag Verification")     # noqa:E501
         return details
 
@@ -211,14 +221,14 @@ class ProductDetailsPageFlipkart(BasePage):
                 if len(elements) > 1:  # Multiple elements case (e.g., for prices)    # noqa:E501
                     values = [el.text for el in elements]
                     details[detail_name] = values
-                    allureLogs(f"Element {detail_name} is DISPLAYED | (Multiple Values: {values})")   # noqa:E501
+                    allureLogs(f"✅ Element {detail_name} is DISPLAYED | (Multiple Values: {values})")   # noqa:E501
                 else:  # Single element case
                     value = elements[0].text
                     details[detail_name] = value
-                    allureLogs(f"Element {detail_name} is DISPLAYED | (Value: {value})")      # noqa:E501
+                    allureLogs(f"✅ Element {detail_name} is DISPLAYED | (Value: {value})")      # noqa:E501
             else:
                 details[detail_name] = None
-                allureLogs(f"Element {detail_name} is NOT DISPLAYED")
+                allureLogs(f"❌ Element {detail_name} is NOT DISPLAYED")
         self.actions.screenshotAttachment("Product Details Verification")
         return details
 
@@ -244,14 +254,14 @@ class ProductDetailsPageFlipkart(BasePage):
                 if len(elements) > 1:  # Multiple elements case (e.g., for prices)  # noqa:E501
                     values = [el.text for el in elements]
                     details[detail_name] = values
-                    allureLogs(f"Element {detail_name} is DISPLAYED | (Multiple Values: {values})")  # noqa:E501
+                    allureLogs(f"✅ Element {detail_name} is DISPLAYED | (Multiple Values: {values})")  # noqa:E501
                 else:  # Single element case
                     value = elements[0].text
                     details[detail_name] = value
-                    allureLogs(f"Element {detail_name} is DISPLAYED | (Value: {value})")    # noqa:E501
+                    allureLogs(f"✅ Element {detail_name} is DISPLAYED | (Value: {value})")    # noqa:E501
             else:
                 details[detail_name] = None
-                allureLogs(f"Element {detail_name} is NOT DISPLAYED")
+                allureLogs(f"❌ Element {detail_name} is NOT DISPLAYED")
         self.actions.screenshotAttachment("Buying Option and Quantity Verification")    # noqa:E501
         return details
 
@@ -276,14 +286,14 @@ class ProductDetailsPageFlipkart(BasePage):
                 if len(elements) > 1:  # Multiple elements case (e.g., for prices)  # noqa:E501
                     values = [el.text for el in elements]
                     details[detail_name] = values
-                    allureLogs(f"Element {detail_name} is DISPLAYED | (Multiple Values: {values})")     # noqa:E501
+                    allureLogs(f"✅ Element {detail_name} is DISPLAYED | (Multiple Values: {values})")     # noqa:E501
                 else:  # Single element case
                     value = elements[0].text
                     details[detail_name] = value
-                    allureLogs(f"Element {detail_name} is DISPLAYED | (Value: {value})")    # noqa:E501
+                    allureLogs(f"✅ Element {detail_name} is DISPLAYED | (Value: {value})")    # noqa:E501
             else:
                 details[detail_name] = None
-                allureLogs(f"Element {detail_name} is NOT DISPLAYED")
+                allureLogs(f"❌ Element {detail_name} is NOT DISPLAYED")
         self.actions.screenshotAttachment("About Product, Product Verification, Steps to Redeem, T&C, More from this sellar Tray Verification Completed")   # noqa:E501
         return details
 
@@ -307,14 +317,14 @@ class ProductDetailsPageFlipkart(BasePage):
                 if len(elements) > 1:  # Multiple elements case (e.g., for prices)  # noqa:E501
                     values = [el.text for el in elements]
                     details[detail_name] = values
-                    allureLogs(f"Element {detail_name} is DISPLAYED | (Multiple Values: {values})")     # noqa:E501
+                    allureLogs(f"✅ Element {detail_name} is DISPLAYED | (Multiple Values: {values})")     # noqa:E501
                 else:  # Single element case
                     value = elements[0].text
                     details[detail_name] = value
-                    allureLogs(f"Element {detail_name} is DISPLAYED | (Value: {value})")    # noqa:E501
+                    allureLogs(f"✅ Element {detail_name} is DISPLAYED | (Value: {value})")    # noqa:E501
             else:
                 details[detail_name] = None
-                allureLogs(f"Element {detail_name} is NOT DISPLAYED")
+                allureLogs(f"❌ Element {detail_name} is NOT DISPLAYED")
         self.actions.screenshotAttachment("Ratings and Reviews section Verification completed")     # noqa:E501
         return details
 
@@ -332,14 +342,14 @@ class ProductDetailsPageFlipkart(BasePage):
                 if len(elements) > 1:  # Multiple elements case (e.g., for prices)  # noqa:E501
                     values = [el.text for el in elements]
                     details[detail_name] = values
-                    allureLogs(f"Element {detail_name} is DISPLAYED | (Multiple Values: {values})")     # noqa:E501
+                    allureLogs(f"✅ Element {detail_name} is DISPLAYED | (Multiple Values: {values})")     # noqa:E501
                 else:  # Single element case
                     value = elements[0].text
                     details[detail_name] = value
-                    allureLogs(f"Element {detail_name} is DISPLAYED | (Value: {value})")    # noqa:E501
+                    allureLogs(f"✅ Element {detail_name} is DISPLAYED | (Value: {value})")    # noqa:E501
             else:
                 details[detail_name] = None
-                allureLogs(f"Element {detail_name} is NOT DISPLAYED")
+                allureLogs(f"❌ Element {detail_name} is NOT DISPLAYED")
         self.actions.screenshotAttachment("Add to Cart CTA & Buy Now CTA Verification Completed")   # noqa:E501
         return details
 
@@ -359,14 +369,14 @@ class ProductDetailsPageFlipkart(BasePage):
                 if len(elements) > 1:  # Multiple elements case (e.g., for prices)  # noqa:E501
                     values = [el.text for el in elements]
                     details[detail_name] = values
-                    allureLogs(f"Element {detail_name} is DISPLAYED | (Multiple Values: {values})")     # noqa:E501
+                    allureLogs(f"✅ Element {detail_name} is DISPLAYED | (Multiple Values: {values})")     # noqa:E501
                 else:  # Single element case
                     value = elements[0].text
                     details[detail_name] = value
-                    allureLogs(f"Element {detail_name} is DISPLAYED | (Value: {value})")    # noqa:E501
+                    allureLogs(f"✅ Element {detail_name} is DISPLAYED | (Value: {value})")    # noqa:E501
             else:
                 details[detail_name] = None
-                allureLogs(f"Element {detail_name} is NOT DISPLAYED")
+                allureLogs(f"❌ Element {detail_name} is NOT DISPLAYED")
         self.actions.screenshotAttachment("Similar Products Verification Completed")    # noqa:E501
         return details
 
@@ -412,7 +422,7 @@ class ProductDetailsPageFlipkart(BasePage):
                     allureLogs("'Buying' text not found after scrolling")
 
         except Exception as e:
-            allureLogs(f"An error occurred: {str(e)}")
+            allureLogs(f"❌ An error occurred: {str(e)}")
             self.actions.screenshotAttachment(f"Error: {str(e)}")
 
     def verify_click_addto_gotocart_cta(self):
@@ -468,23 +478,23 @@ class ProductDetailsPageFlipkart(BasePage):
                         if len(elements) > 1:  # Multiple elements case (e.g., for prices)  # noqa:E501
                             values = [el.text for el in elements]
                             details[detail_name] = values
-                            allureLogs(f"Element {detail_name} is DISPLAYED | (Multiple Values: {values})")     # noqa:E501
+                            allureLogs(f"✅ Element {detail_name} is DISPLAYED | (Multiple Values: {values})")     # noqa:E501
                         else:  # Single element case
                             value = elements[0].text
                             details[detail_name] = value
-                            allureLogs(f"Element {detail_name} is DISPLAYED | (Value: {value})")    # noqa:E501
+                            allureLogs(f"✅ Element {detail_name} is DISPLAYED | (Value: {value})")    # noqa:E501
                     else:
                         details[detail_name] = None
-                        allureLogs(f"Element {detail_name} is NOT DISPLAYED")
+                        allureLogs(f"❌ Element {detail_name} is NOT DISPLAYED")
 
                     break  # If successful, exit the retry loop
 
                 except StaleElementReferenceException:
                     retries += 1
-                    allureLogs(f"StaleElementReferenceException: Retrying {retries}/{max_retries}")     # noqa:E501
+                    allureLogs(f"✅ StaleElementReferenceException: Retrying {retries}/{max_retries}")     # noqa:E501
 
                 except TimeoutException:
-                    allureLogs(f"TimeoutException: Element {detail_name} NOT found in time.")   # noqa:E501
+                    allureLogs(f"❌ TimeoutException: Element {detail_name} NOT found in time.")   # noqa:E501
                     break  # Stop retrying if element is not found at all
 
         self.actions.screenshotAttachment("CART Page Product Details Verification Completed")   # noqa:E501
@@ -509,14 +519,14 @@ class ProductDetailsPageFlipkart(BasePage):
                 if len(elements) > 1:  # Multiple elements case (e.g., for prices)  # noqa:E501
                     values = [el.text for el in elements]
                     details[detail_name] = values
-                    allureLogs(f"Element {detail_name} is DISPLAYED | (Multiple Values: {values})")     # noqa:E501
+                    allureLogs(f"✅ Element {detail_name} is DISPLAYED | (Multiple Values: {values})")     # noqa:E501
                 else:  # Single element case
                     value = elements[0].text
                     details[detail_name] = value
-                    allureLogs(f"Element {detail_name} is DISPLAYED | (Value: {value})")    # noqa:E501
+                    allureLogs(f"✅ Element {detail_name} is DISPLAYED | (Value: {value})")    # noqa:E501
             else:
                 details[detail_name] = None
-                allureLogs(f"Element {detail_name} is NOT DISPLAYED")
+                allureLogs(f"❌ Element {detail_name} is NOT DISPLAYED")
         self.actions.screenshotAttachment("CART Page Order Summary Verification Completed")  # noqa:E501
         return details
 
@@ -539,14 +549,14 @@ class ProductDetailsPageFlipkart(BasePage):
                 if len(elements) > 1:  # Multiple elements case (e.g., for prices)  # noqa:E501
                     values = [el.text for el in elements]
                     details[detail_name] = values
-                    allureLogs(f"Element {detail_name} is DISPLAYED | (Multiple Values: {values})")     # noqa:E501
+                    allureLogs(f"✅ Element {detail_name} is DISPLAYED | (Multiple Values: {values})")     # noqa:E501
                 else:  # Single element case
                     value = elements[0].text
                     details[detail_name] = value
-                    allureLogs(f"Element {detail_name} is DISPLAYED | (Value: {value})")    # noqa:E501
+                    allureLogs(f"✅ Element {detail_name} is DISPLAYED | (Value: {value})")    # noqa:E501
             else:
                 details[detail_name] = None
-                allureLogs(f"Element {detail_name} is NOT DISPLAYED")
+                allureLogs(f"❌ Element {detail_name} is NOT DISPLAYED")
         self.actions.screenshotAttachment("CART Page Title and Pagination Verification Completed")  # noqa:E501
         return details
 
@@ -579,14 +589,14 @@ class ProductDetailsPageFlipkart(BasePage):
                 if len(elements) > 1:  # Multiple elements case (e.g., for prices)  # noqa:E501
                     values = [el.text for el in elements]
                     details[detail_name] = values
-                    allureLogs(f"Element {detail_name} is DISPLAYED | (Multiple Values: {values})")     # noqa:E501
+                    allureLogs(f"✅ Element {detail_name} is DISPLAYED | (Multiple Values: {values})")     # noqa:E501
                 else:  # Single element case
                     value = elements[0].text
                     details[detail_name] = value
-                    allureLogs(f"Element {detail_name} is DISPLAYED | (Value: {value})")    # noqa:E501
+                    allureLogs(f"✅ Element {detail_name} is DISPLAYED | (Value: {value})")    # noqa:E501
             else:
                 details[detail_name] = None
-                allureLogs(f"Element {detail_name} is NOT DISPLAYED")
+                allureLogs(f"❌ Element {detail_name} is NOT DISPLAYED")
         self.actions.screenshotAttachment("CART Page Title and Pagination Verification Completed")  # noqa:E501
         return details
 
@@ -628,14 +638,14 @@ class ProductDetailsPageFlipkart(BasePage):
                 if len(elements) > 1:  # Multiple elements found
                     values = [el.text for el in elements if el.text.strip()]
                     details[detail_name] = values if values else "Element present but no text"  # noqa:E501
-                    allureLogs(f"Element '{detail_name}' is DISPLAYED | (Multiple Values: {values})")   # noqa:E501
+                    allureLogs(f"✅ Element '{detail_name}' is DISPLAYED | (Multiple Values: {values})")   # noqa:E501
                 else:  # Single element found
                     value = elements[0].text if elements[0].text.strip() else "Element present but no text"     # noqa:E501
                     details[detail_name] = value
-                    allureLogs(f"Element '{detail_name}' is DISPLAYED | (Value: {value})")  # noqa:E501
+                    allureLogs(f"✅ Element '{detail_name}' is DISPLAYED | (Value: {value})")  # noqa:E501
             else:
                 details[detail_name] = None
-                allureLogs(f"Element '{detail_name}' is NOT DISPLAYED")
+                allureLogs(f"❌ Element '{detail_name}' is NOT DISPLAYED")
 
         # Capture final screenshot for verification
         self.actions.screenshotAttachment("Credit_Debit_Card_Payment_Section_Verification_Completed")   # noqa:E501
@@ -675,7 +685,83 @@ class ProductDetailsPageFlipkart(BasePage):
                 EC.presence_of_element_located(cc_locator)
             )
             cc_input.send_keys(card_number)
-            allureLogs(f"Entered CC Number after clicking: {card_number}")
+            allureLogs(f"✅ Entered CC Number after clicking: {card_number}")
 
         except Exception as e:
-            allureLogs(f"Failed to enter CC number even after clicking: {str(e)}")  # noqa:E501
+            allureLogs(f"❌ Failed to enter CC number even after clicking: {str(e)}")  # noqa:E501
+
+    def verify_convenience_fee(self):
+        self.actions.click_button(*locators_pdpf["SHOW_BREAKUP"])
+        allureLogs("Clicked on Show Breakup")
+        self.actions.screenshotAttachment("Clicked on Show Breakup")
+        self.actions.is_element_displayed(*locators_pdpf["SUB_TOTAL"])
+        allureLogs("Sub Total TEXT is displayed")
+        locators = {
+            "Sub Total": locators_pdpf["SUB_TOTAL"],    # noqa:E501
+            "Convenience Fee": locators_pdpf["CONVENIENCE_FEE"],
+            "Amount": locators_pdpf["PRODUCT_PRICE"],       # noqa:E501
+            "Hide Breakup Button": locators_pdpf["HIDE_BREAKUP"],
+            "Amount Payable Text": locators_pdpf["AMOUNT_PAYABLE_TEXT"],
+        }
+        details = {}
+        for detail_name, locator in locators.items():
+            allureLogs(f"Checking element: {detail_name}")
+            elements = self.driver.find_elements(*locator)
+            if elements:
+                if len(elements) > 1:  # Multiple elements case (e.g., for prices)  # noqa:E501
+                    values = [el.text for el in elements]
+                    details[detail_name] = values
+                    allureLogs(f"✅ Element: {detail_name} is DISPLAYED | (Multiple Values: {values})")     # noqa:E501
+                else:  # Single element case
+                    value = elements[0].text
+                    details[detail_name] = value
+                    allureLogs(f"✅ Element: {detail_name} is DISPLAYED | (Value: {value})")    # noqa:E501
+            else:
+                details[detail_name] = None
+                allureLogs(f"❌ Element: {detail_name} is NOT DISPLAYED")
+        self.actions.screenshotAttachment("CART Page Title and Pagination Verification Completed")  # noqa:E501
+        return details
+
+    def verify_navigation_to_home_page(self):
+        allureLogs("Starting Navigation Back to Home Page")
+
+        locators = {
+            "Exit Confirmation Dialog": locators_pdpf["YES_EXIT"],
+            "Proceed to Payment Button": locators_pdpf["PROCEED_TO_PAYMENT_CTA_BUTTON"],    # noqa:E501
+            "Cart Page Proceed Button": locators_pdpf["CART_PAGE_PROCEED_CTA"],
+            "Add to Cart Button": locators_pdpf["ADD_TO_CART"],
+            "Shop by Category Section": locators_pdpf["SHOP_BY_CATEGORY"]
+        }
+
+        navigation_steps = [
+            ("Navigating back to Purchase Details Page", "Exit Confirmation Dialog"),   # noqa:E501
+            ("Navigating back to Cart Page", "Proceed to Payment Button"),
+            ("Navigating back to Product Details Page", "Cart Page Proceed Button"),    # noqa:E501
+            ("Navigating back to Shop Dashboard", "Add to Cart Button"),
+            ("Final step: Shop Dashboard should be visible", "Shop by Category Section")    # noqa:E501
+        ]
+
+        # First Back Navigation with YES_EXIT Confirmation
+        self.driver.back()
+        allureLogs("First back action triggered")
+
+        if self.actions.is_element_displayed(*locators["Exit Confirmation Dialog"]):    # noqa:E501
+            allureLogs("Exit Confirmation Dialog is displayed, clicking YES_EXIT")  # noqa:E501
+            self.actions.click_button(*locators["Exit Confirmation Dialog"])
+            self.actions.screenshotAttachment("Exit Confirmation Clicked")
+        else:
+            allureLogs("Exit Confirmation Dialog NOT displayed")
+
+        # Continue with the rest of the back navigation steps
+        for step_description, element_name in navigation_steps[1:]:  # Skipping first as it was handled separately  # noqa:E501
+            self.driver.back()
+            allureLogs(step_description)
+
+            if self.actions.is_element_displayed(*locators[element_name]):
+                allureLogs(f"✅ {element_name} is DISPLAYED")
+            else:
+                allureLogs(f"❌ {element_name} is NOT DISPLAYED")
+
+            self.actions.screenshotAttachment(step_description)
+
+        allureLogs("Navigation to Home Page Completed ✅")

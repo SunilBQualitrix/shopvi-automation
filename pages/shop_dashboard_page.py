@@ -85,11 +85,11 @@ class ShopDashboardPage(BasePage):
                 if self.actions.is_element_displayed(*locator):
                     element = self.driver.find_element(*locator)
                     value = element.text.strip() if element.text else "No Text"
-                    allureLogs(f"Element {element_name} is DISPLAYED | [Value: {value}]")   # noqa:E501
+                    allureLogs(f"✅ Element {element_name} is DISPLAYED | [Value: {value}]")   # noqa:E501
                     element_found = True
                     break
             if not element_found:
-                allureLogs(f"Element {element_name} is NOT DISPLAYED")
+                allureLogs(f"❌ Element {element_name} is NOT DISPLAYED")
                 self.actions.screenshotAttachment(f"{element_name}: NOT DISPLAYED")   # noqa:E501
         self.actions.screenshotAttachment("Verified All items on Shop Dashboard Page")  # noqa:E501
 
@@ -103,7 +103,6 @@ class ShopDashboardPage(BasePage):
         allureLogs("Verifying all items on Deals Tab")
         locators = {
             "DEALS Page Title": [locators_sd["DEALS_PAGE_TITLE"], locators_sd["DEALS_BACK_BUTTON1"]],  # noqa:E501
-            "DEALS Back Button": [locators_sd["DEALS_BACK_BUTTON"]],
             "DEALS Cart Icon": [locators_sd["CART_ICON"], locators_sd["DEALS_CART_ICON1"]],  # noqa:E501
         }
         for element_name, locator_list in locators.items():
@@ -112,11 +111,11 @@ class ShopDashboardPage(BasePage):
                 if self.actions.is_element_displayed(*locator):
                     element = self.driver.find_element(*locator)
                     value = element.text.strip() if element.text else "No Text"
-                    allureLogs(f"Element {element_name} is DISPLAYED | [Value: {value}]")     # noqa:E501
+                    allureLogs(f"✅ Element {element_name} is DISPLAYED | [Value: {value}]")     # noqa:E501
                     element_found = True
                     break
             if not element_found:
-                allureLogs(f"Element {element_name} is NOT DISPLAYED")
+                allureLogs(f"❌ Element {element_name} is NOT DISPLAYED")
                 self.actions.screenshotAttachment(f"{element_name}: NOT DISPLAYED")  # noqa:E501
         self.actions.screenshotAttachment("Verified All items on Deals TAB")
 
@@ -144,11 +143,11 @@ class ShopDashboardPage(BasePage):
                 if self.actions.is_element_displayed(*locator):
                     element = self.driver.find_element(*locator)
                     value = element.text.strip() if element.text else "No Text"
-                    allureLogs(f"Element {element_name} is DISPLAYED | [Value: {value}]")   # noqa:E501
+                    allureLogs(f"✅ Element {element_name} is DISPLAYED | [Value: {value}]")   # noqa:E501
                     element_found = True
                     break
             if not element_found:
-                allureLogs(f"Element {element_name} is NOT DISPLAYED")
+                allureLogs(f"❌ Element {element_name} is NOT DISPLAYED")
                 self.actions.screenshotAttachment(f"{element_name}: NOT DISPLAYED")     # noqa:E501
         self.actions.screenshotAttachment("Verified All items on Explore TAB")
 
@@ -172,10 +171,10 @@ class ShopDashboardPage(BasePage):
                 if self.actions.is_element_displayed(*locator):
                     element = self.driver.find_element(*locator)
                     value = element.text.strip() if element.text else "No Text"
-                    allureLogs(f"Element {element_name} is DISPLAYED | (Value: {value})")   # noqa:E501
+                    allureLogs(f"✅ Element {element_name} is DISPLAYED | (Value: {value})")   # noqa:E501
                     element_found = True
                     break
             if not element_found:
-                allureLogs(f"Element {element_name} is NOT DISPLAYED")
+                allureLogs(f"❌ Element {element_name} is NOT DISPLAYED")
                 self.actions.screenshotAttachment(f"{element_name}: NOT DISPLAYED")  # noqa:E501
         self.actions.screenshotAttachment("Verified All items on MY Orders TAB")    # noqa:E501

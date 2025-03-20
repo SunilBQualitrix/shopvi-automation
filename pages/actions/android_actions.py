@@ -17,6 +17,8 @@ from pages.actions.actions_parent import ActionsParent
 from conftest import readConstants
 from utils.custom_logger import custom_logger as cl
 from utils.custom_logger import allureLogs
+from selenium.webdriver.common.actions.action_builder import ActionBuilder
+from selenium.webdriver.common.actions.pointer_input import PointerInput
 
 
 # from appium import webdriver
@@ -525,3 +527,36 @@ class AndroidActions(ActionsParent):
             # Capture a screenshot for debugging
             self.screenshotAttachment(f"ScrollIntoViewFailure_{text}")
             return None
+
+    def tap_by_coordinate(self, x_value, y_value):
+        """
+        Perform a tap action on the given screen coordinates using ActionChains (for Appium 2.x).     # noqa:E501
+        :param x_value: X coordinate
+        :param y_value: Y coordinate
+        """
+        try:
+            pointer = PointerInput(PointerInput.TOUCH, "finger")  # Initialize touch input    # noqa:E501
+            action = ActionBuilder(self.driver)
+            action.add_pointer_input(pointer)
+            action.pointer_action.move_to_location(x_value, y_value)
+            action.pointer_action.click()
+            action.perform()
+
+            allureLogs(f"Tapped at coordinates: ({x_value}, {y_value})")
+            self.screenshotAttachment(f"Tapped at ({x_value}, {y_value})")
+        except Exception as e:
+            allureLogs(f"Failed to tap at coordinates: ({x_value}, {y_value}) - {str(e)}")  # noqa:E501
+            self.screenshotAttachment("Tap action failed")
+
+    def verify_element_and_log(self, locator, element_name):
+        """Helper method to verify if an element is displayed, log status, and take a screenshot."""    # noqa:E501
+        try:
+            if self.is_element_displayed(*locator):
+                allureLogs(f"{element_name} is displayed ✅")
+                self.screenshotAttachment(f"{element_name} Displayed")
+            else:
+                allureLogs(f"{element_name} is NOT displayed ❌")
+                self.screenshotAttachment(f"{element_name} Not Found")
+        except Exception as e:
+            allureLogs(f"Error verifying {element_name}: {str(e)}")
+            self.screenshotAttachment(f"Error {element_name}")

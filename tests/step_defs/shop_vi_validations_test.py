@@ -517,3 +517,15 @@ def verify_payment_page(pdpflipkart_instance):
 @allure.step("Then I enter the {input} in the credit card field")
 def verify_payment_page_details(pdpflipkart_instance, input):
     pdpflipkart_instance.verify_input_cc_number(input)
+
+
+@then("I verify Convenience Fee Details")
+@allure.step("Then I verify Convenience Fee Details")
+def verify_payment_page_details(pdpflipkart_instance):
+    pdpflipkart_instance.verify_convenience_fee()
+
+
+@then("I Navigate back to HomePage")
+@allure.step("Then I Navigate back to HomePage")
+def navigate_back_to_home_page(pdpflipkart_instance):
+    pdpflipkart_instance.verify_navigation_to_home_page()
