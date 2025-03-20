@@ -96,6 +96,8 @@ Scenario Outline: VS006: Verify Add to Cart Journey with Flipkart SKU from Searc
     When I click on the Proceed to Payment CTA button
     Then I verify the payment page
     Then I enter the <credit_card_number> in the credit card field
+    Then I verify Convenience Fee Details
+    Then I Navigate back to HomePage
 
     Examples:
         | credit_card_number |
