@@ -764,4 +764,5 @@ class ProductDetailsPageFlipkart(BasePage):
 
             self.actions.screenshotAttachment(step_description)
 
+        self.driver.back()
         allureLogs("Navigation to Home Page Completed ✅")

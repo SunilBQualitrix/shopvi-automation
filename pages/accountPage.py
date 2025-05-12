@@ -179,7 +179,7 @@ class AccountPage(BasePage):
             self.actions.screenshotAttachment("Navigated to Orders Page")
             return True
         else:
-            allureLogs(f"❌ Element is NOT DISPLAYED")
+            allureLogs("❌ Element is NOT DISPLAYED")
             self.actions.screenshotAttachment("Failed to Navigate to Orders Page")    # noqa:E501
             return False
 
@@ -193,7 +193,7 @@ class AccountPage(BasePage):
             self.actions.screenshotAttachment("Navigated to Credit Cards Page")
             return True
         else:
-            allureLogs(f"✅ Element is NOT DISPLAYED")
+            allureLogs("✅ Element is NOT DISPLAYED")
             self.actions.screenshotAttachment("Failed to Navigate to Credit Cards Page")      # noqa:E501
             return False
 
@@ -207,7 +207,7 @@ class AccountPage(BasePage):
             self.actions.screenshotAttachment("Navigated to Coupons Page")
             return True
         else:
-            allureLogs(f"❌ Element is NOT DISPLAYED")
+            allureLogs("❌ Element is NOT DISPLAYED")
             self.actions.screenshotAttachment("Failed to Navigate to Coupons")
             return False
 
@@ -221,7 +221,7 @@ class AccountPage(BasePage):
             self.actions.screenshotAttachment("Navigated to Saved Payments Page")     # noqa:E501
             return True
         else:
-            allureLogs(f"❌ Element is NOT DISPLAYED")
+            allureLogs("❌ Element is NOT DISPLAYED")
             self.actions.screenshotAttachment("Failed to Navigate to Saved Payments Page")    # noqa:E501
             return False
 
@@ -235,7 +235,7 @@ class AccountPage(BasePage):
             self.actions.screenshotAttachment("Navigated to Help and Support Page")   # noqa:E501
             return True
         else:
-            allureLogs(f"❌ Element is NOT DISPLAYED")
+            allureLogs("❌ Element is NOT DISPLAYED")
             self.actions.screenshotAttachment("Failed to Navigate to Help and Support Page")      # noqa:E501
             return False
 
@@ -249,7 +249,7 @@ class AccountPage(BasePage):
             self.actions.screenshotAttachment("Navigated to FAQs Page")
             return True
         else:
-            allureLogs(f"❌ Element is NOT DISPLAYED")
+            allureLogs("❌ Element is NOT DISPLAYED")
             self.actions.screenshotAttachment("Failed to Navigate to FAQs Page")      # noqa:E501
             return False
 
@@ -294,7 +294,7 @@ class AccountPage(BasePage):
             self.actions.screenshotAttachment("Navigated to About US Page")     # noqa:E501
             return True
         else:
-            allureLogs(f"❌ Element is NOT DISPLAYED")
+            allureLogs("❌ Element is NOT DISPLAYED")
             self.actions.screenshotAttachment("Failed to Navigates to About US Page")    # noqa:E501
             return False
 
