@@ -125,7 +125,7 @@ def log_into_the_app_using_login_with_otp_cta_button(navtoshop_instance):
 def click_on_vi_shop_from_bottom_navigation_and_should_navigate_to_the_shop_dashboard(navtoshop_instance, shoppage_instance):     # noqa:E501
     """Step to navigate to the shop dashboard."""
     navtoshop_instance.navto_shop()
-    shop_page_reached = shoppage_instance.verify_shop_dashborad_page()
+    shop_page_reached = shoppage_instance.verify_shop_dashboard_page()
     assert shop_page_reached, "Shop Dashboard page is not reached"
 
 
@@ -287,7 +287,14 @@ def verify_all_elements_on_saved_payments_page(accountpage_instance):
     accountpage_instance.driver.back()
 
 
-# ======== Validation of navigation across Tabs ========
+# ======== Validation of navigation across Tabs Shop_db_page POM ========
+
+@when(("I am on shop dashboard and verify Quick Purchase Section"))   # noqa:E501
+@allure.step("When I am on shop dashboard and verify Quick Purchase Section")          # noqa:E501
+def open_the_shop_tab_and_verify_quick_purchase_on_shop_dashboard(shoppage_instance):        # noqa:E501
+    """Step to verify all items are displayed on the shop dashboard."""
+    shoppage_instance.verify_quick_purchase_items_on_Shop_dashboard()
+
 
 @when(("I am on shop dashboard and verify all items are displayed on shop dashboard"))   # noqa:E501
 @allure.step("When I am on shop dashboard and verify all items are displayed on shop dashboard")          # noqa:E501

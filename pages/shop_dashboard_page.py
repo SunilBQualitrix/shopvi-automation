@@ -6,12 +6,14 @@ from pages.actions.android_actions import AndroidActions
 
 locators_sd = {
     "SHOP_BY_CATEGORY": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("shop by category")'),      # noqa:E501
-    "EXPLORE_TAB": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("explore")'),    # noqa:E501
+    "CATEGORIES_TAB": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("categories")'),    # noqa:E501
     "DEALS_TAB": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("deals")'),  # noqa:E501
     "MY_ORDERS_TAB": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("my orders")'),  # noqa:E501
     "VI_SHOP_ICON": (AppiumBy.XPATH, '//android.widget.TextView[@text="shop"]'),    # noqa:E501
     "VI_APP_HOME_BUTTON": (AppiumBy.XPATH, '//android.widget.TextView[@text="home"]'),  # noqa:E501
-    "DB_SEARCH_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(1)'),  # noqa:E501
+    "DB_SEARCH_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/search.png")'),  # noqa:E501
+    "DB_ACCOUNTS_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOPshop-account-icon.webp")'),  # noqa:E501
+    "DB_CART_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/Cart.webp")'),  # noqa:E501
 
     "MY_ORDER_P": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(1)'),  # noqa:E501
     "ACCOUNT_ICON": (AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="DS_SHOPshop-account-icon.webp"]'),    # noqa:E501
@@ -43,6 +45,13 @@ locators_sd = {
     "MYORDERS_BACK_ARROW1": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(0)'),  # noqa:E501
     "MYORDERS_SEARCH_ICON1": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(1)'),  # noqa:E501
 
+    "QP_FASHION": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("fashion")'),  # noqa:E501
+    "QP_FOOD": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("food")'),  # noqa:E501
+    "QP_GROCERIES": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("groceries")'),  # noqa:E501
+    "QP_TRAVEL": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("travel")'),  # noqa:E501
+    "QP_ENTERTAINMENT": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("entertainment")'),  # noqa:E501
+
+    "QP_PRODUCT1": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(6)'),  # noqa:E501
 
 }
 
@@ -62,17 +71,58 @@ class ShopDashboardPage(BasePage):
         self.actions.screenshotAttachment("Shop Dashboard Page")
         time.sleep(2)
 
-    def verify_shop_dashborad_page(self):   # this method is used only to verify the user is on shop dashboard page   # noqa:E501
-        onshop = self.actions.is_element_displayed(*locators_sd["SHOP_BY_CATEGORY"])    # noqa:E501
-        allureLogs("Shop Dashboard Page is displayed")
-        return onshop
+    def verify_shop_dashboard_page(self):
+        # Define the elements to verify
+        dashboard_elements = [
+            locators_sd["DB_ACCOUNTS_ICON"],
+            locators_sd["VI_APP_HOME_BUTTON"],
+            locators_sd["VI_SHOP_ICON"],
+            locators_sd["MY_ORDERS_TAB"],
+        ]
+        # Check if all elements are displayed
+        all_elements_displayed = True
+        for element in dashboard_elements:
+            is_displayed = self.actions.is_element_displayed(*element)
+            if not is_displayed:
+                all_elements_displayed = False
+                allureLogs(f"Element {element} not found on Shop Dashboard Page")     # noqa:E501
+                break
+        if all_elements_displayed:
+            allureLogs("User is on Vi Shop DashBoard Page now ✅")     # noqa:E501
+        else:
+            allureLogs("User fails to navigate to Vi Shop DashBoard Page ❌")      # noqa:E501
+        return all_elements_displayed
+
+    def verify_quick_purchase_items_on_Shop_dashboard(self):
+        allureLogs("Verifying Quick Purchase items on Shop Dashboard Page")
+        locators = {
+            "QP_FASHION": [locators_sd["QP_FASHION"]],
+            "QP_FOOD": [locators_sd["QP_FOOD"]],
+            "QP_GROCERIES": [locators_sd["QP_GROCERIES"]],
+            "QP_TRAVEL": [locators_sd["QP_TRAVEL"]],
+            "QP_ENTERTAINMENT": [locators_sd["QP_ENTERTAINMENT"]],
+            "QP_PRODUCT1": [locators_sd["QP_PRODUCT1"]],
+        }
+        for element_name, locator_list in locators.items():
+            element_found = False
+            for locator in locator_list:
+                if self.actions.is_element_displayed(*locator):
+                    element = self.driver.find_element(*locator)
+                    value = element.text.strip() if element.text else "No Text"
+                    allureLogs(f"✅ Element {element_name} is DISPLAYED | [Value: {value}]")      # noqa:E501
+                    element_found = True
+                    break
+            if not element_found:
+                allureLogs(f"❌ Element {element_name} is NOT DISPLAYED")
+                self.actions.screenshotAttachment(f"{element_name}: NOT DISPLAYED")  # noqa:E501
+        self.actions.screenshotAttachment("Verified Quick Purchase items on Shop Dashboard Page")  # noqa:E501
 
     def verify_all_items_on_shop_dashboard(self):
         allureLogs("Verifying all items on Shop Dashboard Page")
         locators = {
             "VI App Home Button": [locators_sd["VI_APP_HOME_BUTTON"]],
             "Deals": [locators_sd["DEALS_TAB"]],
-            "Explore": [locators_sd["EXPLORE_TAB"]],
+            "Categories": [locators_sd["CATEGORIES_TAB"]],
             "My Orders": [locators_sd["MY_ORDERS_TAB"], locators_sd["MY_ORDER_P"]],     # noqa:E501
             "Vi Shop Home": [locators_sd["VI_SHOP_ICON"]],
             "Accounts Icon": [locators_sd["ACCOUNT_ICON"], locators_sd["ACCOUNTS_ICON"]],   # noqa:E501

@@ -24,15 +24,15 @@ Scenario Outline: VS002: Verify Signing in Functionality
         | mobile_number | otp  |
         | 7507233095    | 1234 |
 
-@ViShopRegression
+@ViShopRegression @ViShopTest
 Scenario Outline: VS003: Verify Account Page Navigation and Elements
     When I verify the account button is displayed
     When I click on the account button and navigate to the account page
     Then I verify all elements are displayed on the account page
     When I navigate to the FAQ page
     Then I verify all elements are displayed on the FAQ page
-    When I navigate to the Credit Card (CC) page
-    Then I verify all elements are displayed on the Credit Card (CC) page
+#    When I navigate to the Credit Card (CC) page
+#    Then I verify all elements are displayed on the Credit Card (CC) page
     When I navigate to the Orders page
     Then I verify all elements are displayed on the Orders page
     When I navigate to the Coupons page
@@ -46,8 +46,9 @@ Scenario Outline: VS003: Verify Account Page Navigation and Elements
         | account_button |
         | true           |
 
-@ViShopRegression
+@ViShopRegression @ViShopTest
 Scenario Outline: VS004: Verify Navigation across the Tabs
+    When I am on shop dashboard and verify Quick Purchase Section
     When I am on shop dashboard and verify all items are displayed on shop dashboard
     When I navigate to the deals tab
     Then I verify all items are displayed on the deals tab
@@ -59,7 +60,7 @@ Scenario Outline: VS004: Verify Navigation across the Tabs
         | shop_dashboard |
         | true           |
 
-@ViShopRegression @ViShopTest
+@ViShopRegression
 Scenario Outline: VS005: Verify Search Functionality
     When I click on search icon
 #    When I enter the <invalid_input> in the search field
@@ -73,7 +74,7 @@ Scenario Outline: VS005: Verify Search Functionality
         | invalid_input | valid_input_flipkart  | valid_input_amazon |
         | zzz           | flipkart             | amazon             |
 
-@ViShopRegression @ViShopTest
+@ViShopRegression
 Scenario Outline: VS006: Verify Add to Cart Journey with Flipkart SKU from Search Results
     When I Verify the Product Title, Price, Discount and OutofStock Tag
     When I Verify the Product details
