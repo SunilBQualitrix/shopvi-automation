@@ -27,16 +27,16 @@ locators_sd = {
     "DEALS_CART_ICON1": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(2)'),  # noqa:E501
 
 
-    "EXPLORE_PAGE_TITLE": (AppiumBy.XPATH, '//android.widget.TextView[@text="our store"]'),     # noqa:E501
-    "EXPLORE_CART_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/Cart.webp")'),  # noqa:E501
-    "EXPLORE_SEARCH_ICON": (AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="DS_SHOP_https://vishop.myvi.in/documents/35161/38258/search.png"]'),   # noqa:E501
-    "EXPLORE_CC_MENU": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(2)'),    # noqa:E501
-    "EXPLORE_MOVIES_MENU": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(3)'),    # noqa:E501
-    "EXPLORE_FOOD_MENU": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(4)'),  # noqa:E501
-    "EXPLORE_SHOPPING_MENU": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(5)'),  # noqa:E501
-    "EXPLORE_TRAVEL_MENU": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(6)'),    # noqa:E501
-    "EXPLORE_SEARCH_ICON1": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(0)'),  # noqa:E501
-    "EXPLORE_CART_ICON1": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(1)'),  # noqa:E501
+    "CATEGORIES_PAGE_TITLE": (AppiumBy.XPATH, '//android.widget.TextView[@text="our store"]'),     # noqa:E501
+    "CATEGORIES_CART_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/Cart.webp")'),  # noqa:E501
+    "CATEGORIES_SEARCH_ICON": (AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="DS_SHOP_https://vishop.myvi.in/documents/35161/38258/search.png"]'),   # noqa:E501
+    "CATEGORIES_CC_MENU": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(2)'),    # noqa:E501
+    "CATEGORIES_MOVIES_MENU": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(3)'),    # noqa:E501
+    "CATEGORIES_FOOD_MENU": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(4)'),  # noqa:E501
+    "CATEGORIES_SHOPPING_MENU": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(5)'),  # noqa:E501
+    "CATEGORIES_TRAVEL_MENU": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(6)'),    # noqa:E501
+    "CATEGORIES_SEARCH_ICON1": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(0)'),  # noqa:E501
+    "CATEGORIES_CART_ICON1": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(1)'),  # noqa:E501
 
     "MYORDERS_BACK_ARROW": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/back-arrow.webp")'),  # noqa:E501
     "MYORDERS_PAGE_TITLE": (AppiumBy.XPATH, '//android.widget.TextView[@text="my orders"]'),    # noqa:E501
@@ -52,6 +52,77 @@ locators_sd = {
     "QP_ENTERTAINMENT": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("entertainment")'),  # noqa:E501
 
     "QP_PRODUCT1": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(6)'),  # noqa:E501
+
+    "TRAVEL_PAGE_TITLE": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("travel")'),  # noqa:E501
+    "TRAVEL_PAGE_BACK_BUTTON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/back-arrow.webp")'),  # noqa:E501
+    "TRAVEL_PAGE_SEARCH_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/search.png")'),  # noqa:E501
+    "TRAVEL_PAGE_CART_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/Cart.webp")'),  # noqa:E501
+    "TRAVEL_CABS": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("cabs")'),  # noqa:E501
+    "TRAVEL_FLIGHTS": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("flights")'),  # noqa:E501
+    "TRAVEL_HOTELS": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("hotels")'),  # noqa:E501
+    "TRAVEL_EXPERIENCES": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("experiences")'),  # noqa:E501
+
+    "TRAVEL_CABS_PAGE_TITLE": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("cabs")'),  # noqa:E501
+    "TRAVEL_CABS_BACK_BUTTON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/back-arrow.webp")'),  # noqa:E501
+    "TRAVEL_CABS_SEARCH_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/search.png")'),  # noqa:E501
+    "TRAVEL_CABS_CART_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/Cart.webp")'),  # noqa:E501
+    "TRAVEL_CABS_NO_OF_PRODUCTS": (AppiumBy.XPATH, '//android.widget.TextView[contains(@text, "products")]'),   # noqa:E501
+
+    "TRAVEL_EXPERIENCES_PAGE_TITLE": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("experiences")'),  # noqa:E501
+    "TRAVEL_EXPERIENCES_BACK_BUTTON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/back-arrow.webp")'),  # noqa:E501
+    "TRAVEL_EXPERIENCES_SEARCH_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/search.png")'),  # noqa:E501
+    "TRAVEL_EXPERIENCES_CART_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/Cart.webp")'),  # noqa:E501
+    "TRAVEL_EXPERIENCES_NO_OF_PRODUCTS": (AppiumBy.XPATH, '//android.widget.TextView[contains(@text, "products")]'),   # noqa:E501
+
+    "TRAVEL_FLIGHTS_PAGE_TITLE": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("flights")'),  # noqa:E501
+    "TRAVEL_FLIGHTS_BACK_BUTTON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/back-arrow.webp")'),  # noqa:E501
+    "TRAVEL_FLIGHTS_SEARCH_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/search.png")'),  # noqa:E501
+    "TRAVEL_FLIGHTS_CART_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/Cart.webp")'),  # noqa:E501
+    "TRAVEL_FLIGHTS_NO_OF_PRODUCTS": (AppiumBy.XPATH, '//android.widget.TextView[contains(@text, "products")]'),   # noqa:E501
+
+    "TRAVEL_HOTELS_PAGE_TITLE": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("hotels")'),  # noqa:E501
+    "TRAVEL_HOTELS_BACK_BUTTON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/back-arrow.webp")'),  # noqa:E501
+    "TRAVEL_HOTELS_SEARCH_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/search.png")'),  # noqa:E501
+    "TRAVEL_HOTELS_CART_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/Cart.webp")'),  # noqa:E501
+    "TRAVEL_HOTELS_NO_OF_PRODUCTS": (AppiumBy.XPATH, '//android.widget.TextView[contains(@text, "products")]'),   # noqa:E501
+
+    "MOVIES_PAGE_TITLE": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("entertainment")'),  # noqa:E501
+    "MOVIES_BACK_BUTTON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/back-arrow.webp")'),  # noqa:E501
+    "MOVIES_SEARCH_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/search.png")'),  # noqa:E501
+    "MOVIES_CART_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/Cart.webp")'),  # noqa:E501
+    "MOVIES_MOVIES": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("movies")'),  # noqa:E501
+    "MOVIES_OTT": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("ott")'),  # noqa:E501
+
+    "MOVIES_MOVIES_PAGE_TITLE": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("movies")'),  # noqa:E501
+    "MOVIES_MOVIES_BACK_BUTTON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/back-arrow.webp")'),  # noqa:E501
+    "MOVIES_MOVIES_SEARCH_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/search.png")'),  # noqa:E501
+    "MOVIES_MOVIES_CART_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/Cart.webp")'),  # noqa:E501
+    "MOVIES_MOVIES_NO_OF_PRODUCTS": (AppiumBy.XPATH, '//android.widget.TextView[contains(@text, "products")]'),   # noqa:E501
+
+    "MOVIES_OTT_PAGE_TITLE": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("ott")'),  # noqa:E501
+    "MOVIES_OTT_BACK_BUTTON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/back-arrow.webp")'),  # noqa:E501
+    "MOVIES_OTT_SEARCH_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/search.png")'),  # noqa:E501
+    "MOVIES_OTT_CART_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/Cart.webp")'),  # noqa:E501
+    "MOVIES_OTT_NO_OF_PRODUCTS": (AppiumBy.XPATH, '//android.widget.TextView[contains(@text, "products")]'),   # noqa:E501
+
+    "FOOD_PAGE_TITLE": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("food")'),  # noqa:E501
+    "FOOD_BACK_BUTTON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/back-arrow.webp")'),  # noqa:E501
+    "FOOD_SEARCH_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/search.png")'),  # noqa:E501
+    "FOOD_CART_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/Cart.webp")'),  # noqa:E501
+    "FOOD_DINING": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("dining")'),  # noqa:E501
+    "FOOD_GROCERIES": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("groceries")'),  # noqa:E501
+
+    "FOOD_DINING_PAGE_TITLE": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("dining")'),  # noqa:E501
+    "FOOD_DINING_BACK_BUTTON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/back-arrow.webp")'),  # noqa:E501
+    "FOOD_DINING_SEARCH_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/search.png")'),  # noqa:E501
+    "FOOD_DINING_CART_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/Cart.webp")'),  # noqa:E501
+    "FOOD_DINING_NO_OF_PRODUCTS": (AppiumBy.XPATH, '//android.widget.TextView[contains(@text, "products")]'),   # noqa:E501
+
+    "FOOD_GROCERIES_PAGE_TITLE": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("groceries")'),  # noqa:E501
+    "FOOD_GROCERIES_BACK_BUTTON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/back-arrow.webp")'),  # noqa:E501
+    "FOOD_GROCERIES_SEARCH_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/search.png")'),  # noqa:E501
+    "FOOD_GROCERIES_CART_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/Cart.webp")'),  # noqa:E501
+    "FOOD_GROCERIES_NO_OF_PRODUCTS": (AppiumBy.XPATH, '//android.widget.TextView[contains(@text, "products")]'),   # noqa:E501
 
 }
 
@@ -169,23 +240,23 @@ class ShopDashboardPage(BasePage):
                 self.actions.screenshotAttachment(f"{element_name}: NOT DISPLAYED")  # noqa:E501
         self.actions.screenshotAttachment("Verified All items on Deals TAB")
 
-    def navigate_to_explore_tab(self):
-        self.actions.click_button(*locators_sd["EXPLORE_TAB"])
-        allureLogs("Navigated to Explore Tab")
-        self.actions.screenshotAttachment("Navigated to Explore Tab")
+    def navigate_to_categories_tab(self):
+        self.actions.click_button(*locators_sd["CATEGORIES_TAB"])
+        allureLogs("Navigated to Categories Tab")
+        self.actions.screenshotAttachment("Navigated to Categories Tab")
         time.sleep(2)
 
-    def verify_all_items_on_explore_tab(self):
+    def verify_all_items_on_categories_tab(self):
         allureLogs("Verifying all items on Explore Tab")
         locators = {
-            "EXPLORE Page Title": [locators_sd["EXPLORE_PAGE_TITLE"]],
-            "EXPLORE Search Icon": [locators_sd["EXPLORE_SEARCH_ICON"], locators_sd["EXPLORE_SEARCH_ICON1"]],  # noqa:E501
-            "EXPLORE Cart Icon": [locators_sd["EXPLORE_CART_ICON"], locators_sd["EXPLORE_CART_ICON1"]],  # noqa:E501
-            "EXPLORE CC Menu": [locators_sd["EXPLORE_CC_MENU"]],
-            "EXPLORE Movies Menu": [locators_sd["EXPLORE_MOVIES_MENU"]],
-            "EXPLORE Food Menu": [locators_sd["EXPLORE_FOOD_MENU"]],
-            "EXPLORE Shopping Menu": [locators_sd["EXPLORE_SHOPPING_MENU"]],
-            "EXPLORE Travel Menu": [locators_sd["EXPLORE_TRAVEL_MENU"]],
+            "Categories Page Title": [locators_sd["CATEGORIES_PAGE_TITLE"]],
+            "Categories Search Icon": [locators_sd["CATEGORIES_SEARCH_ICON"], locators_sd["CATEGORIES_SEARCH_ICON1"]],  # noqa:E501
+            "Categories Cart Icon": [locators_sd["CATEGORIES_CART_ICON"], locators_sd["CATEGORIES_CART_ICON1"]],  # noqa:E501
+            "Categories CC Menu": [locators_sd["CATEGORIES_CC_MENU"]],
+            "Categories Movies Menu": [locators_sd["CATEGORIES_MOVIES_MENU"]],
+            "Categories Food Menu": [locators_sd["CATEGORIES_FOOD_MENU"]],
+            "categories Shopping Menu": [locators_sd["CATEGORIES_SHOPPING_MENU"]],  # noqa:E501
+            "Categories Travel Menu": [locators_sd["CATEGORIES_TRAVEL_MENU"]],
         }
         for element_name, locator_list in locators.items():
             element_found = False
@@ -201,19 +272,22 @@ class ShopDashboardPage(BasePage):
                 self.actions.screenshotAttachment(f"{element_name}: NOT DISPLAYED")     # noqa:E501
         self.actions.screenshotAttachment("Verified All items on Explore TAB")
 
-    def navigate_to_my_orders_tab(self):
-        self.actions.click_button(*locators_sd["MY_ORDERS_TAB"])
-        allureLogs("Navigated to My Orders Tab")
-        self.actions.screenshotAttachment("Navigated to My Orders Tab")
+    def navigate_to_travel_subcategories(self):
+        self.actions.click_button(*locators_sd["CATEGORIES_TRAVEL_MENU"])
+        allureLogs("Navigated to Travel Sub-Category Tab")
+        self.actions.screenshotAttachment("Navigated to Categories Tab")
         time.sleep(2)
 
-    def verify_all_items_on_my_orders_tab(self):
-        allureLogs("Verifying all items on My Orders Tab")
+    def verify_all_items_on_travel_subcategory(self):
+        allureLogs("Verifying all items under Travel Sub-Category Tab")
         locators = {
-            "MY ORDERS Page Title": [locators_sd["MYORDERS_PAGE_TITLE"]],
-            "MY ORDERS Search Icon": [locators_sd["MYORDERS_SEARCH_ICON"]],
-            "MY ORDERS Back Arrow": [locators_sd["MYORDERS_BACK_ARROW"], locators_sd["MYORDERS_BACK_ARROW1"]],  # noqa:E501
-            "MY ORDERS Search BOX": [locators_sd["MYORDERS_SEARCH_BOX"], locators_sd["MYORDERS_SEARCH_ICON1"]],  # noqa:E501
+            "Travel Page Title": [locators_sd["TRAVEL_PAGE_TITLE"]],
+            "Travel Search Icon": [locators_sd["TRAVEL_PAGE_SEARCH_ICON"]],
+            "Travel Cart Icon": [locators_sd["TRAVEL_PAGE_CART_ICON"]],
+            "Travel Cabs": [locators_sd["TRAVEL_CABS"]],
+            "Travel Flights": [locators_sd["TRAVEL_FLIGHTS"]],
+            "Travel Hotels": [locators_sd["TRAVEL_HOTELS"]],
+            "Travel Experiences": [locators_sd["TRAVEL_EXPERIENCES"]],
         }
         for element_name, locator_list in locators.items():
             element_found = False
@@ -221,10 +295,162 @@ class ShopDashboardPage(BasePage):
                 if self.actions.is_element_displayed(*locator):
                     element = self.driver.find_element(*locator)
                     value = element.text.strip() if element.text else "No Text"
-                    allureLogs(f"✅ Element {element_name} is DISPLAYED | (Value: {value})")   # noqa:E501
+                    allureLogs(f"✅ Element {element_name} is DISPLAYED | [Value: {value}]")   # noqa:E501
+                    element_found = True
+                    break
+            if not element_found:
+                allureLogs(f"❌ Element {element_name} is NOT DISPLAYED")
+                self.actions.screenshotAttachment(f"{element_name}: NOT DISPLAYED")     # noqa:E501
+        self.actions.screenshotAttachment("Verified All items on Travel Sub-Category Tab")  # noqa:E501
+
+    def navigate_to_travel_cabs_subcategories(self):
+        self.actions.click_button(*locators_sd["TRAVEL_CABS"])
+        allureLogs("Navigated to Cabs Sub-category under Travel Sub-Category Tab")  # noqa:E501
+        self.actions.screenshotAttachment("Navigated to Cabs Sub-category under Travel Sub-Category Tab")   # noqa:E501
+        time.sleep(2)
+
+    def verify_all_items_on_travel_cabs_subcategory(self):
+        allureLogs("Verifying all items on Cabs under Travel Sub-Category Tab")
+        locators = {
+            "Travel Cabs Page Title": [locators_sd["TRAVEL_CABS_PAGE_TITLE"]],
+            "Travel Cabs Back Button": [locators_sd["TRAVEL_CABS_BACK_BUTTON"]],  # noqa:E501
+            "Travel Cabs Search Icon": [locators_sd["TRAVEL_CABS_SEARCH_ICON"]],    # noqa:E501
+            "Travel Cabs Cart Icon": [locators_sd["TRAVEL_CABS_CART_ICON"]],
+            "Travel Cabs No of Products": [locators_sd["TRAVEL_CABS_NO_OF_PRODUCTS"]],  # noqa:E501
+        }
+        for element_name, locator_list in locators.items():
+            element_found = False
+            for locator in locator_list:
+                if self.actions.is_element_displayed(*locator):
+                    element = self.driver.find_element(*locator)
+                    value = element.text.strip() if element.text else "No Text"
+                    allureLogs(f"✅ Element {element_name} is DISPLAYED | [Value: {value}]")   # noqa:E501
+                    element_found = True
+                    break
+            if not element_found:
+                allureLogs(f"❌ Element {element_name} is NOT DISPLAYED")
+                self.actions.screenshotAttachment(f"{element_name}: NOT DISPLAYED")     # noqa:E501
+        self.actions.screenshotAttachment("Verified All items on cabs under Travel Sub-Category Tab")  # noqa:E501
+
+    def navigate_to_travel_experinces_subcategories(self):
+        self.driver.back()
+        self.actions.click_button(*locators_sd["TRAVEL_EXPERIENCES"])
+        allureLogs("Navigated to Experinces Sub-category under Travel Sub-Category Tab")  # noqa:E501
+        self.actions.screenshotAttachment("Navigated to Experinces Sub-category under Travel Sub-Category Tab")   # noqa:E501
+        time.sleep(2)
+
+    def verify_all_items_on_travel_experinces_subcategory(self):
+        allureLogs("Verifying all items on experinces under Travel Sub-Category Tab")   # noqa:E501
+        locators = {
+            "Travel Experinces Page Title": [locators_sd["TRAVEL_EXPERIENCES_PAGE_TITLE"]],   # noqa:E501
+            "Travel Experinces Back Button": [locators_sd["TRAVEL_EXPERIENCES_BACK_BUTTON"]],  # noqa:E501
+            "Travel Experinces Search Icon": [locators_sd["TRAVEL_EXPERIENCES_SEARCH_ICON"]],    # noqa:E501
+            "Travel Experinces Cart Icon": [locators_sd["TRAVEL_EXPERIENCES_CART_ICON"]],   # noqa:E501
+            "Travel Experinces No of Products": [locators_sd["TRAVEL_EXPERIENCES_NO_OF_PRODUCTS"]],  # noqa:E501
+        }
+        for element_name, locator_list in locators.items():
+            element_found = False
+            for locator in locator_list:
+                if self.actions.is_element_displayed(*locator):
+                    element = self.driver.find_element(*locator)
+                    value = element.text.strip() if element.text else "No Text"
+                    allureLogs(f"✅ Element {element_name} is DISPLAYED | [Value: {value}]")   # noqa:E501
+                    element_found = True
+                    break
+            if not element_found:
+                allureLogs(f"❌ Element {element_name} is NOT DISPLAYED")
+                self.actions.screenshotAttachment(f"{element_name}: NOT DISPLAYED")     # noqa:E501
+        self.actions.screenshotAttachment("Verified All items on experinces under Travel Sub-Category Tab")  # noqa:E501
+
+    def navigate_to_travel_flights_subcategories(self):
+        self.driver.back()
+        self.actions.click_button(*locators_sd["TRAVEL_FLIGHTS"])
+        allureLogs("Navigated to Flights Sub-category under Travel Sub-Category Tab")  # noqa:E501
+        self.actions.screenshotAttachment("Navigated to flights Sub-category under Travel Sub-Category Tab")   # noqa:E501
+        time.sleep(2)
+
+    def verify_all_items_on_travel_flights_subcategory(self):
+        allureLogs("Verifying all items on Flights under Travel Sub-Category Tab")  # noqa:E501
+        locators = {
+            "Travel Flights Page Title": [locators_sd["TRAVEL_FLIGHTS_PAGE_TITLE"]],    # noqa:E501
+            "Travel Flights Back Button": [locators_sd["TRAVEL_FLIGHTS_BACK_BUTTON"]],  # noqa:E501
+            "Travel Flights Search Icon": [locators_sd["TRAVEL_FLIGHTS_SEARCH_ICON"]],    # noqa:E501
+            "Travel Flights Cart Icon": [locators_sd["TRAVEL_FLIGHTS_CART_ICON"]],  # noqa:E501
+            "Travel Flights No of Products": [locators_sd["TRAVEL_FLIGHTS_NO_OF_PRODUCTS"]],  # noqa:E501
+        }
+        for element_name, locator_list in locators.items():
+            element_found = False
+            for locator in locator_list:
+                if self.actions.is_element_displayed(*locator):
+                    element = self.driver.find_element(*locator)
+                    value = element.text.strip() if element.text else "No Text"
+                    allureLogs(f"✅ Element {element_name} is DISPLAYED | [Value: {value}]")   # noqa:E501
+                    element_found = True
+                    break
+            if not element_found:
+                allureLogs(f"❌ Element {element_name} is NOT DISPLAYED")
+                self.actions.screenshotAttachment(f"{element_name}: NOT DISPLAYED")     # noqa:E501
+        self.actions.screenshotAttachment("Verified All items on flights under Travel Sub-Category Tab")  # noqa:E501
+
+    def navigate_to_travel_hotels_subcategories(self):
+        self.driver.back()
+        self.actions.click_button(*locators_sd["TRAVEL_HOTELS"])
+        allureLogs("Navigated to Flights Sub-category under Travel Sub-Category Tab")  # noqa:E501
+        self.actions.screenshotAttachment("Navigated to flights Sub-category under Travel Sub-Category Tab")   # noqa:E501
+        time.sleep(2)
+
+    def verify_all_items_on_travel_hotels_subcategory(self):
+        allureLogs("Verifying all items on Hotels under Travel Sub-Category Tab")  # noqa:E501
+        locators = {
+            "Travel Hotels Page Title": [locators_sd["TRAVEL_HOTELS_PAGE_TITLE"]],    # noqa:E501
+            "Travel Hotels Back Button": [locators_sd["TRAVEL_HOTELS_BACK_BUTTON"]],  # noqa:E501
+            "Travel Hotels Search Icon": [locators_sd["TRAVEL_HOTELS_SEARCH_ICON"]],    # noqa:E501
+            "Travel Hotels Cart Icon": [locators_sd["TRAVEL_HOTELS_CART_ICON"]],  # noqa:E501
+            "Travel Hotels No of Products": [locators_sd["TRAVEL_HOTELS_NO_OF_PRODUCTS"]],  # noqa:E501
+        }
+        for element_name, locator_list in locators.items():
+            element_found = False
+            for locator in locator_list:
+                if self.actions.is_element_displayed(*locator):
+                    element = self.driver.find_element(*locator)
+                    value = element.text.strip() if element.text else "No Text"
+                    allureLogs(f"✅ Element {element_name} is DISPLAYED | [Value: {value}]")   # noqa:E501
+                    element_found = True
+                    break
+            if not element_found:
+                allureLogs(f"❌ Element {element_name} is NOT DISPLAYED")
+                self.actions.screenshotAttachment(f"{element_name}: NOT DISPLAYED")     # noqa:E501
+        self.actions.screenshotAttachment("Verified All items on Hotels under Travel Sub-Category Tab")  # noqa:E501
+
+    def navigate_to_food_subcategories(self):
+        self.driver.back()
+        self.driver.back()
+        self.actions.click_button(*locators_sd["CATEGORIES_FOOD_MENU"])
+        allureLogs("Navigated to Food Sub-Category Tab")
+        self.actions.screenshotAttachment("Navigated to Food Sub-Category Tab")
+        time.sleep(2)
+    
+    def verify_all_items_on_food_subcategory(self):
+        allureLogs("Verifying all items on Food Sub-Category Tab")
+        locators = {
+            "Food Page Title": [locators_sd["FOOD_PAGE_TITLE"]],
+            "Food Search Icon": [locators_sd["FOOD_SEARCH_ICON"]],
+            "Food Cart Icon": [locators_sd["FOOD_CART_ICON"]],
+            "Food Dining": [locators_sd["FOOD_DINING"]],
+            "Food Groceries": [locators_sd["FOOD_GROCERIES"]],
+            "Food Back Button": [locators_sd["FOOD_BACK_BUTTON"]],  # noqa:E501
+        }
+        for element_name, locator_list in locators.items():
+            element_found = False
+            for locator in locator_list:
+                if self.actions.is_element_displayed(*locator):
+                    element = self.driver.find_element(*locator)
+                    value = element.text.strip() if element.text else "No Text"
+                    allureLogs(f"✅ Element {element_name} is DISPLAYED | [Value: {value}]")   # noqa:E501
                     element_found = True
                     break
             if not element_found:
                 allureLogs(f"❌ Element {element_name} is NOT DISPLAYED")
                 self.actions.screenshotAttachment(f"{element_name}: NOT DISPLAYED")  # noqa:E501
-        self.actions.screenshotAttachment("Verified All items on MY Orders TAB")    # noqa:E501
+        self.actions.screenshotAttachment("Verified All items on Food Sub-Category Tab")  # noqa:E501
+        

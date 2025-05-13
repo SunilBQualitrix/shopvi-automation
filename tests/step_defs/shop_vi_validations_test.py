@@ -1,3 +1,4 @@
+import time
 from pytest_bdd import given, when, then, scenarios, parsers
 import allure
 import pytest
@@ -110,6 +111,7 @@ def click_on_send_otp_cta_button(navtoshop_instance):
 @allure.step("When I input a valid 4-digit OTP {otp}")
 def input_a_valid_otp(navtoshop_instance, otp):
     """Step to input a valid OTP."""
+    time.sleep(5)
     navtoshop_instance.input_otp(otp)
 
 
@@ -317,33 +319,88 @@ def verify_all_items_are_displayed_on_the_deals_tab(shoppage_instance):
     shoppage_instance.verify_all_items_on_deals_tab()
 
 
-@when("I navigate to the explore tab")
-@allure.step("When I navigate to the explore tab")
-def navigate_to_explore_tab(shoppage_instance):
-    """Step to navigate to the explore tab."""
-    shoppage_instance.navigate_to_explore_tab()
+@when("I navigate to the categories tab")
+@allure.step("When I navigate to the categories tab")
+def navigate_to_categories(shoppage_instance):
+    """Step to navigate to the categories tab."""
+    shoppage_instance.navigate_to_categories_tab()
 
 
-@then("I verify all items are displayed on the explore tab")
-@allure.step("Then I verify all items are displayed on the explore tab")
-def verify_all_items_are_displayed_on_the_explore_tab(shoppage_instance):
-    """Step to verify all items are displayed on the explore tab."""
-    shoppage_instance.verify_all_items_on_explore_tab()
+@then("I verify all items are displayed on the categories tab")
+@allure.step("Then I verify all items are displayed on the categories tab")
+def verify_all_items_are_displayed_on_the_categories_tab(shoppage_instance):
+    """Step to verify all items are displayed on the categories tab."""
+    shoppage_instance.verify_all_items_on_categories_tab()
 
 
-@when("I navigate to the my orders tab")
-@allure.step("When I navigate to the my orders tab")
-def navigate_to_my_orders_tab(shoppage_instance):
-    """Step to navigate to the my orders tab."""
-    shoppage_instance.navigate_to_my_orders_tab()
+@when("I navigate to the Travel Sub-category under Categories tab")
+@allure.step("When I navigate to the Travel Sub-category under Categories tab")
+def navigate_to_categories(shoppage_instance):
+    """Step to navigate to the categories tab."""
+    shoppage_instance.navigate_to_travel_subcategories()
 
 
-@then("I verify all items are displayed on the my orders tab")
-@allure.step("Then I verify all items are displayed on the my orders tab")
-def verify_all_items_are_displayed_on_the_my_orders_tab(shoppage_instance):
-    """Step to verify all items are displayed on the my orders tab."""
-    shoppage_instance.verify_all_items_on_my_orders_tab()
+@then("I verify all items that are displayed under Travel Sub-category")
+@allure.step("Then I verify all items that are displayed under Travel Sub-category")    # noqa:E501
+def verify_all_items_are_displayed_on_the_categories_tab(shoppage_instance):
+    """Step to verify all items are displayed on the categories tab."""
+    shoppage_instance.verify_all_items_on_travel_subcategory()
 
+
+@when("I navigate to the CABS inside Travel Sub-category under Categories tab")
+@allure.step("When I navigate to the CABS inside Travel Sub-category under Categories tab")   # noqa:E501
+def navigate_to_categories(shoppage_instance):
+    """Step to navigate to the categories tab."""
+    shoppage_instance.navigate_to_travel_cabs_subcategories()
+
+
+@then("I verify all items that are displayed under CABS inside Travel Sub-category")    # noqa:E501
+@allure.step("Then I verify all items that are displayed under CABS inside Travel Sub-category")    # noqa:E501
+def verify_all_items_are_displayed_on_the_categories_tab(shoppage_instance):
+    """Step to verify all items are displayed on the categories tab."""
+    shoppage_instance.verify_all_items_on_travel_cabs_subcategory()
+
+
+@when("I navigate to the Hotels inside Travel Sub-category under Categories tab")   # noqa:E501
+@allure.step("When I navigate to the Hotels inside Travel Sub-category under Categories tab")   # noqa:E501
+def navigate_to_categories(shoppage_instance):
+    """Step to navigate to the categories tab."""
+    shoppage_instance.navigate_to_travel_hotels_subcategories()
+
+
+@then("I verify all items that are displayed under Hotels inside Travel Sub-category")    # noqa:E501
+@allure.step("Then I verify all items that are displayed under Hotels inside Travel Sub-category")    # noqa:E501
+def verify_all_items_are_displayed_on_the_categories_tab(shoppage_instance):
+    """Step to verify all items are displayed on the categories tab."""
+    shoppage_instance.verify_all_items_on_travel_hotels_subcategory()
+
+
+@when("I navigate to the Flights inside Travel Sub-category under Categories tab")  # noqa:E501
+@allure.step("When I navigate to the Flights inside Travel Sub-category under Categories tab")   # noqa:E501
+def navigate_to_categories(shoppage_instance):
+    """Step to navigate to the categories tab."""
+    shoppage_instance.navigate_to_travel_flights_subcategories()
+
+
+@then("I verify all items that are displayed under Flights inside Travel Sub-category")    # noqa:E501
+@allure.step("Then I verify all items that are displayed under Flights inside Travel Sub-category")    # noqa:E501
+def verify_all_items_are_displayed_on_the_categories_tab(shoppage_instance):
+    """Step to verify all items are displayed on the categories tab."""
+    shoppage_instance.verify_all_items_on_travel_flights_subcategory()
+
+
+@when("I navigate to the Experinces inside Travel Sub-category under Categories tab")   # noqa:E501
+@allure.step("When I navigate to the Experinces inside Travel Sub-category under Categories tab")   # noqa:E501
+def navigate_to_categories(shoppage_instance):
+    """Step to navigate to the categories tab."""
+    shoppage_instance.navigate_to_travel_experinces_subcategories()
+
+
+@then("I verify all items that are displayed under Experinces inside Travel Sub-category")    # noqa:E501
+@allure.step("Then I verify all items that are displayed under Experinces inside Travel Sub-category")    # noqa:E501
+def verify_all_items_are_displayed_on_the_categories_tab(shoppage_instance):
+    """Step to verify all items are displayed on the categories tab."""
+    shoppage_instance.verify_all_items_on_travel_experinces_subcategory()
 
 # ======== Search page Validation ========
 
