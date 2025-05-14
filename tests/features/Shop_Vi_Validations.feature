@@ -64,6 +64,12 @@ Scenario Outline: VS004: Verify Navigation across the Tabs
     Then I verify all items that are displayed under Flights inside Travel Sub-category
     When I navigate to the Experinces inside Travel Sub-category under Categories tab
     Then I verify all items that are displayed under Experinces inside Travel Sub-category
+    When I navigate to Movies Subcategory under Categories tab
+    Then I verify all items that are displayed under Movies Subcategory
+    When I navigate to Movies subcategory under Movies
+    Then I verify all items that are displayed under Movies subcategory
+    When I navigate to OTT Subcategory under Movies
+    Then I verify all items that are displayed under OTT Subcategory
 
     
     Examples:

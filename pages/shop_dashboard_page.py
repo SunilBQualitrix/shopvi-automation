@@ -453,3 +453,157 @@ class ShopDashboardPage(BasePage):
                 allureLogs(f"❌ Element {element_name} is NOT DISPLAYED")
                 self.actions.screenshotAttachment(f"{element_name}: NOT DISPLAYED")  # noqa:E501
         self.actions.screenshotAttachment("Verified All items on Food Sub-Category Tab")  # noqa:E501
+
+    def navigate_to_food_dining_subcategories(self):
+        self.actions.click_button(*locators_sd["FOOD_DINING"])
+        allureLogs("Navigated to Dining Sub-category under Food Sub-Category Tab")  # noqa:E501
+        self.actions.screenshotAttachment("Navigated to Dining Sub-category under Food Sub-Category Tab")   # noqa:E501
+        time.sleep(2)
+
+    def verify_all_items_on_food_dining_subcategory(self):
+        allureLogs("Verifying all items on Dining under Food Sub-Category Tab")
+        locators = {
+            "Food Dining Page Title": [locators_sd["FOOD_DINING_PAGE_TITLE"]],    # noqa:E501
+            "Food Dining Back Button": [locators_sd["FOOD_DINING_BACK_BUTTON"]],  # noqa:E501
+            "Food Dining Search Icon": [locators_sd["FOOD_DINING_SEARCH_ICON"]],    # noqa:E501
+            "Food Dining Cart Icon": [locators_sd["FOOD_DINING_CART_ICON"]],  # noqa:E501
+            "Food Dining No of Products": [locators_sd["FOOD_DINING_NO_OF_PRODUCTS"]],  # noqa:E501
+        }
+        for element_name, locator_list in locators.items():
+            element_found = False
+            for locator in locator_list:
+                if self.actions.is_element_displayed(*locator):
+                    element = self.driver.find_element(*locator)
+                    value = element.text.strip() if element.text else "No Text"
+                    allureLogs(f"✅ Element {element_name} is DISPLAYED | [Value: {value}]")   # noqa:E501
+                    element_found = True
+                    break
+            if not element_found:
+                allureLogs(f"❌ Element {element_name} is NOT DISPLAYED")
+                self.actions.screenshotAttachment(f"{element_name}: NOT DISPLAYED")     # noqa:E501
+        self.actions.screenshotAttachment("Verified All items on Dining under Food Sub-Category Tab")   # noqa:E501
+
+    def navigate_to_food_groceries_subcategories(self):
+        self.driver.back()
+        self.actions.click_button(*locators_sd["FOOD_GROCERIES"])
+        allureLogs("Navigated to Groceries Sub-category under Food Sub-Category Tab")  # noqa:E501
+        self.actions.screenshotAttachment("Navigated to Groceries Sub-category under Food Sub-Category Tab")  # noqa:E501
+        time.sleep(2)
+
+    def verify_all_items_on_food_groceries_subcategory(self):
+        allureLogs("Verifying all items on Groceries under Food Sub-Category Tab")  # noqa:E501
+        locators = {
+            "Food Groceries Page Title": [locators_sd["FOOD_GROCERIES_PAGE_TITLE"]],    # noqa:E501
+            "Food Groceries Back Button": [locators_sd["FOOD_GROCERIES_BACK_BUTTON"]],  # noqa:E501
+            "Food Groceries Search Icon": [locators_sd["FOOD_GROCERIES_SEARCH_ICON"]],    # noqa:E501
+            "Food Groceries Cart Icon": [locators_sd["FOOD_GROCERIES_CART_ICON"]],  # noqa:E501
+            "Food Groceries No of Products": [locators_sd["FOOD_GROCERIES_NO_OF_PRODUCTS"]],  # noqa:E501
+        }
+        for element_name, locator_list in locators.items():
+            element_found = False
+            for locator in locator_list:
+                if self.actions.is_element_displayed(*locator):
+                    element = self.driver.find_element(*locator)
+                    value = element.text.strip() if element.text else "No Text"
+                    allureLogs(f"✅ Element {element_name} is DISPLAYED | [Value: {value}]")   # noqa:E501
+                    element_found = True
+                    break
+            if not element_found:
+                allureLogs(f"❌ Element {element_name} is NOT DISPLAYED")
+                self.actions.screenshotAttachment(f"{element_name}: NOT DISPLAYED")  # noqa:E501
+        self.actions.screenshotAttachment("Verified All items on Groceries under Food Sub-Category Tab")  # noqa:E501
+
+    def navigate_to_movies_subcategories(self):
+        self.driver.back()
+        self.driver.back()
+        self.actions.click_button(*locators_sd["CATEGORIES_MOVIES_MENU"])
+        allureLogs("Navigated to Movies Sub-Category Tab")
+        self.actions.screenshotAttachment("Navigated to Movies Sub-Category Tab")   # noqa:E501
+        time.sleep(2)
+
+    def verify_all_items_on_movies_subcategory(self):
+        allureLogs("Verifying all items on Movies Sub-Category Tab")
+        locators = {
+            "Movies Page Title": [locators_sd["MOVIES_PAGE_TITLE"]],
+            "Movies Search Icon": [locators_sd["MOVIES_SEARCH_ICON"]],
+            "Movies Cart Icon": [locators_sd["MOVIES_CART_ICON"]],
+            "Movies Movies": [locators_sd["MOVIES_MOVIES"]],
+            "Movies OTT": [locators_sd["MOVIES_OTT"]],
+            "Movies Back Button": [locators_sd["MOVIES_BACK_BUTTON"]],  # noqa:E501
+        }
+        for element_name, locator_list in locators.items():
+            element_found = False
+            for locator in locator_list:
+                if self.actions.is_element_displayed(*locator):
+                    element = self.driver.find_element(*locator)
+                    value = element.text.strip() if element.text else "No Text"
+                    allureLogs(f"✅ Element {element_name} is DISPLAYED | [Value: {value}]")   # noqa:E501
+                    element_found = True
+                    break
+            if not element_found:
+                allureLogs(f"❌ Element {element_name} is NOT DISPLAYED")
+                self.actions.screenshotAttachment(f"{element_name}: NOT DISPLAYED")  # noqa:E501
+        self.actions.screenshotAttachment("Verified All items on Movies Sub-Category Tab")  # noqa:E501
+
+    def navigate_to_movies_movies_subcategories(self):
+        self.actions.click_button(*locators_sd["MOVIES_MOVIES"])
+        allureLogs("Navigated to Movies Sub-category under Movies Sub-Category Tab")  # noqa:E501
+        self.actions.screenshotAttachment("Navigated to Movies Sub-category under Movies Sub-Category Tab")   # noqa:E501
+        time.sleep(2)
+
+    def verify_all_items_on_movies_movies_subcategory(self):
+        allureLogs("Verifying all items on Dining under Food Sub-Category Tab")
+        locators = {
+            "Movies Dining Page Title": [locators_sd["MOVIES_MOVIES_PAGE_TITLE"]],    # noqa:E501
+            "Movies Dining Back Button": [locators_sd["MOVIES_MOVIES_BACK_BUTTON"]],  # noqa:E501
+            "Movies Dining Search Icon": [locators_sd["MOVIES_MOVIES_SEARCH_ICON"]],    # noqa:E501
+            "Movies Dining Cart Icon": [locators_sd["MOVIES_MOVIES_CART_ICON"]],  # noqa:E501
+            "Movies Dining No of Products": [locators_sd["MOVIES_MOVIES_NO_OF_PRODUCTS"]],  # noqa:E501
+        }
+        for element_name, locator_list in locators.items():
+            element_found = False
+            for locator in locator_list:
+                if self.actions.is_element_displayed(*locator):
+                    element = self.driver.find_element(*locator)
+                    value = element.text.strip() if element.text else "No Text"
+                    allureLogs(f"✅ Element {element_name} is DISPLAYED | [Value: {value}]")   # noqa:E501
+                    element_found = True
+                    break
+            if not element_found:
+                allureLogs(f"❌ Element {element_name} is NOT DISPLAYED")
+                self.actions.screenshotAttachment(f"{element_name}: NOT DISPLAYED")     # noqa:E501
+        self.actions.screenshotAttachment("Verified All items on Movies under Movies Sub-Category Tab")   # noqa:E501
+
+    def navigate_to_movies_ott_subcategories(self):
+        self.driver.back()
+        self.actions.click_button(*locators_sd["MOVIES_OTT"])
+        allureLogs("Navigated to OTT Sub-category under Movies Sub-Category Tab")  # noqa:E501
+        self.actions.screenshotAttachment("Navigated to OTT Sub-category under Movies Sub-Category Tab")  # noqa:E501
+        time.sleep(2)
+
+    def verify_all_items_on_movies_ott_subcategory(self):
+        allureLogs("Verifying all items on Groceries under Food Sub-Category Tab")  # noqa:E501
+        locators = {
+            "Movies OTT Page Title": [locators_sd["MOVIES_OTT_PAGE_TITLE"]],    # noqa:E501
+            "Movies OTT Back Button": [locators_sd["MOVIES_OTT_BACK_BUTTON"]],  # noqa:E501
+            "Movies OTT Search Icon": [locators_sd["MOVIES_OTT_SEARCH_ICON"]],    # noqa:E501
+            "Movies OTT Cart Icon": [locators_sd["MOVIES_OTT_CART_ICON"]],  # noqa:E501
+            "Movies OTT No of Products": [locators_sd["MOVIES_OTT_NO_OF_PRODUCTS"]],  # noqa:E501
+        }
+        for element_name, locator_list in locators.items():
+            element_found = False
+            for locator in locator_list:
+                if self.actions.is_element_displayed(*locator):
+                    element = self.driver.find_element(*locator)
+                    value = element.text.strip() if element.text else "No Text"
+                    allureLogs(f"✅ Element {element_name} is DISPLAYED | [Value: {value}]")   # noqa:E501
+                    element_found = True
+                    break
+            if not element_found:
+                allureLogs(f"❌ Element {element_name} is NOT DISPLAYED")
+                self.actions.screenshotAttachment(f"{element_name}: NOT DISPLAYED")  # noqa:E501
+        self.actions.screenshotAttachment("Verified All items on OTT under Movies Sub-Category Tab")  # noqa:E501
+
+    def navigate_to_shopping(self):
+        self.driver.back()
+        self.driver.back()
