@@ -24,7 +24,7 @@ Scenario Outline: VS002: Verify Signing in Functionality
         | mobile_number | otp  |
         | 7507233095    | 1234 |
 
-@ViShopRegression @ViShopTest
+@ViShopRegression
 Scenario Outline: VS003: Verify Account Page Navigation and Elements
     When I verify the account button is displayed
     When I click on the account button and navigate to the account page
@@ -52,10 +52,20 @@ Scenario Outline: VS004: Verify Navigation across the Tabs
     When I am on shop dashboard and verify all items are displayed on shop dashboard
     When I navigate to the deals tab
     Then I verify all items are displayed on the deals tab
-    When I navigate to the explore tab
-    Then I verify all items are displayed on the explore tab
-    When I navigate to the my orders tab
-    Then I verify all items are displayed on the my orders tab
+    When I navigate to the categories tab
+    Then I verify all items are displayed on the categories tab
+    When I navigate to the Travel Sub-category under Categories tab
+    Then I verify all items that are displayed under Travel Sub-category
+    When I navigate to the CABS inside Travel Sub-category under Categories tab
+    Then I verify all items that are displayed under CABS inside Travel Sub-category
+    When I navigate to the Hotels inside Travel Sub-category under Categories tab
+    Then I verify all items that are displayed under Hotels inside Travel Sub-category
+    When I navigate to the Flights inside Travel Sub-category under Categories tab
+    Then I verify all items that are displayed under Flights inside Travel Sub-category
+    When I navigate to the Experinces inside Travel Sub-category under Categories tab
+    Then I verify all items that are displayed under Experinces inside Travel Sub-category
+
+    
     Examples:
         | shop_dashboard |
         | true           |
