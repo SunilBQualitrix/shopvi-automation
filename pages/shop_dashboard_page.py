@@ -429,7 +429,7 @@ class ShopDashboardPage(BasePage):
         allureLogs("Navigated to Food Sub-Category Tab")
         self.actions.screenshotAttachment("Navigated to Food Sub-Category Tab")
         time.sleep(2)
-    
+
     def verify_all_items_on_food_subcategory(self):
         allureLogs("Verifying all items on Food Sub-Category Tab")
         locators = {
@@ -453,4 +453,3 @@ class ShopDashboardPage(BasePage):
                 allureLogs(f"❌ Element {element_name} is NOT DISPLAYED")
                 self.actions.screenshotAttachment(f"{element_name}: NOT DISPLAYED")  # noqa:E501
         self.actions.screenshotAttachment("Verified All items on Food Sub-Category Tab")  # noqa:E501
-        
