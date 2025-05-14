@@ -402,6 +402,90 @@ def verify_all_items_are_displayed_on_the_categories_tab(shoppage_instance):
     """Step to verify all items are displayed on the categories tab."""
     shoppage_instance.verify_all_items_on_travel_experinces_subcategory()
 
+
+@when("I navigate to Food Subcategory under Categories tab")   # noqa:E501
+@allure.step("When I navigate to Food Subcategory under Categories tab")   # noqa:E501
+def navigate_to_categories(shoppage_instance):
+    """Step to navigate to the categories tab."""
+    shoppage_instance.navigate_to_food_subcategories()
+
+
+@then("I verify all items that are displayed under Food Subcategory")    # noqa:E501
+@allure.step("Then I verify all items that are displayed under Food Subcategory")    # noqa:E501
+def verify_all_items_are_displayed_on_the_categories_tab(shoppage_instance):
+    """Step to verify all items are displayed on the categories tab."""
+    shoppage_instance.verify_all_items_on_food_subcategory()
+
+
+@when("I navigate to dining subcategory under food")   # noqa:E501
+@allure.step("When I navigate to dining subcategory under food")   # noqa:E501
+def navigate_to_categories(shoppage_instance):
+    """Step to navigate to the categories tab."""
+    shoppage_instance.navigate_to_food_dining_subcategories()
+
+
+@then("I verify all items that are displayed under dining subcategory")    # noqa:E501
+@allure.step("Then I verify all items that are displayed under dining subcategory")    # noqa:E501
+def verify_all_items_are_displayed_on_the_categories_tab(shoppage_instance):
+    """Step to verify all items are displayed on the categories tab."""
+    shoppage_instance.verify_all_items_on_food_dining_subcategory()
+
+
+@when("I navigate to Groceries Subcategory under Food")   # noqa:E501
+@allure.step("When I navigate to Groceries Subcategory under Food")   # noqa:E501
+def navigate_to_categories(shoppage_instance):
+    """Step to navigate to the categories tab."""
+    shoppage_instance.navigate_to_food_groceries_subcategories()
+
+
+@then("I verify all items that are displayed under Groceries Subcategory")    # noqa:E501
+@allure.step("Then I verify all items that are displayed under Groceries Subcategory")    # noqa:E501
+def verify_all_items_are_displayed_on_the_categories_tab(shoppage_instance):
+    """Step to verify all items are displayed on the categories tab."""
+    shoppage_instance.verify_all_items_on_food_groceries_subcategory()
+
+
+@when("I navigate to Movies Subcategory under Categories tab")   # noqa:E501
+@allure.step("When I navigate to Movies Subcategory under Categories tab")   # noqa:E501
+def navigate_to_categories(shoppage_instance):
+    """Step to navigate to the categories tab."""
+    shoppage_instance.navigate_to_movies_subcategories()
+
+
+@then("I verify all items that are displayed under Movies Subcategory")    # noqa:E501
+@allure.step("Then I verify all items that are displayed under Movies Subcategory")    # noqa:E501
+def verify_all_items_are_displayed_on_the_categories_tab(shoppage_instance):
+    """Step to verify all items are displayed on the categories tab."""
+    shoppage_instance.verify_all_items_on_movies_subcategory()
+
+
+@when("I navigate to Movies subcategory under Movies")   # noqa:E501
+@allure.step("When I navigate to Movies subcategory under Movies")   # noqa:E501
+def navigate_to_categories(shoppage_instance):
+    """Step to navigate to the categories tab."""
+    shoppage_instance.navigate_to_movies_movies_subcategories()
+
+
+@then("I verify all items that are displayed under Movies subcategory")    # noqa:E501
+@allure.step("Then I verify all items that are displayed under Movies subcategory")    # noqa:E501
+def verify_all_items_are_displayed_on_the_categories_tab(shoppage_instance):
+    """Step to verify all items are displayed on the categories tab."""
+    shoppage_instance.verify_all_items_on_movies_movies_subcategory()
+
+
+@when("I navigate to OTT Subcategory under Movies")   # noqa:E501
+@allure.step("When I navigate to OTT Subcategory under Movies")   # noqa:E501
+def navigate_to_categories(shoppage_instance):
+    """Step to navigate to the categories tab."""
+    shoppage_instance.navigate_to_movies_ott_subcategories()
+
+
+@then("I verify all items that are displayed under OTT Subcategory")    # noqa:E501
+@allure.step("Then I verify all items that are displayed under OTT Subcategory")    # noqa:E501
+def verify_all_items_are_displayed_on_the_categories_tab(shoppage_instance):
+    """Step to verify all items are displayed on the categories tab."""
+    shoppage_instance.verify_all_items_on_movies_ott_subcategory()
+
 # ======== Search page Validation ========
 
 
