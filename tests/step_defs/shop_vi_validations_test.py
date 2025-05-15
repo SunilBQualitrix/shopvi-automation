@@ -486,6 +486,91 @@ def verify_all_items_are_displayed_on_the_categories_tab(shoppage_instance):
     """Step to verify all items are displayed on the categories tab."""
     shoppage_instance.verify_all_items_on_movies_ott_subcategory()
 
+
+@when("I navigate to Shopping Subcategory")   # noqa:E501
+@allure.step("When I navigate to Shopping Subcategory")   # noqa:E501
+def navigate_to_categories(shoppage_instance):
+    """Step to navigate to the categories tab."""
+    shoppage_instance.navigate_to_shopping()
+
+
+@then("I verify all items that are displayed under Shopping Subcategory")    # noqa:E501
+@allure.step("Then I verify all items that are displayed under Shopping Subcategory")    # noqa:E501
+def verify_all_items_are_displayed_on_the_categories_tab(shoppage_instance):
+    """Step to verify all items are displayed on the categories tab."""
+    shoppage_instance.verify_all_items_on_shopping_subcategory()
+
+
+@when("I navigate to Amazon Egift card subcategory under Shopping")   # noqa:E501
+@allure.step("When I navigate to Amazon Egift card subcategory under Shopping")   # noqa:E501
+def navigate_to_categories(shoppage_instance):
+    """Step to navigate to the categories tab."""
+    shoppage_instance.navigate_to_shopping_amazon_egift_card()
+
+
+@then("I verify all items that are displayed under Amazon Egift card subcategory")    # noqa:E501
+@allure.step("Then I verify all items that are displayed under Amazon Egift card subcategory")    # noqa:E501
+def verify_all_items_are_displayed_on_the_categories_tab(shoppage_instance):
+    """Step to verify all items are displayed on the categories tab."""
+    shoppage_instance.verify_all_items_on_shopping_amazon_egift_card_subcategory()  # noqa:E501
+
+
+@when("I navigate to Amazon Shopping voucher subcategory under Shopping")   # noqa:E501
+@allure.step("When I navigate to Amazon Shopping voucher subcategory under Shopping")   # noqa:E501
+def navigate_to_categories(shoppage_instance):
+    """Step to navigate to the categories tab."""
+    shoppage_instance.navigate_to_amazon_shopping_subcategories()
+
+
+@then("I verify all items that are displayed under Amazon Shopping voucher subcategory")    # noqa:E501
+@allure.step("Then I verify all items that are displayed under Amazon Shopping voucher subcategory")    # noqa:E501
+def verify_all_items_are_displayed_on_the_categories_tab(shoppage_instance):
+    """Step to verify all items are displayed on the categories tab."""
+    shoppage_instance.verify_all_items_on_amazon_shopping_subcategory()
+
+
+@when("I navigate to Fashion and accessories subcategory under Shopping")   # noqa:E501
+@allure.step("When I navigate to Fashion and accessories subcategory under Shopping")   # noqa:E501
+def navigate_to_categories(shoppage_instance):
+    """Step to navigate to the categories tab."""
+    shoppage_instance.navigate_to_shopping_fashion_accessories_subcategories()
+
+
+@then("I verify all items that are displayed under Fashion and accessories subcategory")    # noqa:E501
+@allure.step("Then I verify all items that are displayed under Fashion and accessories subcategory")    # noqa:E501
+def verify_all_items_are_displayed_on_the_categories_tab(shoppage_instance):
+    """Step to verify all items are displayed on the categories tab."""
+    shoppage_instance.verify_all_items_on_shopping_fashion_accessories_subcategory()    # noqa:E501
+
+
+@when("I navigate to Flipkart subcategory under Shopping")   # noqa:E501
+@allure.step("When I navigate to Flipkart subcategory under Shopping")   # noqa:E501
+def navigate_to_categories(shoppage_instance):
+    """Step to navigate to the categories tab."""
+    shoppage_instance.navigate_to_shopping_flipkart_subcategories()
+
+
+@then("I verify all items that are displayed under Flipkart subcategory")    # noqa:E501
+@allure.step("Then I verify all items that are displayed under Flipkart subcategory")    # noqa:E501
+def verify_all_items_are_displayed_on_the_categories_tab(shoppage_instance):
+    """Step to verify all items are displayed on the categories tab."""
+    shoppage_instance.verify_all_items_on_shopping_flipkart_subcategory()
+
+
+@when("I navigate to the my orders tab")
+@allure.step("When I navigate to the my orders tab")
+def navigate_to_my_orders_tab(shoppage_instance):
+    """Step to navigate to the my orders tab."""
+    shoppage_instance.navigate_to_my_orders_tab()
+
+
+@then("I verify all items are displayed on the my orders tab")
+@allure.step("Then I verify all items are displayed on the my orders tab")
+def verify_all_items_are_displayed_on_the_my_orders_tab(shoppage_instance):
+    """Step to verify all items are displayed on the my orders tab."""
+    shoppage_instance.verify_all_items_on_my_orders_tab()
+
+
 # ======== Search page Validation ========
 
 

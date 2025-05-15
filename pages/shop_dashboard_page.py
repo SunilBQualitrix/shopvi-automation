@@ -124,6 +124,53 @@ locators_sd = {
     "FOOD_GROCERIES_CART_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/Cart.webp")'),  # noqa:E501
     "FOOD_GROCERIES_NO_OF_PRODUCTS": (AppiumBy.XPATH, '//android.widget.TextView[contains(@text, "products")]'),   # noqa:E501
 
+    "SHOPPING_PAGE_TITLE": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("shopping")'),  # noqa:E501
+    "SHOPPING_BACK_BUTTON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/back-arrow.webp")'),  # noqa:E501
+    "SHOPPING_SEARCH_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/search.png")'),  # noqa:E501
+    "SHOPPING_CART_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/Cart.webp")'),  # noqa:E501
+    "SHOPPING_AMAZON_EGIFT": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("amazon pay e-gift card")'),   # noqa:E501
+    "SHOPPING_AMAZON_SHOPPING": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("amazon shopping voucher")'),  # noqa:E501
+    "SHOPPING_FASHION_ACCESSORIES": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("fashion & accessories")'),  # noqa:E501
+    "SHOPPING_FLIPKART": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("flipkart")'),  # noqa:E501
+    "SHOPPING_GIFTING": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("gifting")'),  # noqa:E501
+    "SHOPPING_JEWELLERY": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("jewellery")'),  # noqa:E501
+
+    "SHOPPING_AMAZON_EGIFT_PAGE_TITLE": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("amazon pay e-gift card")'),  # noqa:E501
+    "SHOPPING_AMAZON_EGIFT_BACK_BUTTON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/back-arrow.webp")'),  # noqa:E501
+    "SHOPPING_AMAZON_EGIFT_SEARCH_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/search.png")'),  # noqa:E501
+    "SHOPPING_AMAZON_EGIFT_CART_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/Cart.webp")'),  # noqa:E501
+    "SHOPPING_AMAZON_EGIFT_NO_OF_PRODUCTS": (AppiumBy.XPATH, '//android.widget.TextView[contains(@text, "products")]'),   # noqa:E501
+
+    "SHOPPING_AMAZON_SHOPPING_PAGE_TITLE": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("amazon shopping voucher")'),  # noqa:E501
+    "SHOPPING_AMAZON_SHOPPING_PAGE_BACK_BUTTON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/back-arrow.webp")'),  # noqa:E501
+    "SHOPPING_AMAZON_SHOPPING_PAGE_SEARCH_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/search.png")'),  # noqa:E501
+    "SHOPPING_AMAZON_SHOPPING_PAGE_CART_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/Cart.webp")'),  # noqa:E501
+    "SHOPPING_AMAZON_SHOPPING_PAGE_NO_OF_PRODUCTS": (AppiumBy.XPATH, '//android.widget.TextView[contains(@text, "products")]'),   # noqa:E501
+
+    "SHOPPING_FASHION_ACCESSORIES_PAGE_TITLE": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("fashion & accessories")'),  # noqa:E501
+    "SHOPPING_FASHION_ACCESSORIES_BACK_BUTTON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/back-arrow.webp")'),  # noqa:E501
+    "SHOPPING_FASHION_ACCESSORIES_SEARCH_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/search.png")'),  # noqa:E501
+    "SHOPPING_FASHION_ACCESSORIES_CART_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/Cart.webp")'),  # noqa:E501
+    "SHOPPING_FASHION_ACCESSORIES_NO_OF_PRODUCTS": (AppiumBy.XPATH, '//android.widget.TextView[contains(@text, "products")]'),   # noqa:E501
+
+    "SHOPPING_FLIPKART_PAGE_TITLE": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("flipkart")'),  # noqa:E501
+    "SHOPPING_FLIPKART_BACK_BUTTON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/back-arrow.webp")'),  # noqa:E501
+    "SHOPPING_FLIPKART_SEARCH_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/search.png")'),  # noqa:E501
+    "SHOPPING_FLIPKART_CART_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/Cart.webp")'),  # noqa:E501
+    "SHOPPING_FLIPKART_NO_OF_PRODUCTS": (AppiumBy.XPATH, '//android.widget.TextView[contains(@text, "products")]'),   # noqa:E501
+
+    "SHOPPING_GIFTING_PAGE_TITLE": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("gifting")'),  # noqa:E501
+    "SHOPPING_GIFTING_BACK_BUTTON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/back-arrow.webp")'),  # noqa:E501
+    "SHOPPING_GIFTING_SEARCH_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/search.png")'),  # noqa:E501
+    "SHOPPING_GIFTING_CART_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/Cart.webp")'),  # noqa:E501
+    "SHOPPING_GIFTING_NO_OF_PRODUCTS": (AppiumBy.XPATH, '//android.widget.TextView[contains(@text, "products")]'),   # noqa:E501
+
+    "SHOPPING_JEWELLERY_PAGE_TITLE": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("jewellery")'),  # noqa:E501
+    "SHOPPING_JEWELLERY_BACK_BUTTON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/back-arrow.webp")'),  # noqa:E501
+    "SHOPPING_JEWELLERY_SEARCH_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/search.png")'),  # noqa:E501
+    "SHOPPING_JEWELLERY_CART_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/Cart.webp")'),  # noqa:E501
+    "SHOPPING_JEWELLERY_NO_OF_PRODUCTS": (AppiumBy.XPATH, '//android.widget.TextView[contains(@text, "products")]'),   # noqa:E501
+
 }
 
 
@@ -607,3 +654,247 @@ class ShopDashboardPage(BasePage):
     def navigate_to_shopping(self):
         self.driver.back()
         self.driver.back()
+        self.actions.click_button(*locators_sd["CATEGORIES_SHOPPING_MENU"])
+        allureLogs("Navigated to Shopping Sub-Category Tab")
+        self.actions.screenshotAttachment("Navigated to Shopping Sub-Category Tab")   # noqa:E501
+        time.sleep(2)
+
+    def verify_all_items_on_shopping_subcategory(self):
+        allureLogs("Verifying all items on Shopping Sub-Category Tab")
+        locators = {
+            "Shopping Page Title": [locators_sd["SHOPPING_PAGE_TITLE"]],
+            "Shopping Search Icon": [locators_sd["SHOPPING_SEARCH_ICON"]],
+            "Shopping Cart Icon": [locators_sd["SHOPPING_CART_ICON"]],
+            "Shopping Amazon E-Gift Card": [locators_sd["SHOPPING_AMAZON_EGIFT"]],  # noqa:E501
+            "Shopping Amazon Shopping Voucher": [locators_sd["SHOPPING_AMAZON_SHOPPING"]],  # noqa:E501
+            "Shopping Fashion and Accessories": [locators_sd["SHOPPING_FASHION_ACCESSORIES"]],  # noqa:E501
+            "Shopping Flipkart": [locators_sd["SHOPPING_FLIPKART"]],
+        }
+        for element_name, locator_list in locators.items():
+            element_found = False
+            for locator in locator_list:
+                if self.actions.is_element_displayed(*locator):
+                    element = self.driver.find_element(*locator)
+                    value = element.text.strip() if element.text else "No Text"
+                    allureLogs(f"✅ Element {element_name} is DISPLAYED | [Value: {value}]")   # noqa:E501
+                    element_found = True
+                    break
+            if not element_found:
+                allureLogs(f"❌ Element {element_name} is NOT DISPLAYED")
+                self.actions.screenshotAttachment(f"{element_name}: NOT DISPLAYED")  # noqa:E501
+        self.actions.screenshotAttachment("Verified All items on Shopping Sub-Category Tab")  # noqa:E501
+
+    def navigate_to_shopping_amazon_egift_card(self):
+        self.actions.click_button(*locators_sd["SHOPPING_AMAZON_EGIFT"])
+        allureLogs("Navigated to Amazon eGift Card Sub-category under Shopping Sub-Category Tab")  # noqa:E501
+        self.actions.screenshotAttachment("Navigated to Amazon eGift Card Sub-category under Shopping Sub-Category Tab")   # noqa:E501
+        time.sleep(2)
+
+    def verify_all_items_on_shopping_amazon_egift_card_subcategory(self):
+        allureLogs("Verifying all items on Amazon eGift Card under Shopping Sub-Category Tab")  # noqa:E501
+        locators = {
+            "Shopping Amazon eGift Card Page Title": [locators_sd["SHOPPING_AMAZON_EGIFT_PAGE_TITLE"]],    # noqa:E501
+            "Shopping Amazon eGift Card Back Button": [locators_sd["SHOPPING_AMAZON_EGIFT_BACK_BUTTON"]],  # noqa:E501
+            "Shopping Amazon eGift Card Search Icon": [locators_sd["SHOPPING_AMAZON_EGIFT_SEARCH_ICON"]],    # noqa:E501
+            "Shopping Amazon eGift Card Cart Icon": [locators_sd["SHOPPING_AMAZON_EGIFT_CART_ICON"]],  # noqa:E501
+            "Shopping Amazon eGift Card No of Products": [locators_sd["SHOPPING_AMAZON_EGIFT_NO_OF_PRODUCTS"]],  # noqa:E501
+        }
+        for element_name, locator_list in locators.items():
+            element_found = False
+            for locator in locator_list:
+                if self.actions.is_element_displayed(*locator):
+                    element = self.driver.find_element(*locator)
+                    value = element.text.strip() if element.text else "No Text"
+                    allureLogs(f"✅ Element {element_name} is DISPLAYED | [Value: {value}]")   # noqa:E501
+                    element_found = True
+                    break
+            if not element_found:
+                allureLogs(f"❌ Element {element_name} is NOT DISPLAYED")
+                self.actions.screenshotAttachment(f"{element_name}: NOT DISPLAYED")     # noqa:E501
+        self.actions.screenshotAttachment("Verified All items on Amazon eGift Card under Shopping Sub-Category Tab")  # noqa:E501
+
+    def navigate_to_amazon_shopping_subcategories(self):
+        self.driver.back()
+        self.actions.click_button(*locators_sd["SHOPPING_AMAZON_SHOPPING"])
+        allureLogs("Navigated to Amazon Sub-category under Shopping Sub-Category Tab")  # noqa:E501
+        self.actions.screenshotAttachment("Navigated to Amazon Sub-category under Shopping Sub-Category Tab")   # noqa:E501
+        time.sleep(2)
+
+    def verify_all_items_on_amazon_shopping_subcategory(self):
+        allureLogs("Verifying all items on Amazon under Shopping Sub-Category Tab")  # noqa:E501
+        locators = {
+            "Shopping Amazon Page Title": [locators_sd["SHOPPING_AMAZON_SHOPPING_PAGE_TITLE"]],   # noqa:E501
+            "Shopping Amazon Search Icon": [locators_sd["SHOPPING_AMAZON_SHOPPING_PAGE_SEARCH_ICON"]],  # noqa:E501
+            "Shopping Amazon Cart Icon": [locators_sd["SHOPPING_AMAZON_SHOPPING_PAGE_CART_ICON"]],  # noqa:E501
+            "Shopping Amazon No of Products": [locators_sd["SHOPPING_AMAZON_SHOPPING_PAGE_NO_OF_PRODUCTS"]],  # noqa:E501
+            "Shopping Amazon Back Button": [locators_sd["SHOPPING_AMAZON_SHOPPING_PAGE_BACK_BUTTON"]],  # noqa:E501
+        }
+        for element_name, locator_list in locators.items():
+            element_found = False
+            for locator in locator_list:
+                if self.actions.is_element_displayed(*locator):
+                    element = self.driver.find_element(*locator)
+                    value = element.text.strip() if element.text else "No Text"
+                    allureLogs(f"✅ Element {element_name} is DISPLAYED | [Value: {value}]")   # noqa:E501
+                    element_found = True
+                    break
+            if not element_found:
+                allureLogs(f"❌ Element {element_name} is NOT DISPLAYED")
+                self.actions.screenshotAttachment(f"{element_name}: NOT DISPLAYED")     # noqa:E501
+        self.actions.screenshotAttachment("Verified All items on Amazon under Shopping Sub-Category Tab")  # noqa:E501
+
+    def navigate_to_shopping_fashion_accessories_subcategories(self):
+        self.driver.back()
+        self.actions.click_button(*locators_sd["SHOPPING_FASHION_ACCESSORIES"])
+        allureLogs("Navigated to Fashion Sub-category under Shopping Sub-Category Tab")  # noqa:E501
+        self.actions.screenshotAttachment("Navigated to Fashion Sub-category under Shopping Sub-Category Tab")   # noqa:E501
+        time.sleep(2)
+
+    def verify_all_items_on_shopping_fashion_accessories_subcategory(self):
+        allureLogs("Verifying all items on Fashion & Accessories under Shopping Sub-Category Tab")  # noqa:E501
+        locators = {
+            "Shopping Fashion Page Title": [locators_sd["SHOPPING_FASHION_ACCESSORIES_PAGE_TITLE"]],    # noqa:E501
+            "Shopping Fashion Back Button": [locators_sd["SHOPPING_FASHION_ACCESSORIES_BACK_BUTTON"]],  # noqa:E501
+            "Shopping Fashion Search Icon": [locators_sd["SHOPPING_FASHION_ACCESSORIES_SEARCH_ICON"]],    # noqa:E501
+            "Shopping Fashion Cart Icon": [locators_sd["SHOPPING_FASHION_ACCESSORIES_CART_ICON"]],  # noqa:E501
+            "Shopping Fashion No of Products": [locators_sd["SHOPPING_FASHION_ACCESSORIES_NO_OF_PRODUCTS"]],  # noqa:E501
+        }
+        for element_name, locator_list in locators.items():
+            element_found = False
+            for locator in locator_list:
+                if self.actions.is_element_displayed(*locator):
+                    element = self.driver.find_element(*locator)
+                    value = element.text.strip() if element.text else "No Text"
+                    allureLogs(f"✅ Element {element_name} is DISPLAYED | [Value: {value}]")   # noqa:E501
+                    element_found = True
+                    break
+            if not element_found:
+                allureLogs(f"❌ Element {element_name} is NOT DISPLAYED")
+                self.actions.screenshotAttachment(f"{element_name}: NOT DISPLAYED")     # noqa:E501
+        self.actions.screenshotAttachment("Verified All items on Fashion & accessories under Shopping Sub-Category Tab")  # noqa:E501
+
+    def navigate_to_shopping_gifting_subcategories(self):
+        """yet to include in test & feature file"""
+        self.driver.back()
+        self.actions.click_button(*locators_sd["SHOPPING_GIFTING"])
+        allureLogs("Navigated to Gifting Sub-category under Shopping Sub-Category Tab")  # noqa:E501
+        self.actions.screenshotAttachment("Navigated to Gifting Sub-category under Shopping Sub-Category Tab")   # noqa:E501
+        time.sleep(2)
+
+    def verify_all_items_on_shopping_gifting_subcategory(self):
+        """yet to include in test & feature file"""
+        allureLogs("Verifying all items on Gifting under Shopping Sub-Category Tab")  # noqa:E501
+        locators = {
+            "Shopping Gifting Page Title": [locators_sd["SHOPPING_GIFTING_PAGE_TITLE"]],    # noqa:E501
+            "Shopping Gifting Back Button": [locators_sd["SHOPPING_GIFTING_BACK_BUTTON"]],  # noqa:E501
+            "Shopping Gifting Search Icon": [locators_sd["SHOPPING_GIFTING_SEARCH_ICON"]],    # noqa:E501
+            "Shopping Gifting Cart Icon": [locators_sd["SHOPPING_GIFTING_CART_ICON"]],  # noqa:E501
+            "Shopping Gifting No of Products": [locators_sd["SHOPPING_GIFTING_NO_OF_PRODUCTS"]],  # noqa:E501
+        }
+        for element_name, locator_list in locators.items():
+            element_found = False
+            for locator in locator_list:
+                if self.actions.is_element_displayed(*locator):
+                    element = self.driver.find_element(*locator)
+                    value = element.text.strip() if element.text else "No Text"
+                    allureLogs(f"✅ Element {element_name} is DISPLAYED | [Value: {value}]")   # noqa:E501
+                    element_found = True
+                    break
+            if not element_found:
+                allureLogs(f"❌ Element {element_name} is NOT DISPLAYED")
+                self.actions.screenshotAttachment(f"{element_name}: NOT DISPLAYED")     # noqa:E501
+        self.actions.screenshotAttachment("Verified All items on Gifting under Shopping Sub-Category Tab")  # noqa:E501
+
+    def navigate_to_shopping_jewellery_subcategories(self):
+        """yet to include in test & feature file"""
+        self.driver.back()
+        self.actions.click_button(*locators_sd["SHOPPING_JEWELLERY"])
+        allureLogs("Navigated to Jewellery Sub-category under Shopping Sub-Category Tab")  # noqa:E501
+        self.actions.screenshotAttachment("Navigated to Jewellery Sub-category under Shopping Sub-Category Tab")   # noqa:E501
+        time.sleep(2)
+
+    def verify_all_items_on_shopping_jewellery_subcategory(self):
+        """yet to include in test & feature file"""
+        allureLogs("Verifying all items on Jewellery under Shopping Sub-Category Tab")  # noqa:E501
+        locators = {
+            "Shopping Jewellery Page Title": [locators_sd["SHOPPING_JEWELLERY_PAGE_TITLE"]],    # noqa:E501
+            "Shopping Jewellery Back Button": [locators_sd["SHOPPING_JEWELLERY_BACK_BUTTON"]],  # noqa:E501
+            "Shopping Jewellery Search Icon": [locators_sd["SHOPPING_JEWELLERY_SEARCH_ICON"]],    # noqa:E501
+            "Shopping Jewellery Cart Icon": [locators_sd["SHOPPING_JEWELLERY_CART_ICON"]],  # noqa:E501
+            "Shopping Jewellery No of Products": [locators_sd["SHOPPING_JEWELLERY_NO_OF_PRODUCTS"]],  # noqa:E501
+        }
+        for element_name, locator_list in locators.items():
+            element_found = False
+            for locator in locator_list:
+                if self.actions.is_element_displayed(*locator):
+                    element = self.driver.find_element(*locator)
+                    value = element.text.strip() if element.text else "No Text"
+                    allureLogs(f"✅ Element {element_name} is DISPLAYED | [Value: {value}]")   # noqa:E501
+                    element_found = True
+                    break
+            if not element_found:
+                allureLogs(f"❌ Element {element_name} is NOT DISPLAYED")
+                self.actions.screenshotAttachment(f"{element_name}: NOT DISPLAYED")     # noqa:E501
+        self.actions.screenshotAttachment("Verified All items on Jewellery under Shopping Sub-Category Tab")  # noqa:E501
+
+    def navigate_to_shopping_flipkart_subcategories(self):
+        self.driver.back()
+        self.actions.click_button(*locators_sd["SHOPPING_FLIPKART"])
+        allureLogs("Navigated to Flipkart Sub-category under Shopping Sub-Category Tab")  # noqa:E501
+        self.actions.screenshotAttachment("Navigated to Flipkart Sub-category under Shopping Sub-Category Tab")   # noqa:E501
+        time.sleep(2)
+
+    def verify_all_items_on_shopping_flipkart_subcategory(self):
+        allureLogs("Verifying all items on Flipkart under Shopping Sub-Category Tab")  # noqa:E501
+        locators = {
+            "Shopping Flipkart Page Title": [locators_sd["SHOPPING_FLIPKART_PAGE_TITLE"]],  # noqa:E501
+            "Shopping Flipkart Search Icon": [locators_sd["SHOPPING_FLIPKART_SEARCH_ICON"]],    # noqa:E501
+            "Shopping Flipkart Cart Icon": [locators_sd["SHOPPING_FLIPKART_CART_ICON"]],    # noqa:E501
+            "Shopping Flipkart No of Products": [locators_sd["SHOPPING_FLIPKART_NO_OF_PRODUCTS"]],  # noqa:E501
+            "Shopping Flipkart Back Button": [locators_sd["SHOPPING_FLIPKART_BACK_BUTTON"]],  # noqa:E501
+        }
+        for element_name, locator_list in locators.items():
+            element_found = False
+            for locator in locator_list:
+                if self.actions.is_element_displayed(*locator):
+                    element = self.driver.find_element(*locator)
+                    value = element.text.strip() if element.text else "No Text"
+                    allureLogs(f"✅ Element {element_name} is DISPLAYED | [Value: {value}]")   # noqa:E501
+                    element_found = True
+                    break
+            if not element_found:
+                allureLogs(f"❌ Element {element_name} is NOT DISPLAYED")
+                self.actions.screenshotAttachment(f"{element_name}: NOT DISPLAYED")     # noqa:E501
+        self.actions.screenshotAttachment("Verified All items on Flipkart under Shopping Sub-Category Tab")  # noqa:E501
+
+    def navigate_to_my_orders_tab(self):
+        self.driver.back()
+        self.driver.back()
+        self.driver.back()
+        self.actions.click_button(*locators_sd["MY_ORDERS_TAB"])
+        allureLogs("Navigated to My Orders Tab")
+        self.actions.screenshotAttachment("Navigated to My Orders Tab")
+        time.sleep(2)
+
+    def verify_all_items_on_my_orders_tab(self):
+        allureLogs("Verifying all items on My Orders Tab")
+        locators = {
+            "MY ORDERS Page Title": [locators_sd["MYORDERS_PAGE_TITLE"]],
+            "MY ORDERS Search Icon": [locators_sd["MYORDERS_SEARCH_ICON"]],
+            "MY ORDERS Back Arrow": [locators_sd["MYORDERS_BACK_ARROW"], locators_sd["MYORDERS_BACK_ARROW1"]],  # noqa:E501
+            "MY ORDERS Search BOX": [locators_sd["MYORDERS_SEARCH_BOX"], locators_sd["MYORDERS_SEARCH_ICON1"]],  # noqa:E501
+
+        }
+        for element_name, locator_list in locators.items():
+            element_found = False
+            for locator in locator_list:
+                if self.actions.is_element_displayed(*locator):
+                    element = self.driver.find_element(*locator)
+                    value = element.text.strip() if element.text else "No Text"
+                    allureLogs(f"✅ Element {element_name} is DISPLAYED | (Value: {value})")   # noqa:E501
+                    element_found = True
+                    break
+            if not element_found:
+                allureLogs(f"❌ Element {element_name} is NOT DISPLAYED")
+                self.actions.screenshotAttachment(f"{element_name}: NOT DISPLAYED")  # noqa:E501
+        self.actions.screenshotAttachment("Verified All items on MY Orders TAB")    # noqa:E501

@@ -70,6 +70,18 @@ Scenario Outline: VS004: Verify Navigation across the Tabs
     Then I verify all items that are displayed under Movies subcategory
     When I navigate to OTT Subcategory under Movies
     Then I verify all items that are displayed under OTT Subcategory
+    When I navigate to Shopping Subcategory
+    Then I verify all items that are displayed under Shopping Subcategory
+    When I navigate to Amazon Egift card subcategory under Shopping
+    Then I verify all items that are displayed under Amazon Egift card subcategory
+    When I navigate to Amazon Shopping voucher subcategory under Shopping
+    Then I verify all items that are displayed under Amazon Shopping voucher subcategory
+    When I navigate to Fashion and accessories subcategory under Shopping
+    Then I verify all items that are displayed under Fashion and accessories subcategory
+    When I navigate to Flipkart subcategory under Shopping
+    Then I verify all items that are displayed under Flipkart subcategory
+    When I navigate to the my orders tab
+    Then I verify all items are displayed on the my orders tab
 
     
     Examples:
