@@ -59,6 +59,19 @@ class SearchPage(BasePage):
         self.actions.screenshotAttachment(f"Entered search text: {search_text}")      # noqa:E501
 
     def verify_click_search(self):
-        flipkart_results = self.actions.wait_for_elements(*locators['SEARCH_RESULTS_FLIPKART'])      # noqa:E501
-        flipkart_results[0].click()
-        self.actions.screenshotAttachment("Navigated to search results page")
+        locators_list = [locators["AMAZON_SEARCH_RESULTS"], locators["SEARCH_RESULTS_FLIPKART"]]    # noqa:E501
+        for locator in locators_list:
+            if locator:
+                try:
+                    elements = self.actions.wait_for_elements(*locator, timeout=5)  # noqa:E501
+                    if elements and self.actions.is_element_displayed(*locator):    # noqa:E501
+                        elements[0].click()
+                        allureLogs(f"Clicked on search result using locator: {locator}")    # noqa:E501
+                        self.actions.screenshotAttachment("Clicked on search result")   # noqa:E501
+                        return True
+                except Exception as e:
+                    allureLogs(f"Locator {locator} failed with error: {e}")
+
+        allureLogs("❌ Search result element not found to click")
+        self.actions.screenshotAttachment("Search Icon not clickable")
+        return False

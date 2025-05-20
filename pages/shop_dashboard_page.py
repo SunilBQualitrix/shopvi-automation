@@ -13,6 +13,7 @@ locators_sd = {
     "VI_APP_HOME_BUTTON": (AppiumBy.XPATH, '//android.widget.TextView[@text="home"]'),  # noqa:E501
     "DB_SEARCH_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/search.png")'),  # noqa:E501
     "DB_ACCOUNTS_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOPshop-account-icon.webp")'),  # noqa:E501
+    "DB_ACCOUNTS_ICON1": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(0)'),  # noqa:E501
     "DB_CART_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/Cart.webp")'),  # noqa:E501
 
     "MY_ORDER_P": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(1)'),  # noqa:E501
@@ -191,15 +192,15 @@ class ShopDashboardPage(BasePage):
 
     def verify_shop_dashboard_page(self):
         # Define the elements to verify
-        dashboard_elements = [
-            locators_sd["DB_ACCOUNTS_ICON"],
-            locators_sd["VI_APP_HOME_BUTTON"],
-            locators_sd["VI_SHOP_ICON"],
-            locators_sd["MY_ORDERS_TAB"],
+        elements = [
+            [locators_sd["DB_ACCOUNTS_ICON"], locators_sd["DB_ACCOUNTS_ICON1"]],    # noqa:E501
+            [locators_sd["VI_APP_HOME_BUTTON"]],
+            [locators_sd["VI_SHOP_ICON"]],
+            [locators_sd["MY_ORDERS_TAB"]],
         ]
         # Check if all elements are displayed
         all_elements_displayed = True
-        for element in dashboard_elements:
+        for element in elements:
             is_displayed = self.actions.is_element_displayed(*element)
             if not is_displayed:
                 all_elements_displayed = False

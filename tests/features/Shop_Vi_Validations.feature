@@ -93,7 +93,7 @@ Scenario Outline: VS005: Verify Search Functionality
     When I click on search icon
 #    When I enter the <invalid_input> in the search field
 #    Then I verify no search results are displayed
-    When I enter the <valid_input_flipkart> in the search field
+    When I enter the <valid_input_amazon> in the search field
     Then I click on Flipkart Search Results
 #    Then I verify expected content are displayed for flipkart
 #    When I enter the <valid_input_amazon> in the search field
