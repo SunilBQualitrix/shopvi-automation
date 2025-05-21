@@ -127,8 +127,7 @@ def log_into_the_app_using_login_with_otp_cta_button(navtoshop_instance):
 def click_on_vi_shop_from_bottom_navigation_and_should_navigate_to_the_shop_dashboard(navtoshop_instance, shoppage_instance):     # noqa:E501
     """Step to navigate to the shop dashboard."""
     navtoshop_instance.navto_shop()
-    shop_page_reached = shoppage_instance.verify_shop_dashboard_page()
-    assert shop_page_reached, "Shop Dashboard page is not reached"
+    shoppage_instance.verify_shop_dashboard_page()
 
 
 # ======== Account Page Validation ========

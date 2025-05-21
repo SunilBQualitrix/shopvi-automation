@@ -65,7 +65,7 @@ class SearchPage(BasePage):
                 try:
                     elements = self.actions.wait_for_elements(*locator, timeout=5)  # noqa:E501
                     if elements and self.actions.is_element_displayed(*locator):    # noqa:E501
-                        elements[0].click()
+                        elements[3].click()
                         allureLogs(f"Clicked on search result using locator: {locator}")    # noqa:E501
                         self.actions.screenshotAttachment("Clicked on search result")   # noqa:E501
                         return True
