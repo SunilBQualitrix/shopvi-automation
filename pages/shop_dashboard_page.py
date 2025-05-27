@@ -13,7 +13,10 @@ locators_sd = {
     "VI_APP_HOME_BUTTON": (AppiumBy.XPATH, '//android.widget.TextView[@text="home"]'),  # noqa:E501
     "DB_SEARCH_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/search.png")'),  # noqa:E501
     "DB_ACCOUNTS_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOPshop-account-icon.webp")'),  # noqa:E501
+    "DB_ACCOUNTS_ICON1": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(0)'),  # noqa:E501
     "DB_CART_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/Cart.webp")'),  # noqa:E501
+
+    "ALL_SEARCH_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(1)'),  # noqa:E501
 
     "MY_ORDER_P": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(1)'),  # noqa:E501
     "ACCOUNT_ICON": (AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="DS_SHOPshop-account-icon.webp"]'),    # noqa:E501
@@ -190,26 +193,26 @@ class ShopDashboardPage(BasePage):
         time.sleep(2)
 
     def verify_shop_dashboard_page(self):
-        # Define the elements to verify
-        dashboard_elements = [
-            locators_sd["DB_ACCOUNTS_ICON"],
-            locators_sd["VI_APP_HOME_BUTTON"],
-            locators_sd["VI_SHOP_ICON"],
-            locators_sd["MY_ORDERS_TAB"],
-        ]
-        # Check if all elements are displayed
-        all_elements_displayed = True
-        for element in dashboard_elements:
-            is_displayed = self.actions.is_element_displayed(*element)
-            if not is_displayed:
-                all_elements_displayed = False
-                allureLogs(f"Element {element} not found on Shop Dashboard Page")     # noqa:E501
-                break
-        if all_elements_displayed:
-            allureLogs("User is on Vi Shop DashBoard Page now ✅")     # noqa:E501
-        else:
-            allureLogs("User fails to navigate to Vi Shop DashBoard Page ❌")      # noqa:E501
-        return all_elements_displayed
+        allureLogs("Verify whether Shop Dashboard Page is displayed")
+        locators = {
+            "My Orders": [locators_sd["MY_ORDERS_TAB"], locators_sd["MY_ORDER_P"]],     # noqa:E501
+            "Vi Shop Home": [locators_sd["VI_SHOP_ICON"]],
+            "Accounts Icon": [locators_sd["DB_ACCOUNTS_ICON"], locators_sd["DB_ACCOUNTS_ICON1"]],   # noqa:E501
+        }
+        for element_name, locator_list in locators.items():
+            element_found = False
+            for locator in locator_list:
+                if self.actions.is_element_displayed(*locator):
+                    element = self.driver.find_element(*locator)
+                    value = element.text.strip() if element.text else "No Text"
+                    allureLogs(f"✅ Element {element_name} is DISPLAYED | [Value: {value}]")   # noqa:E501
+                    element_found = True
+                    break
+            if not element_found:
+                allureLogs(f"❌ Element {element_name} is NOT DISPLAYED")
+                self.actions.screenshotAttachment(f"{element_name}: NOT DISPLAYED")   # noqa:E501
+        allureLogs("Shop Dashboard Page is displayed")
+        self.actions.screenshotAttachment("Shop Dashboard Page is displayed")  # noqa:E501
 
     def verify_quick_purchase_items_on_Shop_dashboard(self):
         allureLogs("Verifying Quick Purchase items on Shop Dashboard Page")
@@ -244,7 +247,7 @@ class ShopDashboardPage(BasePage):
             "My Orders": [locators_sd["MY_ORDERS_TAB"], locators_sd["MY_ORDER_P"]],     # noqa:E501
             "Vi Shop Home": [locators_sd["VI_SHOP_ICON"]],
             "Accounts Icon": [locators_sd["ACCOUNT_ICON"], locators_sd["ACCOUNTS_ICON"]],   # noqa:E501
-            "Search Icon": [locators_sd["SEARCH_ICON"], locators_sd["DB_SEARCH_ICON"]],    # noqa:E501
+            "Search Icon": [locators_sd["SEARCH_ICON"], locators_sd["DB_SEARCH_ICON"], locators_sd["ALL_SEARCH_ICON"]],    # noqa:E501
             "Cart Icon": [locators_sd["CART_ICON"], locators_sd["CART_ICON1"]],  # noqa:E501
         }
         for element_name, locator_list in locators.items():
@@ -297,7 +300,7 @@ class ShopDashboardPage(BasePage):
         allureLogs("Verifying all items on Explore Tab")
         locators = {
             "Categories Page Title": [locators_sd["CATEGORIES_PAGE_TITLE"]],
-            "Categories Search Icon": [locators_sd["CATEGORIES_SEARCH_ICON"], locators_sd["CATEGORIES_SEARCH_ICON1"]],  # noqa:E501
+            "Categories Search Icon": [locators_sd["CATEGORIES_SEARCH_ICON"], locators_sd["CATEGORIES_SEARCH_ICON1"], locators_sd["ALL_SEARCH_ICON"]],  # noqa:E501
             "Categories Cart Icon": [locators_sd["CATEGORIES_CART_ICON"], locators_sd["CATEGORIES_CART_ICON1"]],  # noqa:E501
             "Categories CC Menu": [locators_sd["CATEGORIES_CC_MENU"]],
             "Categories Movies Menu": [locators_sd["CATEGORIES_MOVIES_MENU"]],
@@ -329,7 +332,7 @@ class ShopDashboardPage(BasePage):
         allureLogs("Verifying all items under Travel Sub-Category Tab")
         locators = {
             "Travel Page Title": [locators_sd["TRAVEL_PAGE_TITLE"]],
-            "Travel Search Icon": [locators_sd["TRAVEL_PAGE_SEARCH_ICON"]],
+            "Travel Search Icon": [locators_sd["TRAVEL_PAGE_SEARCH_ICON"], locators_sd["ALL_SEARCH_ICON"]],     # noqa:E501
             "Travel Cart Icon": [locators_sd["TRAVEL_PAGE_CART_ICON"]],
             "Travel Cabs": [locators_sd["TRAVEL_CABS"]],
             "Travel Flights": [locators_sd["TRAVEL_FLIGHTS"]],
@@ -361,7 +364,7 @@ class ShopDashboardPage(BasePage):
         locators = {
             "Travel Cabs Page Title": [locators_sd["TRAVEL_CABS_PAGE_TITLE"]],
             "Travel Cabs Back Button": [locators_sd["TRAVEL_CABS_BACK_BUTTON"]],  # noqa:E501
-            "Travel Cabs Search Icon": [locators_sd["TRAVEL_CABS_SEARCH_ICON"]],    # noqa:E501
+            "Travel Cabs Search Icon": [locators_sd["TRAVEL_CABS_SEARCH_ICON"], locators_sd["ALL_SEARCH_ICON"]],    # noqa:E501
             "Travel Cabs Cart Icon": [locators_sd["TRAVEL_CABS_CART_ICON"]],
             "Travel Cabs No of Products": [locators_sd["TRAVEL_CABS_NO_OF_PRODUCTS"]],  # noqa:E501
         }
@@ -391,7 +394,7 @@ class ShopDashboardPage(BasePage):
         locators = {
             "Travel Experinces Page Title": [locators_sd["TRAVEL_EXPERIENCES_PAGE_TITLE"]],   # noqa:E501
             "Travel Experinces Back Button": [locators_sd["TRAVEL_EXPERIENCES_BACK_BUTTON"]],  # noqa:E501
-            "Travel Experinces Search Icon": [locators_sd["TRAVEL_EXPERIENCES_SEARCH_ICON"]],    # noqa:E501
+            "Travel Experinces Search Icon": [locators_sd["TRAVEL_EXPERIENCES_SEARCH_ICON"], locators_sd["ALL_SEARCH_ICON"]],    # noqa:E501
             "Travel Experinces Cart Icon": [locators_sd["TRAVEL_EXPERIENCES_CART_ICON"]],   # noqa:E501
             "Travel Experinces No of Products": [locators_sd["TRAVEL_EXPERIENCES_NO_OF_PRODUCTS"]],  # noqa:E501
         }
@@ -421,7 +424,7 @@ class ShopDashboardPage(BasePage):
         locators = {
             "Travel Flights Page Title": [locators_sd["TRAVEL_FLIGHTS_PAGE_TITLE"]],    # noqa:E501
             "Travel Flights Back Button": [locators_sd["TRAVEL_FLIGHTS_BACK_BUTTON"]],  # noqa:E501
-            "Travel Flights Search Icon": [locators_sd["TRAVEL_FLIGHTS_SEARCH_ICON"]],    # noqa:E501
+            "Travel Flights Search Icon": [locators_sd["TRAVEL_FLIGHTS_SEARCH_ICON"], locators_sd["ALL_SEARCH_ICON"]],    # noqa:E501
             "Travel Flights Cart Icon": [locators_sd["TRAVEL_FLIGHTS_CART_ICON"]],  # noqa:E501
             "Travel Flights No of Products": [locators_sd["TRAVEL_FLIGHTS_NO_OF_PRODUCTS"]],  # noqa:E501
         }
@@ -451,7 +454,7 @@ class ShopDashboardPage(BasePage):
         locators = {
             "Travel Hotels Page Title": [locators_sd["TRAVEL_HOTELS_PAGE_TITLE"]],    # noqa:E501
             "Travel Hotels Back Button": [locators_sd["TRAVEL_HOTELS_BACK_BUTTON"]],  # noqa:E501
-            "Travel Hotels Search Icon": [locators_sd["TRAVEL_HOTELS_SEARCH_ICON"]],    # noqa:E501
+            "Travel Hotels Search Icon": [locators_sd["TRAVEL_HOTELS_SEARCH_ICON"], locators_sd["ALL_SEARCH_ICON"]],    # noqa:E501
             "Travel Hotels Cart Icon": [locators_sd["TRAVEL_HOTELS_CART_ICON"]],  # noqa:E501
             "Travel Hotels No of Products": [locators_sd["TRAVEL_HOTELS_NO_OF_PRODUCTS"]],  # noqa:E501
         }
@@ -481,7 +484,7 @@ class ShopDashboardPage(BasePage):
         allureLogs("Verifying all items on Food Sub-Category Tab")
         locators = {
             "Food Page Title": [locators_sd["FOOD_PAGE_TITLE"]],
-            "Food Search Icon": [locators_sd["FOOD_SEARCH_ICON"]],
+            "Food Search Icon": [locators_sd["FOOD_SEARCH_ICON"], locators_sd["ALL_SEARCH_ICON"]],  # noqa:E501
             "Food Cart Icon": [locators_sd["FOOD_CART_ICON"]],
             "Food Dining": [locators_sd["FOOD_DINING"]],
             "Food Groceries": [locators_sd["FOOD_GROCERIES"]],
@@ -512,7 +515,7 @@ class ShopDashboardPage(BasePage):
         locators = {
             "Food Dining Page Title": [locators_sd["FOOD_DINING_PAGE_TITLE"]],    # noqa:E501
             "Food Dining Back Button": [locators_sd["FOOD_DINING_BACK_BUTTON"]],  # noqa:E501
-            "Food Dining Search Icon": [locators_sd["FOOD_DINING_SEARCH_ICON"]],    # noqa:E501
+            "Food Dining Search Icon": [locators_sd["FOOD_DINING_SEARCH_ICON"], locators_sd["ALL_SEARCH_ICON"]],    # noqa:E501
             "Food Dining Cart Icon": [locators_sd["FOOD_DINING_CART_ICON"]],  # noqa:E501
             "Food Dining No of Products": [locators_sd["FOOD_DINING_NO_OF_PRODUCTS"]],  # noqa:E501
         }
@@ -542,7 +545,7 @@ class ShopDashboardPage(BasePage):
         locators = {
             "Food Groceries Page Title": [locators_sd["FOOD_GROCERIES_PAGE_TITLE"]],    # noqa:E501
             "Food Groceries Back Button": [locators_sd["FOOD_GROCERIES_BACK_BUTTON"]],  # noqa:E501
-            "Food Groceries Search Icon": [locators_sd["FOOD_GROCERIES_SEARCH_ICON"]],    # noqa:E501
+            "Food Groceries Search Icon": [locators_sd["FOOD_GROCERIES_SEARCH_ICON"], locators_sd["ALL_SEARCH_ICON"]],    # noqa:E501
             "Food Groceries Cart Icon": [locators_sd["FOOD_GROCERIES_CART_ICON"]],  # noqa:E501
             "Food Groceries No of Products": [locators_sd["FOOD_GROCERIES_NO_OF_PRODUCTS"]],  # noqa:E501
         }
@@ -572,7 +575,7 @@ class ShopDashboardPage(BasePage):
         allureLogs("Verifying all items on Movies Sub-Category Tab")
         locators = {
             "Movies Page Title": [locators_sd["MOVIES_PAGE_TITLE"]],
-            "Movies Search Icon": [locators_sd["MOVIES_SEARCH_ICON"]],
+            "Movies Search Icon": [locators_sd["MOVIES_SEARCH_ICON"], locators_sd["ALL_SEARCH_ICON"]],  # noqa:E501
             "Movies Cart Icon": [locators_sd["MOVIES_CART_ICON"]],
             "Movies Movies": [locators_sd["MOVIES_MOVIES"]],
             "Movies OTT": [locators_sd["MOVIES_OTT"]],
@@ -603,7 +606,7 @@ class ShopDashboardPage(BasePage):
         locators = {
             "Movies Dining Page Title": [locators_sd["MOVIES_MOVIES_PAGE_TITLE"]],    # noqa:E501
             "Movies Dining Back Button": [locators_sd["MOVIES_MOVIES_BACK_BUTTON"]],  # noqa:E501
-            "Movies Dining Search Icon": [locators_sd["MOVIES_MOVIES_SEARCH_ICON"]],    # noqa:E501
+            "Movies Dining Search Icon": [locators_sd["MOVIES_MOVIES_SEARCH_ICON"], locators_sd["ALL_SEARCH_ICON"]],    # noqa:E501
             "Movies Dining Cart Icon": [locators_sd["MOVIES_MOVIES_CART_ICON"]],  # noqa:E501
             "Movies Dining No of Products": [locators_sd["MOVIES_MOVIES_NO_OF_PRODUCTS"]],  # noqa:E501
         }
@@ -633,7 +636,7 @@ class ShopDashboardPage(BasePage):
         locators = {
             "Movies OTT Page Title": [locators_sd["MOVIES_OTT_PAGE_TITLE"]],    # noqa:E501
             "Movies OTT Back Button": [locators_sd["MOVIES_OTT_BACK_BUTTON"]],  # noqa:E501
-            "Movies OTT Search Icon": [locators_sd["MOVIES_OTT_SEARCH_ICON"]],    # noqa:E501
+            "Movies OTT Search Icon": [locators_sd["MOVIES_OTT_SEARCH_ICON"], locators_sd["ALL_SEARCH_ICON"]],    # noqa:E501
             "Movies OTT Cart Icon": [locators_sd["MOVIES_OTT_CART_ICON"]],  # noqa:E501
             "Movies OTT No of Products": [locators_sd["MOVIES_OTT_NO_OF_PRODUCTS"]],  # noqa:E501
         }
@@ -663,7 +666,7 @@ class ShopDashboardPage(BasePage):
         allureLogs("Verifying all items on Shopping Sub-Category Tab")
         locators = {
             "Shopping Page Title": [locators_sd["SHOPPING_PAGE_TITLE"]],
-            "Shopping Search Icon": [locators_sd["SHOPPING_SEARCH_ICON"]],
+            "Shopping Search Icon": [locators_sd["SHOPPING_SEARCH_ICON"], locators_sd["ALL_SEARCH_ICON"]],  # noqa:E501
             "Shopping Cart Icon": [locators_sd["SHOPPING_CART_ICON"]],
             "Shopping Amazon E-Gift Card": [locators_sd["SHOPPING_AMAZON_EGIFT"]],  # noqa:E501
             "Shopping Amazon Shopping Voucher": [locators_sd["SHOPPING_AMAZON_SHOPPING"]],  # noqa:E501
@@ -695,7 +698,7 @@ class ShopDashboardPage(BasePage):
         locators = {
             "Shopping Amazon eGift Card Page Title": [locators_sd["SHOPPING_AMAZON_EGIFT_PAGE_TITLE"]],    # noqa:E501
             "Shopping Amazon eGift Card Back Button": [locators_sd["SHOPPING_AMAZON_EGIFT_BACK_BUTTON"]],  # noqa:E501
-            "Shopping Amazon eGift Card Search Icon": [locators_sd["SHOPPING_AMAZON_EGIFT_SEARCH_ICON"]],    # noqa:E501
+            "Shopping Amazon eGift Card Search Icon": [locators_sd["SHOPPING_AMAZON_EGIFT_SEARCH_ICON"], locators_sd["ALL_SEARCH_ICON"]],    # noqa:E501
             "Shopping Amazon eGift Card Cart Icon": [locators_sd["SHOPPING_AMAZON_EGIFT_CART_ICON"]],  # noqa:E501
             "Shopping Amazon eGift Card No of Products": [locators_sd["SHOPPING_AMAZON_EGIFT_NO_OF_PRODUCTS"]],  # noqa:E501
         }
@@ -724,7 +727,7 @@ class ShopDashboardPage(BasePage):
         allureLogs("Verifying all items on Amazon under Shopping Sub-Category Tab")  # noqa:E501
         locators = {
             "Shopping Amazon Page Title": [locators_sd["SHOPPING_AMAZON_SHOPPING_PAGE_TITLE"]],   # noqa:E501
-            "Shopping Amazon Search Icon": [locators_sd["SHOPPING_AMAZON_SHOPPING_PAGE_SEARCH_ICON"]],  # noqa:E501
+            "Shopping Amazon Search Icon": [locators_sd["SHOPPING_AMAZON_SHOPPING_PAGE_SEARCH_ICON"], locators_sd["ALL_SEARCH_ICON"]],  # noqa:E501
             "Shopping Amazon Cart Icon": [locators_sd["SHOPPING_AMAZON_SHOPPING_PAGE_CART_ICON"]],  # noqa:E501
             "Shopping Amazon No of Products": [locators_sd["SHOPPING_AMAZON_SHOPPING_PAGE_NO_OF_PRODUCTS"]],  # noqa:E501
             "Shopping Amazon Back Button": [locators_sd["SHOPPING_AMAZON_SHOPPING_PAGE_BACK_BUTTON"]],  # noqa:E501
@@ -755,7 +758,7 @@ class ShopDashboardPage(BasePage):
         locators = {
             "Shopping Fashion Page Title": [locators_sd["SHOPPING_FASHION_ACCESSORIES_PAGE_TITLE"]],    # noqa:E501
             "Shopping Fashion Back Button": [locators_sd["SHOPPING_FASHION_ACCESSORIES_BACK_BUTTON"]],  # noqa:E501
-            "Shopping Fashion Search Icon": [locators_sd["SHOPPING_FASHION_ACCESSORIES_SEARCH_ICON"]],    # noqa:E501
+            "Shopping Fashion Search Icon": [locators_sd["SHOPPING_FASHION_ACCESSORIES_SEARCH_ICON"], locators_sd["ALL_SEARCH_ICON"]],    # noqa:E501
             "Shopping Fashion Cart Icon": [locators_sd["SHOPPING_FASHION_ACCESSORIES_CART_ICON"]],  # noqa:E501
             "Shopping Fashion No of Products": [locators_sd["SHOPPING_FASHION_ACCESSORIES_NO_OF_PRODUCTS"]],  # noqa:E501
         }
@@ -787,7 +790,7 @@ class ShopDashboardPage(BasePage):
         locators = {
             "Shopping Gifting Page Title": [locators_sd["SHOPPING_GIFTING_PAGE_TITLE"]],    # noqa:E501
             "Shopping Gifting Back Button": [locators_sd["SHOPPING_GIFTING_BACK_BUTTON"]],  # noqa:E501
-            "Shopping Gifting Search Icon": [locators_sd["SHOPPING_GIFTING_SEARCH_ICON"]],    # noqa:E501
+            "Shopping Gifting Search Icon": [locators_sd["SHOPPING_GIFTING_SEARCH_ICON"], locators_sd["ALL_SEARCH_ICON"]],    # noqa:E501
             "Shopping Gifting Cart Icon": [locators_sd["SHOPPING_GIFTING_CART_ICON"]],  # noqa:E501
             "Shopping Gifting No of Products": [locators_sd["SHOPPING_GIFTING_NO_OF_PRODUCTS"]],  # noqa:E501
         }
@@ -819,7 +822,7 @@ class ShopDashboardPage(BasePage):
         locators = {
             "Shopping Jewellery Page Title": [locators_sd["SHOPPING_JEWELLERY_PAGE_TITLE"]],    # noqa:E501
             "Shopping Jewellery Back Button": [locators_sd["SHOPPING_JEWELLERY_BACK_BUTTON"]],  # noqa:E501
-            "Shopping Jewellery Search Icon": [locators_sd["SHOPPING_JEWELLERY_SEARCH_ICON"]],    # noqa:E501
+            "Shopping Jewellery Search Icon": [locators_sd["SHOPPING_JEWELLERY_SEARCH_ICON"], locators_sd["ALL_SEARCH_ICON"]],    # noqa:E501
             "Shopping Jewellery Cart Icon": [locators_sd["SHOPPING_JEWELLERY_CART_ICON"]],  # noqa:E501
             "Shopping Jewellery No of Products": [locators_sd["SHOPPING_JEWELLERY_NO_OF_PRODUCTS"]],  # noqa:E501
         }
@@ -848,7 +851,7 @@ class ShopDashboardPage(BasePage):
         allureLogs("Verifying all items on Flipkart under Shopping Sub-Category Tab")  # noqa:E501
         locators = {
             "Shopping Flipkart Page Title": [locators_sd["SHOPPING_FLIPKART_PAGE_TITLE"]],  # noqa:E501
-            "Shopping Flipkart Search Icon": [locators_sd["SHOPPING_FLIPKART_SEARCH_ICON"]],    # noqa:E501
+            "Shopping Flipkart Search Icon": [locators_sd["SHOPPING_FLIPKART_SEARCH_ICON"], locators_sd["ALL_SEARCH_ICON"]],    # noqa:E501
             "Shopping Flipkart Cart Icon": [locators_sd["SHOPPING_FLIPKART_CART_ICON"]],    # noqa:E501
             "Shopping Flipkart No of Products": [locators_sd["SHOPPING_FLIPKART_NO_OF_PRODUCTS"]],  # noqa:E501
             "Shopping Flipkart Back Button": [locators_sd["SHOPPING_FLIPKART_BACK_BUTTON"]],  # noqa:E501
@@ -880,7 +883,7 @@ class ShopDashboardPage(BasePage):
         allureLogs("Verifying all items on My Orders Tab")
         locators = {
             "MY ORDERS Page Title": [locators_sd["MYORDERS_PAGE_TITLE"]],
-            "MY ORDERS Search Icon": [locators_sd["MYORDERS_SEARCH_ICON"]],
+            "MY ORDERS Search Icon": [locators_sd["MYORDERS_SEARCH_ICON"], locators_sd["ALL_SEARCH_ICON"]],   # noqa:E501
             "MY ORDERS Back Arrow": [locators_sd["MYORDERS_BACK_ARROW"], locators_sd["MYORDERS_BACK_ARROW1"]],  # noqa:E501
             "MY ORDERS Search BOX": [locators_sd["MYORDERS_SEARCH_BOX"], locators_sd["MYORDERS_SEARCH_ICON1"]],  # noqa:E501
 

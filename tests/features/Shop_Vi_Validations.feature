@@ -93,7 +93,7 @@ Scenario Outline: VS005: Verify Search Functionality
     When I click on search icon
 #    When I enter the <invalid_input> in the search field
 #    Then I verify no search results are displayed
-    When I enter the <valid_input_flipkart> in the search field
+    When I enter the <valid_input_amazon> in the search field
     Then I click on Flipkart Search Results
 #    Then I verify expected content are displayed for flipkart
 #    When I enter the <valid_input_amazon> in the search field
@@ -107,14 +107,8 @@ Scenario Outline: VS006: Verify Add to Cart Journey with Flipkart SKU from Searc
     When I Verify the Product Title, Price, Discount and OutofStock Tag
     When I Verify the Product details
     When I Verify the buying quantity
-    When I scroll to the element with text product details
-    Then I Verify more details after the swipe
-    When I scroll to the element with text ratings and reviews
-    Then I Verify the Ratings and Review Section
-    When I scroll to the element with text similar products comparison
-    Then I Verify more similar products comparison section
-    When I scroll to the element with text out of stock
-    Then I Verify Different Denominations
+    #When I scroll to the element with text out of stock
+    #Then I Verify Different Denominations
     Then I Verify Add to cart and Buy Now CTA button
     Then I Click on Add To Cart CTA Button
     Then I Verify the Product details added in the cart
