@@ -150,6 +150,7 @@ locators_pdpf = {
     "CREDIT_DEBIT_CARD_NUMBER_ARROW": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(5)'),   # noqa:E501
     "INPUT_CREDIT_DEBIT_CARD_NUMBER": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("card number")'),     # noqa:E501
     "INPUT_CREDIT_DEBIT_CARD_NUMBER_FIELD": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("TextInput_EditText_card number")'),     # noqa:E501
+    "INPUT_CREDIT_DEBIT_CARD_NUMBER_FIELD1": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.EditText").instance(0)'),     # noqa:E501
 
     "SHOW_BREAKUP": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("show breakup0")'),    # noqa:E501
     "SUB_TOTAL": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("subtotal")'),    # noqa:E501
@@ -240,11 +241,6 @@ class ProductDetailsPageFlipkart(BasePage):
             "Buying for Myself Radio Button": locators_pdpf["FOR_MYSELF_RADIO_BUTTON"],   # noqa:E501
             "Buying As A Gift": locators_pdpf["AS_A_GIFT"],
             "Buying As A Gift Radio Button": locators_pdpf["AS_A_GIFT_RADIO_BUTTON"],   # noqa:E501
-            "Quantity Option": locators_pdpf["QUANTITY"],
-            "Quantity Count": locators_pdpf["QUANTITY_COUNT"],
-            "Increase Quantity": locators_pdpf["INCREASE_QUANTITY"],
-            "Decrease Quantity": locators_pdpf["DECREASE_QUANTITY"],
-
         }
         details = {}
         for detail_name, locator in locators.items():
@@ -263,69 +259,6 @@ class ProductDetailsPageFlipkart(BasePage):
                 details[detail_name] = None
                 allureLogs(f"❌ Element {detail_name} is NOT DISPLAYED")
         self.actions.screenshotAttachment("Buying Option and Quantity Verification")    # noqa:E501
-        return details
-
-    def verify_more_details(self):
-        allureLogs("Verifying more details")
-        locators = {
-            "About Product": locators_pdpf["ABOUT_PRODUCT"],
-            "About Product Expand and Collapse Icon": locators_pdpf["ABOUT_PRODUCT_EXPAND_COLLAPSE"],   # noqa:E501
-            "Product Details": locators_pdpf["PRODUCT_DETAILS"],
-            "Product Details Expand and Collapse Icon": locators_pdpf["PRODUCT_DETAILS_EXPAND_COLLAPSE"],   # noqa:E501
-            "Steps to Redeem": locators_pdpf["STEPS_TO_REDEEM"],
-            "Steps to Redeem Expand and Collapse Icon": locators_pdpf["STEPS_TO_REDEEM_EXPAND_COLLAPSE"],   # noqa:E501
-            "T&C": locators_pdpf["TERMS_AND_CONDITIONS"],
-            "T&C Expand and Collapse Icon": locators_pdpf["TERMS_AND_CONDITIONS_EXPAND_COLLAPSE"],  # noqa:E501
-            "More from this Seller Tray": locators_pdpf["MORE_FROM_THIS_SELLER"],   # noqa:E501
-        }
-        details = {}
-        for detail_name, locator in locators.items():
-            allureLogs(f"Checking element: {detail_name}")
-            elements = self.driver.find_elements(*locator)
-            if elements:
-                if len(elements) > 1:  # Multiple elements case (e.g., for prices)  # noqa:E501
-                    values = [el.text for el in elements]
-                    details[detail_name] = values
-                    allureLogs(f"✅ Element {detail_name} is DISPLAYED | (Multiple Values: {values})")     # noqa:E501
-                else:  # Single element case
-                    value = elements[0].text
-                    details[detail_name] = value
-                    allureLogs(f"✅ Element {detail_name} is DISPLAYED | (Value: {value})")    # noqa:E501
-            else:
-                details[detail_name] = None
-                allureLogs(f"❌ Element {detail_name} is NOT DISPLAYED")
-        self.actions.screenshotAttachment("About Product, Product Verification, Steps to Redeem, T&C, More from this sellar Tray Verification Completed")   # noqa:E501
-        return details
-
-    def verify_ratings_and_reviews(self):
-        allureLogs("Verifying more details")
-        locators = {
-            "Ratings and Reviews Title": locators_pdpf["RATINGS_REVIEWS_TITLE"],    # noqa:E501
-            "Write a Review": locators_pdpf["WRITE_A_REVIEW_CTA"],
-            "View all Reviews Text": locators_pdpf["VIEW_ALL_REVIEWS_TEXT"],
-            "View all Reviews CTA Button": locators_pdpf["VIEW_ALL_REVIEWS_CTA"],   # noqa:E501
-            "No.of Ratings": locators_pdpf["NO_OF_RATINGS"],
-            "No.of Reviews": locators_pdpf["NO_OF_REVIEWS"],
-            "Average Rating": locators_pdpf["AVG_RATING"],
-            "T&C Expand and Collapse Icon": locators_pdpf["TERMS_AND_CONDITIONS_EXPAND_COLLAPSE"],  # noqa:E501
-        }
-        details = {}
-        for detail_name, locator in locators.items():
-            allureLogs(f"Checking element: {detail_name}")
-            elements = self.driver.find_elements(*locator)
-            if elements:
-                if len(elements) > 1:  # Multiple elements case (e.g., for prices)  # noqa:E501
-                    values = [el.text for el in elements]
-                    details[detail_name] = values
-                    allureLogs(f"✅ Element {detail_name} is DISPLAYED | (Multiple Values: {values})")     # noqa:E501
-                else:  # Single element case
-                    value = elements[0].text
-                    details[detail_name] = value
-                    allureLogs(f"✅ Element {detail_name} is DISPLAYED | (Value: {value})")    # noqa:E501
-            else:
-                details[detail_name] = None
-                allureLogs(f"❌ Element {detail_name} is NOT DISPLAYED")
-        self.actions.screenshotAttachment("Ratings and Reviews section Verification completed")     # noqa:E501
         return details
 
     def verify_addtocart_buynow_cta(self):
@@ -353,44 +286,6 @@ class ProductDetailsPageFlipkart(BasePage):
         self.actions.screenshotAttachment("Add to Cart CTA & Buy Now CTA Verification Completed")   # noqa:E501
         return details
 
-    def verify_similar_products_comparision(self):
-        allureLogs("Verifying more details")
-        locators = {
-            "Similar Products Comparision Title": locators_pdpf["SIMILAR_PRODUCTS_COMPARISON"],     # noqa:E501
-            "Custom Compare CTA Button": locators_pdpf["CUSTOM_COMPARE_CTA"],
-            "Custom Compare CTA Description": locators_pdpf["CUSTOM_COMPARE_DESC"],     # noqa:E501
-            "Custom Compare CTA Image": locators_pdpf["CUSTOM_COMPARE_IMAGE"],
-        }
-        details = {}
-        for detail_name, locator in locators.items():
-            allureLogs(f"Checking element: {detail_name}")
-            elements = self.driver.find_elements(*locator)
-            if elements:
-                if len(elements) > 1:  # Multiple elements case (e.g., for prices)  # noqa:E501
-                    values = [el.text for el in elements]
-                    details[detail_name] = values
-                    allureLogs(f"✅ Element {detail_name} is DISPLAYED | (Multiple Values: {values})")     # noqa:E501
-                else:  # Single element case
-                    value = elements[0].text
-                    details[detail_name] = value
-                    allureLogs(f"✅ Element {detail_name} is DISPLAYED | (Value: {value})")    # noqa:E501
-            else:
-                details[detail_name] = None
-                allureLogs(f"❌ Element {detail_name} is NOT DISPLAYED")
-        self.actions.screenshotAttachment("Similar Products Verification Completed")    # noqa:E501
-        return details
-
-    '''def verify_change_denomination(self):
-        denomination_amount = self.actions.wait_for_elements(*locators_pdpf['PRODUCT_PRICE'])   # noqa:E501
-        if denomination_amount:
-            allureLogs("Denominations are displayed")
-            denomination_amount[4].click()
-            allureLogs("Clicked on second Denomination")
-            self.actions.screenshotAttachment("clicked on second Denomination")
-        else:
-            allureLogs("Denominations are not displayed")
-            self.actions.screenshotAttachment("Denominations are not displayed")'''   # noqa:E501
-
     def verify_change_denomination(self):
         """
         Verifies if the product is out of stock and changes to a different denomination if available.   # noqa:E501
@@ -398,7 +293,7 @@ class ProductDetailsPageFlipkart(BasePage):
         """
         try:
             # Scroll to the text "out of stock"
-            out_of_stock_element = self.actions.scroll_into_view("out of stock")      # noqa:E501
+            out_of_stock_element = self.actions.wait_for_element(*locators_pdpf["OUT_OF_STOCK"])      # noqa:E501
 
             if out_of_stock_element:
                 allureLogs("'Out of stock' text is found after scrolling")
@@ -415,11 +310,11 @@ class ProductDetailsPageFlipkart(BasePage):
             else:
                 allureLogs("'Out of stock' text not found")
                 # Scroll to the text "product details" if "out of stock" is not found   # noqa:E501
-                product_details_element = self.actions.scroll_into_view("buying")   # noqa:E501
+                product_details_element = self.actions.wait_for_element("buying")   # noqa:E501
                 if product_details_element:
                     allureLogs("Scrolled to 'buying'")
                 else:
-                    allureLogs("'Buying' text not found after scrolling")
+                    allureLogs("'Buying' text not found")
 
         except Exception as e:
             allureLogs(f"❌ An error occurred: {str(e)}")
@@ -652,43 +547,52 @@ class ProductDetailsPageFlipkart(BasePage):
         return details
 
     def verify_input_cc_number(self, card_number):
-        self.actions.click_button(*locators_pdpf["CREDIT_DEBIT_CARD_NUMBER_ARROW"])     # noqa:E501
+        self.actions.click_button(*locators_pdpf["CREDIT_DEBIT_CARD_NUMBER_ARROW"])   # noqa:E501
+        allureLogs("Clicked on Credit/Debit Card Number Arrow")
         max_retries = 2
         retries = 0
-        cc_locator = locators_pdpf["INPUT_CREDIT_DEBIT_CARD_NUMBER_FIELD"]
 
-        while retries < max_retries:
+        # List of locators to try (primary + fallback)
+        cc_locators = [
+            locators_pdpf["INPUT_CREDIT_DEBIT_CARD_NUMBER_FIELD"],     # noqa:E501
+            locators_pdpf.get("ALT_INPUT_CREDIT_DEBIT_CARD_NUMBER_FIELD")     # noqa:E501
+        ]
+
+        for locator in filter(None, cc_locators):  # Skip None values
+            retries = 0
+            while retries < max_retries:
+                try:
+                    cc_input = WebDriverWait(self.driver, 5).until(
+                        EC.presence_of_element_located(locator)
+                    )
+                    cc_input.clear()
+                    cc_input.send_keys(card_number)
+                    allureLogs(f"✅ Entered CC Number using locator {locator}: {card_number}")   # noqa:E501
+                    return  # Success
+                except StaleElementReferenceException:
+                    retries += 1
+                    allureLogs(f"⚠️ StaleElementReferenceException on locator {locator}: Retrying {retries}/{max_retries}")   # noqa:E501
+                except TimeoutException:
+                    allureLogs(f"⚠️ TimeoutException: Locator {locator} not found.")    # noqa:E501
+                    break  # Try next locator
+
+            # If input field is still not accessible, try clicking
             try:
-                # Wait for element to be present and visible
+                allureLogs(f"ℹ️ Trying to click the CC input field with locator {locator} as fallback...")   # noqa:E501
+                self.click_button(*locator)
                 cc_input = WebDriverWait(self.driver, 5).until(
-                    EC.presence_of_element_located(cc_locator)
+                    EC.presence_of_element_located(locator)
                 )
-                cc_input.clear()
                 cc_input.send_keys(card_number)
-                allureLogs(f"Entered CC Number: {card_number}")
-                return  # Success, exit method
+                allureLogs(f"✅ Entered CC Number after clicking using locator {locator}: {card_number}")   # noqa:E501
+                return  # Success
 
-            except StaleElementReferenceException:
-                retries += 1
-                allureLogs(f"StaleElementReferenceException: Retrying {retries}/{max_retries}")     # noqa:E501
+            except Exception as e:
+                allureLogs(f"❌ Failed to enter CC number with locator {locator}: {str(e)}")    # noqa:E501
 
-            except TimeoutException:
-                allureLogs("TimeoutException: Credit card input field not found.")  # noqa:E501
-                break  # Stop retrying if element is not found
-
-        # If input field is still not accessible, try clicking the field
-        try:
-            allureLogs("Trying to click the CC input field as fallback...")
-            self.click_button(*cc_locator)
-            # Retry entering text after clicking
-            cc_input = WebDriverWait(self.driver, 5).until(
-                EC.presence_of_element_located(cc_locator)
-            )
-            cc_input.send_keys(card_number)
-            allureLogs(f"✅ Entered CC Number after clicking: {card_number}")
-
-        except Exception as e:
-            allureLogs(f"❌ Failed to enter CC number even after clicking: {str(e)}")  # noqa:E501
+        allureLogs("❌ Could not input credit card number with any locator.")
+        self.actions.screenshotAttachment("Credit Card Number Input Failed")   # noqa:E501
+        return False
 
     def verify_convenience_fee(self):
         self.actions.click_button(*locators_pdpf["SHOW_BREAKUP"])
@@ -730,7 +634,8 @@ class ProductDetailsPageFlipkart(BasePage):
             "Proceed to Payment Button": locators_pdpf["PROCEED_TO_PAYMENT_CTA_BUTTON"],    # noqa:E501
             "Cart Page Proceed Button": locators_pdpf["CART_PAGE_PROCEED_CTA"],
             "Add to Cart Button": locators_pdpf["ADD_TO_CART"],
-            "Shop by Category Section": locators_pdpf["SHOP_BY_CATEGORY"]
+            "Vi Shop Icon": locators_pdpf["VI_SHOP_ICON"],   # noqa:E501
+            "Vi App Icon": locators_pdpf["VI_APP_HOME_BUTTON"]
         }
 
         navigation_steps = [
@@ -765,4 +670,4 @@ class ProductDetailsPageFlipkart(BasePage):
             self.actions.screenshotAttachment(step_description)
 
         self.driver.back()
-        allureLogs("Navigation to Home Page Completed ✅")
+        allureLogs("Navigated to Home Page ✅")

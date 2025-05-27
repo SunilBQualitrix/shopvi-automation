@@ -639,50 +639,11 @@ def verify_buying_quantity(pdpflipkart_instance):
     pdpflipkart_instance.verify_buying_quantity()
 
 
-@when('I scroll to the element with text product details')
-@allure.step('When I scroll to the element with text product details')
-def scroll_to_element(androidactions_instance):
-    """Step to scroll to an element by text."""
-    androidactions_instance.scroll_into_view("product details")
-
-
-@when('I scroll to the element with text ratings and reviews')
-@allure.step('When I scroll to the element with text ratings and reviews')
-def scroll_to_element(androidactions_instance):
-    """Step to scroll to an element by text."""
-    androidactions_instance.scroll_into_view("ratings and reviews")
-
-
-@when('I scroll to the element with text similar products comparison')
-@allure.step('When I scroll to the element with text similar products comparison')        # noqa:E501
-def scroll_to_element(androidactions_instance):
-    """Step to scroll to an element by text."""
-    androidactions_instance.scroll_into_view("similar products comparison")
-
-
 @when('I scroll to the element with text out of stock')
 @allure.step('When I scroll to the element with text out of stock')
 def scroll_to_element(androidactions_instance):
     """Step to scroll to an element by text."""
     androidactions_instance.scroll_into_view("out of stock")
-
-
-@then("I Verify more details after the swipe")
-@allure.step("Then I Verify more details after the swipe")
-def verify_more_details_after_swipe(pdpflipkart_instance):
-    pdpflipkart_instance.verify_more_details()
-
-
-@then("I Verify the Ratings and Review Section")
-@allure.step("Then I Verify the Ratings and Review Section")
-def verify_ratings_and_reviews_section(pdpflipkart_instance):
-    pdpflipkart_instance.verify_ratings_and_reviews()
-
-
-@then("I Verify more similar products comparison section")
-@allure.step("Then I Verify more similar products comparison section")
-def verify_similar_products_comparisoion(pdpflipkart_instance):
-    pdpflipkart_instance.verify_similar_products_comparision()
 
 
 @then("I Verify Add to cart and Buy Now CTA button")

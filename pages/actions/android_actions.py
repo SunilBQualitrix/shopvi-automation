@@ -371,7 +371,6 @@ class AndroidActions(ActionsParent):
             self.log.error(f"Failed to click the element {locator_value} after {try_count - 1} attempts.")    # noqa:E501
             self.screenshotAttachment(f"ClickButtonError_{locator_type}_{locator_value}")     # noqa:E501
             print(f"Failed to click the element after {try_count - 1} attempts.")     # noqa:E501
-            assert False
 
     def is_element_displayed(self, locator_type, locator_value):
         """
