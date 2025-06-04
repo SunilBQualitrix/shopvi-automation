@@ -133,8 +133,9 @@ Scenario Outline: VS008: Verify Buy Now Journey with Nykaa SKU from Search Resul
     When I Verify the Product Title, Price, Discount and OutofStock Tag
     When I Verify the Product details
     When I Verify the buying quantity
-    When I Verify and click on Buy Now Proceed to Pay CTA button
-    When I Verify  Proceed to Pay CTA button is displayed on the Buy Now popup
+    When I Verify Buy Now CTA button
+    Then I Click on the Buy Now CTA button
+    When I Verify Proceed to Pay CTA button is displayed on the Buy Now popup
     Then I Click the Buy Now Proceed to Pay CTA button which is displayed on the Buy Now popup
     Then I Verify the Product details added in the cart
     Then I verify Order Summary Details

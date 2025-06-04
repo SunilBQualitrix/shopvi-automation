@@ -724,21 +724,29 @@ def navigate_back_to_home_page(pdpflipkart_instance):
     pdpflipkart_instance.verify_navigation_to_home_page()
 
 
-@when("I Verify and click on Buy Now Proceed to Pay CTA button")
-@allure.step("When I Verify and click on Buy Now Proceed to Pay CTA button")   # noqa:E501
-def click_on_proceed_to_pay_cta_button(pdpflipkart_instance):
+@when("I Verify Buy Now CTA button")   # noqa:E501
+@allure.step("When I Verify Buy Now CTA button")   # noqa:E501
+def verify_buynow_cta(pdpflipkart_instance):
     """Step to click on the Proceed to Pay CTA button."""
-    pdpflipkart_instance.verify_click_buynow_cta()
+    pdpflipkart_instance.verify_buynow_cta()
+
+
+@then("I Click on the Buy Now CTA button")   # noqa:E501
+@allure.step("Then I Click on the Buy Now CTA button")   # noqa:E501
+def click_buynow_cta(pdpflipkart_instance):
+    """Step to click on the Proceed to Pay CTA button."""
+    pdpflipkart_instance.click_buynow_cta()
 
 
 @when("I Verify Proceed to Pay CTA button is displayed on the Buy Now popup")   # noqa:E501
 @allure.step("When I Verify Proceed to Pay CTA button is displayed on the Buy Now popup")   # noqa:E501
-def verify_buy_now_proceed_to_pay_cta_button(pdpflipkart_instance):
+def verify_buynow_proceed_to_checkout_cta_popup(pdpflipkart_instance):
     """Step to verify the Buy Now Proceed to Pay CTA button."""
     pdpflipkart_instance.verify_buynow_proceed_to_checkout_cta_popup()
-    
+
+
 @then("I Click the Buy Now Proceed to Pay CTA button which is displayed on the Buy Now popup")   # noqa:E501
 @allure.step("Then I Click the Buy Now Proceed to Pay CTA button which is displayed on the Buy Now popup")   # noqa:E501
-def verify_buy_now_proceed_to_pay_cta_button(pdpflipkart_instance):
+def verify_click_buynow_proceed_to_checkout_cta(pdpflipkart_instance):
     """Step to verify the Buy Now Proceed to Pay CTA button."""
     pdpflipkart_instance.verify_click_buynow_proceed_to_checkout_cta()
