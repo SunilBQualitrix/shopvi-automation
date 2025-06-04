@@ -570,7 +570,7 @@ def verify_all_items_are_displayed_on_the_my_orders_tab(shoppage_instance):
     shoppage_instance.verify_all_items_on_my_orders_tab()
 
 
-# ======== Search page Validation ========
+# ======== Amazon Search page Validation ========
 
 
 @when("I click on search icon")
@@ -612,8 +612,8 @@ def verify_expected_content_are_displayed_for_amazon(searchpage_instance):
     assert amazon_results, "Expected contents are not displayed for amazon"'''
 
 
-@then("I click on Flipkart Search Results")
-@allure.step("Then I click on Flipkart Search Results")
+@then("I click on Search Results")
+@allure.step("Then I click on Search Results")
 def verify_click_search(searchpage_instance):
     """Step to click on the Flipkart search results."""
     searchpage_instance.verify_click_search()
@@ -722,3 +722,23 @@ def verify_payment_page_details(pdpflipkart_instance):
 @allure.step("Then I Navigate back to HomePage")
 def navigate_back_to_home_page(pdpflipkart_instance):
     pdpflipkart_instance.verify_navigation_to_home_page()
+
+
+@when("I Verify and click on Buy Now Proceed to Pay CTA button")
+@allure.step("When I Verify and click on Buy Now Proceed to Pay CTA button")   # noqa:E501
+def click_on_proceed_to_pay_cta_button(pdpflipkart_instance):
+    """Step to click on the Proceed to Pay CTA button."""
+    pdpflipkart_instance.verify_click_buynow_cta()
+
+
+@when("I Verify Proceed to Pay CTA button is displayed on the Buy Now popup")   # noqa:E501
+@allure.step("When I Verify Proceed to Pay CTA button is displayed on the Buy Now popup")   # noqa:E501
+def verify_buy_now_proceed_to_pay_cta_button(pdpflipkart_instance):
+    """Step to verify the Buy Now Proceed to Pay CTA button."""
+    pdpflipkart_instance.verify_buynow_proceed_to_checkout_cta_popup()
+    
+@then("I Click the Buy Now Proceed to Pay CTA button which is displayed on the Buy Now popup")   # noqa:E501
+@allure.step("Then I Click the Buy Now Proceed to Pay CTA button which is displayed on the Buy Now popup")   # noqa:E501
+def verify_buy_now_proceed_to_pay_cta_button(pdpflipkart_instance):
+    """Step to verify the Buy Now Proceed to Pay CTA button."""
+    pdpflipkart_instance.verify_click_buynow_proceed_to_checkout_cta()

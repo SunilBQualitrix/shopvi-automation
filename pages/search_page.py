@@ -12,6 +12,7 @@ locators = {
     "AMAZON_SEARCH_RESULTS": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().textContains("Amazon Shopping")'),    # noqa:E501
     "SEARCH_RESULTS_FLIPKART": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().textContains("Flipkart Shopping Voucher")'),    # noqa:E501
     "SEARCH_ICON1": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(1)'),     # noqa:E501
+    "NYKA_SEARCH_RESULTS": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().textContains("Nykaa")'),    # noqa:E501
 }
 
 
@@ -59,13 +60,13 @@ class SearchPage(BasePage):
         self.actions.screenshotAttachment(f"Entered search text: {search_text}")      # noqa:E501
 
     def verify_click_search(self):
-        locators_list = [locators["AMAZON_SEARCH_RESULTS"], locators["SEARCH_RESULTS_FLIPKART"]]    # noqa:E501
+        locators_list = [locators["AMAZON_SEARCH_RESULTS"], locators["SEARCH_RESULTS_FLIPKART"], locators["NYKA_SEARCH_RESULTS"]]    # noqa:E501
         for locator in locators_list:
             if locator:
                 try:
                     elements = self.actions.wait_for_elements(*locator, timeout=5)  # noqa:E501
                     if elements and self.actions.is_element_displayed(*locator):    # noqa:E501
-                        elements[3].click()
+                        elements[2].click()
                         allureLogs(f"Clicked on search result using locator: {locator}")    # noqa:E501
                         self.actions.screenshotAttachment("Clicked on search result")   # noqa:E501
                         return True

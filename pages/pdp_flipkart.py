@@ -158,6 +158,13 @@ locators_pdpf = {
     "HIDE_BREAKUP": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("hide breakup0")'),    # noqa:E501
     "YES_EXIT": (AppiumBy.XPATH, "//android.widget.TextView[@text='yes, exit']"),    # noqa:E501
 
+    "VI_SHOP_ICON": (AppiumBy.XPATH, '//android.widget.TextView[@text="shop"]'),    # noqa:E501
+    "VI_APP_HOME_BUTTON": (AppiumBy.XPATH, '//android.widget.TextView[@text="home"]'),  # noqa:E501
+
+    "BUY_NOW_PROCEED_CTA": (AppiumBy.XPATH, "//android.widget.TextView[@text='proceed to checkout']"),    # noqa:E501
+    "SAVINGS_TEXT": (AppiumBy.XPATH, '//android.widget.TextView[contains(@text, "Yay!")]'),    # noqa:E501
+    "APPLY_COUPON": (AppiumBy.XPATH, "//android.widget.TextView[@text='apply coupon']"),    # noqa:E501
+
 
 }
 
@@ -623,7 +630,7 @@ class ProductDetailsPageFlipkart(BasePage):
             else:
                 details[detail_name] = None
                 allureLogs(f"❌ Element: {detail_name} is NOT DISPLAYED")
-        self.actions.screenshotAttachment("CART Page Title and Pagination Verification Completed")  # noqa:E501
+        self.actions.screenshotAttachment("convenience fee validated along with payment page ")  # noqa:E501
         return details
 
     def verify_navigation_to_home_page(self):
@@ -638,14 +645,6 @@ class ProductDetailsPageFlipkart(BasePage):
             "Vi App Icon": locators_pdpf["VI_APP_HOME_BUTTON"]
         }
 
-        navigation_steps = [
-            ("Navigating back to Purchase Details Page", "Exit Confirmation Dialog"),   # noqa:E501
-            ("Navigating back to Cart Page", "Proceed to Payment Button"),
-            ("Navigating back to Product Details Page", "Cart Page Proceed Button"),    # noqa:E501
-            ("Navigating back to Shop Dashboard", "Add to Cart Button"),
-            ("Final step: Shop Dashboard should be visible", "Shop by Category Section")    # noqa:E501
-        ]
-
         # First Back Navigation with YES_EXIT Confirmation
         self.driver.back()
         allureLogs("First back action triggered")
@@ -657,17 +656,60 @@ class ProductDetailsPageFlipkart(BasePage):
         else:
             allureLogs("Exit Confirmation Dialog NOT displayed")
 
-        # Continue with the rest of the back navigation steps
-        for step_description, element_name in navigation_steps[1:]:  # Skipping first as it was handled separately  # noqa:E501
-            self.driver.back()
-            allureLogs(step_description)
-
-            if self.actions.is_element_displayed(*locators[element_name]):
-                allureLogs(f"✅ {element_name} is DISPLAYED")
-            else:
-                allureLogs(f"❌ {element_name} is NOT DISPLAYED")
-
-            self.actions.screenshotAttachment(step_description)
-
+        self.actions.is_element_displayed(*locators["Proceed to Payment Button"])   # noqa:E501
+        allureLogs("Proceed to Payment Button is DISPLAYED after back navigation")  # noqa:E501
+        self.actions.screenshotAttachment("Back Navigation to Purchase Details Page Completed")  # noqa:E501
+        self.driver.back()  # Navigate back to Cart Page
+        allureLogs("Navigated back to Cart Page")
+        self.actions.is_element_displayed(*locators["Cart Page Proceed Button"])    # noqa:E501
+        allureLogs("Cart Page Proceed Button is DISPLAYED after back navigation")  # noqa:E501
+        self.actions.screenshotAttachment("Back Navigation to Cart Page Completed")  # noqa:E501
+        self.driver.back()  # Navigate back to Product Details Page # noqa:E501
+        allureLogs("Navigated back to Product Details Page")
+        self.actions.is_element_displayed(*locators["Add to Cart Button"])
+        allureLogs("Add to Cart Button is DISPLAYED after back navigation")  # noqa:E501
+        self.actions.screenshotAttachment("Back Navigation to Product Details Page Completed")  # noqa:E501
         self.driver.back()
+        self.driver.back()  # Navigate back to Shop Dashboard
+        allureLogs("Navigated back to Shop Dashboard")
+        self.actions.is_element_displayed(*locators["Vi Shop Icon"])
+        allureLogs("Vi Shop Icon is DISPLAYED after back navigation")  # noqa:E501
         allureLogs("Navigated to Home Page ✅")
+
+    def verify_click_buynow_cta(self):
+        self.actions.is_element_displayed(*locators_pdpf["BUY_NOW"])
+        allureLogs("Buy Now CTA is DISPLAYED")
+        self.actions.click_button(*locators_pdpf["BUY_NOW"])
+        allureLogs("Clicked on Buy Now CTA")
+        self.actions.screenshotAttachment("Clicked on Buy Now CTA")
+
+    def verify_buynow_proceed_to_checkout_cta_popup(self):
+        allureLogs("Buy Now proceed CTA pop-up")     # noqa:E501
+        locators = {
+            "Proceed CTA Button": locators_pdpf["BUY_NOW_PROCEED_CTA"],
+            "Saving Text": locators_pdpf["SAVINGS_TEXT"],
+            "Apply Coupon Option": locators_pdpf["APPLY_COUPON"],
+        }
+        details = {}
+        for detail_name, locator in locators.items():
+            allureLogs(f"Checking element: {detail_name}")
+            elements = self.driver.find_elements(*locator)
+            if elements:
+                if len(elements) > 1:  # Multiple elements case (e.g., for prices)    # noqa:E501
+                    values = [el.text for el in elements]
+                    details[detail_name] = values
+                    allureLogs(f"✅ Element {detail_name} is DISPLAYED | (Multiple Values: {values})")   # noqa:E501
+                else:  # Single element case
+                    value = elements[0].text
+                    details[detail_name] = value
+                    allureLogs(f"✅ Element {detail_name} is DISPLAYED | (Value: {value})")      # noqa:E501
+            else:
+                details[detail_name] = None
+                allureLogs(f"❌ Element {detail_name} is NOT DISPLAYED")
+        self.actions.screenshotAttachment("Buy Now proceed CTA pop-up is verified")     # noqa:E501
+        return details
+
+    def verify_click_buynow_proceed_to_checkout_cta(self):
+        self.actions.click_button(*locators_pdpf["BUY_NOW_PROCEED_CTA"])
+        allureLogs("Clicked on Buy Now Proceed to Checkout CTA")
+        self.actions.screenshotAttachment("Clicked on Buy Now Proceed to Checkout CTA")   # noqa:E501

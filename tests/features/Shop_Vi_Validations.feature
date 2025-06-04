@@ -46,7 +46,7 @@ Scenario Outline: VS003: Verify Account Page Navigation and Elements
         | account_button |
         | true           |
 
-@ViShopRegression @ViShopTest
+@ViShopRegression
 Scenario Outline: VS004: Verify Navigation across the Tabs
     When I am on shop dashboard and verify Quick Purchase Section
     When I am on shop dashboard and verify all items are displayed on shop dashboard
@@ -89,28 +89,53 @@ Scenario Outline: VS004: Verify Navigation across the Tabs
         | true           |
 
 @ViShopRegression
-Scenario Outline: VS005: Verify Search Functionality
+Scenario Outline: VS005: Verify Navigation to Amazon SKU from Search Results
     When I click on search icon
-#    When I enter the <invalid_input> in the search field
-#    Then I verify no search results are displayed
-    When I enter the <valid_input_amazon> in the search field
-    Then I click on Flipkart Search Results
-#    Then I verify expected content are displayed for flipkart
-#    When I enter the <valid_input_amazon> in the search field
-#    Then I verify expected content are displayed for amazon
+    When I enter the <valid_input> in the search field
+    Then I click on Search Results
     Examples:
-        | invalid_input | valid_input_flipkart  | valid_input_amazon |
-        | zzz           | flipkart             | amazon             |
+        | valid_input |
+        | amazon      |
 
 @ViShopRegression
-Scenario Outline: VS006: Verify Add to Cart Journey with Flipkart SKU from Search Results
+Scenario Outline: VS006: Verify Add to Cart Journey with Amazon SKU from Search Results
     When I Verify the Product Title, Price, Discount and OutofStock Tag
     When I Verify the Product details
     When I Verify the buying quantity
-    #When I scroll to the element with text out of stock
-    #Then I Verify Different Denominations
     Then I Verify Add to cart and Buy Now CTA button
     Then I Click on Add To Cart CTA Button
+    Then I Verify the Product details added in the cart
+    Then I verify Order Summary Details
+    Then I verify cart page title and pagination details
+    When I click on the Proceed to Buy CTA button
+    Then I verify the delivery address page
+    When I click on the Proceed to Payment CTA button
+    Then I verify the payment page
+    Then I enter the <credit_card_number> in the credit card field
+    Then I verify Convenience Fee Details
+    Then I Navigate back to HomePage
+
+    Examples:
+        | credit_card_number |
+        | 4893772405842838   |
+
+@ViShopRegression @ViShopTest
+Scenario Outline: VS007: Verify Navigation to Nykaa SKU from Search Results
+    When I click on search icon
+    When I enter the <valid_input> in the search field
+    Then I click on Search Results
+    Examples:
+        | valid_input |
+        | Nykaa      |
+
+@ViShopRegression @ViShopTest
+Scenario Outline: VS008: Verify Buy Now Journey with Nykaa SKU from Search Results
+    When I Verify the Product Title, Price, Discount and OutofStock Tag
+    When I Verify the Product details
+    When I Verify the buying quantity
+    When I Verify and click on Buy Now Proceed to Pay CTA button
+    When I Verify  Proceed to Pay CTA button is displayed on the Buy Now popup
+    Then I Click the Buy Now Proceed to Pay CTA button which is displayed on the Buy Now popup
     Then I Verify the Product details added in the cart
     Then I verify Order Summary Details
     Then I verify cart page title and pagination details
