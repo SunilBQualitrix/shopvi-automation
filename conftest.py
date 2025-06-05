@@ -328,7 +328,7 @@ def pytest_runtest_makereport(item, call):      # noqa: C901
     # execute all other hooks to obtain the report object
     outcome = yield
     report = outcome.get_result()
-    print("came for failed test case", report)
+    # print("came for failed test case", report)
     if report.when == "call":
         driver = None
         app_driver = item.funcargs.get('setup_platform', None)

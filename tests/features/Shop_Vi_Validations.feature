@@ -3,15 +3,8 @@ Feature: Vi Shop Testing - This feature tests the functionality of the Vi Shop a
 
 
 @ViShopRegression @ViShopTest
-Scenario Outline: VS001: Verify VI Shop App
+Scenario Outline: VS001: Login to Vi Shop Application
     Given  I install vishop <application>
-    Examples:
-        | application |
-        | vishop      |
-
-
-@ViShopRegression @ViShopTest
-Scenario Outline: VS002: Verify Signing in Functionality
     Given I launch vishop Application
     Given I open the app and navigate to the mobile number input screen
     When  I close the mobile number dialog box
@@ -21,18 +14,16 @@ Scenario Outline: VS002: Verify Signing in Functionality
     When  I log into the app using login with OTP CTA button
     Then  I click on VI Shop from Bottom Navigation and should navigate to the shop Dashboard
     Examples:
-        | mobile_number | otp  |
-        | 7507233095    | 1234 |
+        | mobile_number | otp  |    | application |
+        | 7507233095    | 1234 |    | vishop      |
 
 @ViShopRegression
-Scenario Outline: VS003: Verify Account Page Navigation and Elements
+Scenario Outline: VS002: Account Page Validations
     When I verify the account button is displayed
     When I click on the account button and navigate to the account page
     Then I verify all elements are displayed on the account page
     When I navigate to the FAQ page
     Then I verify all elements are displayed on the FAQ page
-#    When I navigate to the Credit Card (CC) page
-#    Then I verify all elements are displayed on the Credit Card (CC) page
     When I navigate to the Orders page
     Then I verify all elements are displayed on the Orders page
     When I navigate to the Coupons page
@@ -47,7 +38,7 @@ Scenario Outline: VS003: Verify Account Page Navigation and Elements
         | true           |
 
 @ViShopRegression
-Scenario Outline: VS004: Verify Navigation across the Tabs
+Scenario Outline: VS003: Vi Shop Navigation and Validations
     When I am on shop dashboard and verify Quick Purchase Section
     When I am on shop dashboard and verify all items are displayed on shop dashboard
     When I navigate to the deals tab
@@ -83,22 +74,15 @@ Scenario Outline: VS004: Verify Navigation across the Tabs
     When I navigate to the my orders tab
     Then I verify all items are displayed on the my orders tab
 
-    
     Examples:
         | shop_dashboard |
         | true           |
 
 @ViShopRegression
-Scenario Outline: VS005: Verify Navigation to Amazon SKU from Search Results
+Scenario Outline: VS004: Add to Cart Journey with Amazon SKU from Search Results
     When I click on search icon
     When I enter the <valid_input> in the search field
     Then I click on Search Results
-    Examples:
-        | valid_input |
-        | amazon      |
-
-@ViShopRegression
-Scenario Outline: VS006: Verify Add to Cart Journey with Amazon SKU from Search Results
     When I Verify the Product Title, Price, Discount and OutofStock Tag
     When I Verify the Product details
     When I Verify the buying quantity
@@ -116,25 +100,21 @@ Scenario Outline: VS006: Verify Add to Cart Journey with Amazon SKU from Search 
     Then I Navigate back to HomePage
 
     Examples:
-        | credit_card_number |
-        | 4893772405842838   |
+        | valid_input | | credit_card_number |
+        | amazon      | | 4893772405842838   |
+
 
 @ViShopRegression @ViShopTest
-Scenario Outline: VS007: Verify Navigation to Nykaa SKU from Search Results
+Scenario Outline: VS005: Buy Now Journey with Nykaa SKU from Search Results
     When I click on search icon
     When I enter the <valid_input> in the search field
     Then I click on Search Results
-    Examples:
-        | valid_input |
-        | Nykaa      |
-
-@ViShopRegression @ViShopTest
-Scenario Outline: VS008: Verify Buy Now Journey with Nykaa SKU from Search Results
     When I Verify the Product Title, Price, Discount and OutofStock Tag
     When I Verify the Product details
     When I Verify the buying quantity
-    When I Verify and click on Buy Now Proceed to Pay CTA button
-    When I Verify  Proceed to Pay CTA button is displayed on the Buy Now popup
+    When I Verify Buy Now CTA button
+    Then I Click on the Buy Now CTA button
+    When I Verify Proceed to Pay CTA button is displayed on the Buy Now popup
     Then I Click the Buy Now Proceed to Pay CTA button which is displayed on the Buy Now popup
     Then I Verify the Product details added in the cart
     Then I verify Order Summary Details
@@ -148,5 +128,5 @@ Scenario Outline: VS008: Verify Buy Now Journey with Nykaa SKU from Search Resul
     Then I Navigate back to HomePage
 
     Examples:
-        | credit_card_number |
-        | 4893772405842838   |
+        | valid_input | | credit_card_number |
+        | Nykaa      |  | 4893772405842838   |

@@ -676,9 +676,13 @@ class ProductDetailsPageFlipkart(BasePage):
         allureLogs("Vi Shop Icon is DISPLAYED after back navigation")  # noqa:E501
         allureLogs("Navigated to Home Page ✅")
 
-    def verify_click_buynow_cta(self):
+    def verify_buynow_cta(self):
+        allureLogs("Verifying Buy Now CTA")
         self.actions.is_element_displayed(*locators_pdpf["BUY_NOW"])
         allureLogs("Buy Now CTA is DISPLAYED")
+
+    def click_buynow_cta(self):
+        allureLogs("Clicking on Buy Now CTA")
         self.actions.click_button(*locators_pdpf["BUY_NOW"])
         allureLogs("Clicked on Buy Now CTA")
         self.actions.screenshotAttachment("Clicked on Buy Now CTA")
