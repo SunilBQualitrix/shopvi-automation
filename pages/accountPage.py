@@ -14,22 +14,23 @@ locators_ap = {
 
     "ACCOUNT_BUTTON1": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOPshop-account-icon.webp")'),  # noqa:E501
     "ACCOUNT_BUTTON2": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(0)'),  # noqa:E501
+    "ACCOUNT_BUTTON3": (AppiumBy.ID, 'DSHeader_Pressable_ds_header_my_account_customer_name_initial__click'),  # noqa:E501
 
     "PAGE_TITLE": (AppiumBy.XPATH, '//android.widget.TextView[@text="account"]'),  # noqa:E501
-    "YOUR_ORDERS": (AppiumBy.XPATH, '//android.widget.TextView[@text="your orders"]'),  # noqa:E501
-    "CC": (AppiumBy.XPATH, '//android.widget.TextView[@text="credit cards"]'),  # noqa:E501
-    "COUPOUNS": (AppiumBy.XPATH, '//android.widget.TextView[@text="coupons"]'),  # noqa:E501
-    "SAVEDPAY": (AppiumBy.XPATH, '//android.widget.TextView[@text="saved payments"]'),  # noqa:E501
-    "HELPANDSUPPORT": (AppiumBy.XPATH, '//android.widget.TextView[@text="help & support"]'),  # noqa:E501
-    "FAQ": (AppiumBy.XPATH, '//android.widget.TextView[@text="FAQs"]'),
-    "TANDC": (AppiumBy.XPATH, '//android.widget.TextView[@text="terms & conditions"]'),  # noqa:E501
-    "PRIVACY_POLICY": (AppiumBy.XPATH, '//android.widget.TextView[@text="privacy policy"]'),  # noqa:E501
-    "ABOUT_US": (AppiumBy.XPATH, '//android.widget.TextView[@text="about us"]'),  # noqa:E501
+    "YOUR_ORDERS": (AppiumBy.ID, 'DSAccount_Pressable_your orders'),  # noqa:E501
+    "APPLICATIONS": (AppiumBy.ID, 'DSAccount_Pressable_applications'),  # noqa:E501
+    "COUPOUNS": (AppiumBy.ID, 'DSAccount_Pressable_coupons'),  # noqa:E501
+    "SAVEDPAY": (AppiumBy.ID, 'DSAccount_Pressable_saved payments'),  # noqa:E501
+    "HELPANDSUPPORT": (AppiumBy.ID, 'DSAccount_Pressable_help & support'),  # noqa:E501
+    "FAQ": (AppiumBy.ID, 'DSAccount_Pressable_Faq_click'),
+    "TANDC": (AppiumBy.ID, 'DSAccount_Pressable_T&C_click'),  # noqa:E501
+    "PRIVACY_POLICY": (AppiumBy.ID, 'DSAccount_Pressable_Privacy_policy_click'),  # noqa:E501
+    "ABOUT_US": (AppiumBy.ID, 'DSAccount_Pressable_About_Us_click'),  # noqa:E501
     "POWERED_BY": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("powered by Vodafone Idea Business Services Ltd.")'),  # noqa:E501
     "PROFILE_NUMBER": (AppiumBy.XPATH, '//android.widget.TextView[@text="7507233095"]'),  # noqa:E501
-    "EDIT_ICON1": (AppiumBy.XPATH, '//android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup/android.widget.ImageView'),  # noqa:E501
+    "EDIT_ICON1": (AppiumBy.ID, 'DSAccount_Pressable_edit_icon_click'),  # noqa:E501
     "SAVINGS_BANNER": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(5)'),  # noqa:E501
-    "BACK_ARROW": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(0)'),  # noqa:E501
+    "BACK_ARROW": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("Go back to DSDashboard screen")'),  # noqa:E501
 
     # Locators under orders page
     "ORDERSEARCHBOX": (AppiumBy.XPATH, '//android.widget.EditText[@text="search for orders..."]'),  # noqa:E501
@@ -101,7 +102,7 @@ class AccountPage(BasePage):
 
     def verify_account_button(self):
         allureLogs("Verifying if the account button is displayed.")
-        locators = [locators_ap["ACCOUNT_BUTTON1"], locators_ap["ACCOUNT_BUTTON2"]]   # noqa:E501
+        locators = [locators_ap["ACCOUNT_BUTTON1"], locators_ap["ACCOUNT_BUTTON2"], locators_ap["ACCOUNT_BUTTON3"]]   # noqa:E501
         for locator in locators:
             if self.actions.is_element_displayed(*locator):
                 allureLogs("✅ Account button is DISPLAYED")
@@ -113,7 +114,7 @@ class AccountPage(BasePage):
 
     def click_account_button(self):
         allureLogs("Clicking on the account button.")
-        locators = [locators_ap["ACCOUNT_BUTTON1"], locators_ap["ACCOUNT_BUTTON2"]]   # noqa:E501
+        locators = [locators_ap["ACCOUNT_BUTTON1"], locators_ap["ACCOUNT_BUTTON2"], locators_ap["ACCOUNT_BUTTON3"]]   # noqa:E501
         for locator in locators:
             if self.actions.is_element_displayed(*locator):
                 allureLogs("✅ Account button is DISPLAYED")
@@ -135,7 +136,7 @@ class AccountPage(BasePage):
             "Account Page Search Icon": locators_ap["SEARCH_ICON"],
             "Account Page Search Icon1": locators_ap["SEARCH_ICON1"],
             "Account Page My Orders": locators_ap["YOUR_ORDERS"],
-            "Account Page Credit Cards": locators_ap["CC"],
+            "Account Page Applications": locators_ap["APPLICATIONS"],
             "Account Page Coupons": locators_ap["COUPOUNS"],
             "Account Page Saved Payments": locators_ap["SAVEDPAY"],
             "Account Page Help & Support": locators_ap["HELPANDSUPPORT"],
