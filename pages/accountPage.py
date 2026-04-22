@@ -28,9 +28,11 @@ locators_ap = {
     "ABOUT_US": (AppiumBy.ID, 'DSAccount_Pressable_About_Us_click'),  # noqa:E501
     "POWERED_BY": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("powered by Vodafone Idea Business Services Ltd.")'),  # noqa:E501
     "PROFILE_NUMBER": (AppiumBy.XPATH, '//android.widget.TextView[@text="7507233095"]'),  # noqa:E501
+    "EDIT_ICON": (AppiumBy.ID, 'DSAccount_Pressable_edit_icon_click'),  # noqa:E501
     "EDIT_ICON1": (AppiumBy.ID, 'DSAccount_Pressable_edit_icon_click'),  # noqa:E501
     "SAVINGS_BANNER": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(5)'),  # noqa:E501
     "BACK_ARROW": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("Go back to DSDashboard screen")'),  # noqa:E501
+    "CC": (AppiumBy.ID, 'DSAccount_Pressable_applications'),  # noqa:E501
 
     # Locators under orders page
     "ORDERSEARCHBOX": (AppiumBy.XPATH, '//android.widget.EditText[@text="search for orders..."]'),  # noqa:E501
@@ -188,13 +190,13 @@ class AccountPage(BasePage):
         allureLogs("Navigating to the credit cards page.")
         locator = locators_ap["CC"]
         if self.actions.is_element_displayed(*locator):
-            allureLogs("❌ Element is DISPLAYED")
+            allureLogs("✅ Element is DISPLAYED")
             self.actions.click_button(*locator)
             allureLogs("CLICKED on the element")
             self.actions.screenshotAttachment("Navigated to Credit Cards Page")
             return True
         else:
-            allureLogs("✅ Element is NOT DISPLAYED")
+            allureLogs("❌ Element is NOT DISPLAYED")
             self.actions.screenshotAttachment("Failed to Navigate to Credit Cards Page")      # noqa:E501
             return False
 
