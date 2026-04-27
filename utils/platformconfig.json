@@ -1,17 +1,17 @@
 {
   "android": {
     "platformName": "Android",
-    "appium:deviceName": "POCO X6 5G",
+    "appium:deviceName": "Android",
     "appium:automationName": "UiAutomator2",
     "appium:app": "",
-    "appPackage": "",
-    "appActivity": "",
+    "appPackage": "com.mventus.selfcare.activity",
+    "appActivity": "com.mventus.selfcare.activity.MainActivity",
     "noReset": true,
     "fullReset": false,
     "uiautomator2ServerInstallTimeout": 1000000,
     "newCommandTimeout": 60,
     "ignoreHiddenApiPolicyError" : true,
-    "skipServerInstallation"  : true,
+    "skipServerInstallation"  : false,
     "autoGrantPermissions": true
   }
 }

@@ -5,6 +5,8 @@ from utils.custom_logger import allureLogs
 from pages.actions.android_actions import AndroidActions
 
 locators_ap = {
+    "SHOP_BUTTON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("shop")'),      # noqa:E501
+
     "BELL_ICON": (AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="DS_SHOP_https://vishop.myvi.in/documents/35161/38258 / notification-icon.webp"]'),  # noqa:E501
     "BELL_ICON1": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(1)'),  # noqa:E501
     "BACK_ARROW1": (AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="DS_SHOP_https://vishop.myvi.in/documents/35161/38258/back-arrow.webp"]'),  # noqa:E501
@@ -17,32 +19,33 @@ locators_ap = {
     "ACCOUNT_BUTTON3": (AppiumBy.ID, 'DSHeader_Pressable_ds_header_my_account_customer_name_initial__click'),  # noqa:E501
 
     "PAGE_TITLE": (AppiumBy.XPATH, '//android.widget.TextView[@text="account"]'),  # noqa:E501
-    "YOUR_ORDERS": (AppiumBy.XPATH, '//android.widget.TextView[@text="your orders"]'),  # noqa:E501
-    "APPLICATIONS": (AppiumBy.XPATH, '//android.widget.TextView[@text="applications"]'),  # noqa:E501
-    "COUPOUNS": (AppiumBy.XPATH, '//android.widget.TextView[@text="coupons"]'),  # noqa:E501
-    "SAVEDPAY": (AppiumBy.XPATH, '//android.widget.TextView[@text="saved payments"]'),  # noqa:E501
-    "HELPANDSUPPORT": (AppiumBy.XPATH, '//android.widget.TextView[@text="help & support"]'),  # noqa:E501
-    "FAQ": (AppiumBy.XPATH, '//android.widget.TextView[@text="FAQs"]'),
-    "TANDC": (AppiumBy.XPATH, '//android.widget.TextView[@text="terms & conditions"]'),  # noqa:E501
-    "PRIVACY_POLICY": (AppiumBy.XPATH, '//android.widget.TextView[@text="privacy policy"]'),  # noqa:E501
-    "ABOUT_US": (AppiumBy.XPATH, '//android.widget.TextView[@text="about us"]'),  # noqa:E501
+    "YOUR_ORDERS": (AppiumBy.ID, 'DSAccount_Pressable_your orders'),  # noqa:E501
+    "APPLICATIONS": (AppiumBy.ID, 'DSAccount_Pressable_applications'),  # noqa:E501
+    "COUPOUNS": (AppiumBy.ID, 'DSAccount_Pressable_coupons'),  # noqa:E501
+    "SAVEDPAY": (AppiumBy.ID, 'DSAccount_Pressable_saved payments'),  # noqa:E501
+    "HELPANDSUPPORT": (AppiumBy.ID, 'DSAccount_Pressable_help & support'),  # noqa:E501
+    "FAQ": (AppiumBy.ID, 'DSAccount_Pressable_Faq_click'),
+    "TANDC": (AppiumBy.ID, 'DSAccount_Pressable_T&C_click'),  # noqa:E501
+    "PRIVACY_POLICY": (AppiumBy.ID, 'DSAccount_Pressable_Privacy_policy_click'),  # noqa:E501
+    "ABOUT_US": (AppiumBy.ID, 'DSAccount_Pressable_About_Us_click'),  # noqa:E501
     "POWERED_BY": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("powered by Vodafone Idea Business Services Ltd.")'),  # noqa:E501
-    "PROFILE_NUMBER": (AppiumBy.XPATH, '//android.widget.TextView[@text="7507233095"]'),  # noqa:E501
-    \"EDIT_ICON\": (AppiumBy.XPATH, '//android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup/android.widget.ImageView'),  # noqa:E501
-    \"EDIT_ICON1\": (AppiumBy.XPATH, '//android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup/android.widget.ImageView'),  # noqa:E501
-    \"SAVINGS_BANNER\": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className(\"android.widget.ImageView\").instance(5)'),  # noqa:E501
-    \"BACK_ARROW\": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description(\"Go back to DSDashboard screen\")'),  # noqa:E501
-    \"CC\": (AppiumBy.XPATH, '//android.widget.TextView[@text=\"applications\"]'),  # noqa:E501
+    "PROFILE_NUMBER": (AppiumBy.XPATH, '//android.widget.TextView[@text="9493253590"]'),  # noqa:E501
+    "EDIT_ICON": (AppiumBy.ID, 'DSAccount_Pressable_edit_icon_click'),  # noqa:E501
+    "SAVINGS_BANNER": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(5)'),  # noqa:E501
+    "BACK_ARROW": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("Go back to DSDashboard screen")'),  # noqa:E501
 
     # Locators under orders page
-    "ORDERSEARCHBOX": (AppiumBy.XPATH, '//android.widget.EditText[@text="search for orders..."]'),  # noqa:E501
+    "ORDERSEARCHBOX": (AppiumBy.ID, 'DSMyOrder_Textinput_ds_my_order_search for orders..._click'),  # noqa:E501
     "ORDERSPAGETITLE": (AppiumBy.XPATH, '//android.widget.TextView[@text="your orders"]'),  # noqa:E501
     "ORDERSEARCHICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(1)'),  # noqa:E501
-    "ORDERSPAGEFILTERICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(3)'),  # noqa:E501
+    "ORDERSPAGEFILTERICON": (AppiumBy.ID, 'DSMyOrder_Pressable_ds_my_order_filter_click'),  # noqa:E501
+    "ORDERSPAGE_ONDC_BANNER": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("view ONDC orders")'),  # noqa:E501
+    "ORDERSPAGE_BACK_BUTTON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("Go back to the previous screen")'),  # noqa:E501
 
     # Locators under credit cards page
     "CCRESUMEAPPLICATION": (AppiumBy.XPATH, '//android.widget.TextView[@text="resume applications"]'),  # noqa:E501
     "CCPAGETITLE": (AppiumBy.XPATH, '//android.widget.TextView[@text="my applications"]'),  # noqa:E501
+    "CC_BACK_ARROW": (AppiumBy.XPATH, '//android.view.View[@content-desc="Go back to the previous screen"]'),  # noqa:E501
 
     # Locators under coupons page
     "COUPONS_PAGETITLE": (AppiumBy.XPATH, '//android.widget.TextView[@text="coupons"]'),  # noqa:E501
@@ -66,10 +69,11 @@ locators_ap = {
 
     # Locators under saved payments page
     "SP_PAGE_TITLE": (AppiumBy.XPATH, '//android.view.View[@text="manage payment options"]'),  # noqa:E501
+    "SAVEDPAY_BACK_BUTTON": (AppiumBy.ID, 'ManagePayments_HeaderBackButton'),  # noqa:E501
     "TITLE_TEXT": (AppiumBy.XPATH, '//android.widget.TextView[@text="nothing saved yet"]'),  # noqa:E501
     "CTA_BUTTON": (AppiumBy.XPATH, '//android.widget.TextView[@text="go back"]'),  # noqa:E501
     "NOTHING_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(1)'),   # noqa:E501
-    "EDIT_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(4)'),  # noqa:E501
+    "EDIT_ICON_SP": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(4)'),  # noqa:E501
     "EDIT_ICON3": (AppiumBy.XPATH, '(//android.view.ViewGroup[1]/android.view.ViewGroup/android.widget.ImageView)[5]'),  # noqa:E501
     "SAVED_CARDS": (AppiumBy.XPATH, '//android.widget.TextView[@text="saved cards"]'),  # noqa:E501
     "CARD_DISPLAYED": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.ViewGroup").instance(37)'),  # noqa:E501
@@ -77,21 +81,23 @@ locators_ap = {
 
     # Locators under FAQs page
     "FAQSEARCHBOX": (AppiumBy.XPATH, '//android.widget.EditText[@text="search for questions"]'),  # noqa:E501
-    "FAQ_ALL_FILTER": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("all")'),     # noqa:E501
-    "FAQ_ORDER_RELATED_FILTER": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("order related")'),  # noqa:E501
-    "FAQ_PRODUCTS_FILTER": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("products")'),  # noqa:E501
-    "FAQ_SUPPORT_FILTER": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("support")'),  # noqa:E501
+    "FAQ_ALL_FILTER": (AppiumBy.ID, 'DSFaq_Pressable_828123'),     # noqa:E501
+    "FAQ_VI_FINANCE_FD": (AppiumBy.ID, 'DSFaq_Pressable_847604947'),  # noqa:E501
+    "FAQ_VI_FINANCE_PERSONAL_LOAN": (AppiumBy.ID, 'DSFaq_Pressable_888043622'),  # noqa:E501
+    "FAQ_ORDER_RELATED_FILTER": (AppiumBy.ID, 'DSFaq_Pressable_2406112'),  # noqa:E501
+    "FAQ_PRODUCTS_FILTER": (AppiumBy.ID, 'DSFaq_Pressable_2406139'),  # noqa:E501
+    "FAQ_SUPPORT_FILTER": (AppiumBy.ID, 'DSFaq_Pressable_828126'),  # noqa:E501
     "FAQPAGETITLE": (AppiumBy.XPATH, '//android.widget.TextView[@text="FAQs"]'),  # noqa:E501
-    "FAQ1": (AppiumBy.XPATH, '//android.widget.TextView[@text="How to make a purchase on Vi Shop?"]'),  # noqa:E501
-    "FAQ2": (AppiumBy.XPATH, '//android.widget.TextView[@text="Where can I find the terms & conditions?"]'),  # noqa:E501
-    "FAQ3": (AppiumBy.XPATH, '//android.widget.TextView[@text="What products are available on Vi Shop?"]'),  # noqa:E501
-    "FAQ4": (AppiumBy.XPATH, '//android.widget.TextView[@text="Can I purchase a product for someone else?"]'),  # noqa:E501
-    "FAQ5": (AppiumBy.XPATH, '//android.widget.TextView[@text="How do I view my order details?"]'),  # noqa:E501
-    "FAQ6": (AppiumBy.XPATH, '//android.widget.TextView[@text="How do I redeem gift cards or vouchers?"]'),  # noqa:E501
-    "FAQ7": (AppiumBy.XPATH, '//android.widget.TextView[@text="How long is the product valid?"]'),  # noqa:E501
-    "FAQ8": (AppiumBy.XPATH, '//android.widget.TextView[@text="What all payment methods can I use?"]'),  # noqa:E501
-    "FAQ9": (AppiumBy.XPATH, '//android.widget.TextView[@text="How do I claim a refund?"]'),  # noqa:E501
-    "FAQ10": (AppiumBy.XPATH, '//android.widget.TextView[@text="How can I cancel or exchange a digital product?"]'),  # noqa:E501
+    "FAQ1": (AppiumBy.ID, 'DSFaq_Pressable_994051'),  # noqa:E501
+    "FAQ2": (AppiumBy.ID, 'DSFaq_Pressable_294750'),  # noqa:E501
+    "FAQ3": (AppiumBy.ID, 'DSFaq_Pressable_565551'),  # noqa:E501
+    "FAQ4": (AppiumBy.ID, 'DSFaq_Pressable_477519'),  # noqa:E501
+    "FAQ5": (AppiumBy.ID, 'DSFaq_Pressable_67789'),  # noqa:E501
+    "FAQ6": (AppiumBy.ID, 'DSFaq_Pressable_643591'),  # noqa:E501
+    "FAQ7": (AppiumBy.ID, 'DSFaq_Pressable_147978'),  # noqa:E501
+    "FAQ8": (AppiumBy.ID, 'DSFaq_Pressable_427219'),  # noqa:E501
+    "FAQ9": (AppiumBy.ID, 'DSFaq_Pressable_687772'),  # noqa:E501
+    "FAQ10": (AppiumBy.ID, 'DSFaq_Pressable_78682'),  # noqa:E501
 }
 
 
@@ -101,6 +107,18 @@ class AccountPage(BasePage):
         super().__init__(driver)
         self.driver = driver
         self.actions = AndroidActions(driver)
+
+    def navto_shop(self):
+        """
+        Navigates to the shop page by clicking the shop button.
+        """
+        allureLogs("Navigating to the shop page.")
+        if self.actions.is_element_displayed(*locators_ap["SHOP_BUTTON"]):
+            allureLogs("Shop button is displayed. Clicking it.")
+            self.actions.click_button(*locators_ap["SHOP_BUTTON"])
+        else:
+            allureLogs("Shop button is not displayed.")
+        self.actions.screenshotAttachment("navto_shop")
 
     def verify_account_button(self):
         allureLogs("Verifying if the account button is displayed.")
@@ -123,6 +141,16 @@ class AccountPage(BasePage):
                 self.actions.click_button(*locator)  # Click the element
                 allureLogs("Clicked on the account button")
                 self.actions.screenshotAttachment("Clicked on the account button")    # noqa:E501
+                # Wait for the account page to load
+                page_title_element = self.actions.wait_for_element(
+                    *locators_ap["PAGE_TITLE"], timeout=30
+                )
+                if page_title_element is None:
+                    raise Exception(
+                        "Account page did not load after clicking the account "
+                        "button"
+                    )
+                allureLogs("Account page loaded successfully")
                 return True  # Return True after clicking
         allureLogs("Account button is not clicked.")
         self.actions.screenshotAttachment("Account Button Not clicked")
@@ -244,16 +272,17 @@ class AccountPage(BasePage):
 
     def verify_nav_to_faq_page(self):
         allureLogs("Navigating to the FAQs page.")
-        locator = locators_ap["FAQ"]
+        locator = [locators_ap["FAQ"]]
         if self.actions.is_element_displayed(*locator):
-            allureLogs("✅ Element is DISPALYED")
+            allureLogs("✅ Element is DISPLAYED")
             self.actions.click_button(*locator)
-            allureLogs("CLICKED on the element")
-            self.actions.screenshotAttachment("Navigated to FAQs Page")
+            allureLogs("CLCIKED on the element")
+            time.sleep(5)
+            self.actions.screenshotAttachment("Navigated to FAQ Page")   # noqa:E501
             return True
         else:
-            allureLogs("❌ Element is NOT DISPLAYED")
-            self.actions.screenshotAttachment("Failed to Navigate to FAQs Page")      # noqa:E501
+            allureLogs(f"❌ Element is NOT DISPLAYED with locator: {locator}")
+            self.actions.screenshotAttachment("Failed to Navigate to FAQ Page")      # noqa:E501
             return False
 
     def verify_nav_to_tandc_page(self):
@@ -306,6 +335,8 @@ class AccountPage(BasePage):
         locators = {
             "FAQ Search Box": locators_ap["FAQSEARCHBOX"],
             "FAQ All Filter": locators_ap["FAQ_ALL_FILTER"],
+            "FAQ VI Finance FD Filter": locators_ap["FAQ_VI_FINANCE_FD"],
+            "FAQ VI Finance Personal Loan Filter": locators_ap["FAQ_VI_FINANCE_PERSONAL_LOAN"],  # noqa:E501
             "FAQ Order Related Filter": locators_ap["FAQ_ORDER_RELATED_FILTER"],      # noqa:E501
             "FAQ Products Filter": locators_ap["FAQ_PRODUCTS_FILTER"],
             "FAQ Support Filter": locators_ap["FAQ_SUPPORT_FILTER"],

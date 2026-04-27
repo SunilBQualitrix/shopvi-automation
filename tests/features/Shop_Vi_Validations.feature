@@ -1,24 +1,25 @@
 @ViShopAppValidations
 Feature: Vi Shop Testing - This feature tests the functionality of the Vi Shop application.
 
+# ======== NOTE: Login steps are now pre-configured on the device ========
+# @ViShopRegression @ViShopTest
+# Scenario Outline: VS001: Login to Vi Shop Application
+#     Given  I install vishop <application>
+#     Given I launch vishop Application
+#     Given I open the app and navigate to the mobile number input screen
+#     When  I close the mobile number dialog box
+#     When  I input a valid 10-digit mobile number <mobile_number>
+#     When  I click on the send OTP CTA button
+#     When  I input a valid 4-digit OTP <otp>
+#     When  I log into the app using login with OTP CTA button
+#     
+#     Examples:
+#         | mobile_number | otp  |    | application |
+#         | 7507233095    | 1234 |    | vishop      |
 
 @ViShopRegression @ViShopTest
-Scenario Outline: VS001: Login to Vi Shop Application
-    Given  I install vishop <application>
-    Given I launch vishop Application
-    Given I open the app and navigate to the mobile number input screen
-    When  I close the mobile number dialog box
-    When  I input a valid 10-digit mobile number <mobile_number>
-    When  I click on the send OTP CTA button
-    When  I input a valid 4-digit OTP <otp>
-    When  I log into the app using login with OTP CTA button
-    Then  I click on VI Shop from Bottom Navigation and should navigate to the shop Dashboard
-    Examples:
-        | mobile_number | otp  |    | application |
-        | 7507233095    | 1234 |    | vishop      |
-
-@ViShopRegression
 Scenario Outline: VS002: Account Page Validations
+    When I click on VI Shop from Bottom Navigation and should navigate to the shop Dashboard
     When I verify the account button is displayed
     When I click on the account button and navigate to the account page
     Then I verify all elements are displayed on the account page
@@ -104,7 +105,7 @@ Scenario Outline: VS004: Add to Cart Journey with Amazon SKU from Search Results
         | amazon      | | 4893772405842838   |
 
 
-@ViShopRegression @ViShopTest
+@ViShopRegression
 Scenario Outline: VS005: Buy Now Journey with Nykaa SKU from Search Results
     When I click on search icon
     When I enter the <valid_input> in the search field

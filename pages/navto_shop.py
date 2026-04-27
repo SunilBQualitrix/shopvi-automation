@@ -13,7 +13,7 @@ locators_ns = {
     "NUMBER_INPUT": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("{number}")'),      # noqa:E501
     "SEND_OTP": (AppiumBy.XPATH, '//android.widget.TextView[@text="send OTP"]'),      # noqa:E501
     "INPUT_OTP": (AppiumBy.XPATH, '//android.widget.TextView[@text="login with OTP"]'),   # noqa:E501
-    "SHOP_BUTTON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("shop")'),      # noqa:E501
+    "SHOP_BUTTON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("shop").instance(1)'),      # noqa:E501
 }
 
 

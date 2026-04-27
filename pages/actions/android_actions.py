@@ -12,11 +12,17 @@ from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException, NoSuchElementException, StaleElementReferenceException, ElementClickInterceptedException   # noqa:E501
+from selenium.common.exceptions import (
+    TimeoutException,
+    NoSuchElementException,
+    StaleElementReferenceException,
+    ElementClickInterceptedException,
+    WebDriverException,
+)   # noqa:E501
 from pages.actions.actions_parent import ActionsParent
 from conftest import readConstants
 from utils.custom_logger import custom_logger as cl
-from utils.custom_logger import allureLogs
+from utils.custom_logger import allureLogs, SCREENSHOT_DIR
 from selenium.webdriver.common.actions.action_builder import ActionBuilder
 from selenium.webdriver.common.actions.pointer_input import PointerInput
 
@@ -42,16 +48,16 @@ class AndroidActions(ActionsParent):
         self.dynamic_number = random.randint(1, 10000)
 
     def launch_app(self):
-        print("firestaick app is already launched")
+        print("Android app is already launched")
 
     def relaunch_app(self, appPackage):
-        print("firestaick app is already launched")
+        print("Android app is already launched")
         self.driver.activate_app(appPackage)
 
     def fluentWaitNew(self, ele, secs):
         WebDriverWait(self.driver, 60, poll_frequency=secs).until(EC.visibility_of_element_located(ele), 'Error')     # noqa:E501
 
-    def wait_for_element(self, locator, value, timeout=60):
+    def wait_for_element(self, locator, value, timeout=60):  # noqa: C901
         """
         Waits for an element to be present on the page.
         Arguments:
@@ -62,22 +68,50 @@ class AndroidActions(ActionsParent):
         """
         print("Waiting for Element", value)
         again = 1
+        session_recovered = False
         while again < 3:
+            session_status = self.is_session_active()
+            print(f"Session active check: {session_status}")
+            if not session_status:
+                if not session_recovered:
+                    print("Session not active, attempting recovery...")
+                    if self._recover_session():
+                        session_recovered = True
+                        again = 1  # Reset counter after recovery
+                        continue
+                    else:
+                        self.log.error("Session recovery failed")
+                        return None
+                else:
+                    self.log.error("Session still not active after recovery")
+                    return None
+
             try:
-
                 return WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located((locator, value)))    # noqa:E501
-            except NoSuchElementException:
-                print("Inside no such element")
-                return None
-
-            except StaleElementReferenceException:
-                # self.driver.refresh()
+            except WebDriverException as e:
+                error_msg = str(e).lower()
+                if ("instrumentation process is not running" in error_msg or  # noqa: E501, W504
+                        "uiautomator2 server" in error_msg or  # noqa: E501, W504
+                        "cannot be proxied" in error_msg):
+                    print(f"UiAutomator2 crash detected: {e}")
+                    if not session_recovered:
+                        print("Attempting session recovery after UiAutomator2 crash...")  # noqa:E501
+                        if self._recover_session():
+                            session_recovered = True
+                            again = 1  # Reset counter after recovery
+                            continue
+                        else:
+                            self.log.error("Session recovery failed")
+                            return None
+                    else:
+                        again += 1
+                else:
+                    # For other WebDriverExceptions, increment counter
+                    again += 1
+                    print(f"Other WebDriverException: {e}")
+            except (NoSuchElementException, TimeoutException, StaleElementReferenceException) as e:  # noqa:E501
                 again += 1
-                print("Stale element, refreshed, trying again")
-            except TimeoutError:
-                again = 3
-                print("Element not present")
-                return self.driver
+                print(f"Standard exception: {type(e).__name__}: {e}")
 
     def wait_for_elements(self, locator, value, timeout=60):
         """
@@ -94,7 +128,7 @@ class AndroidActions(ActionsParent):
             try:
                 self.screenshotAttachment("waiting_for_element{}.jpg".format(self.dynamic_number))    # noqa:E501
                 return WebDriverWait(self.driver, timeout).until(EC.visibility_of_all_elements_located((locator, value)))     # noqa:E501
-            except NoSuchElementException:
+            except (NoSuchElementException, TimeoutException):
                 print("Inside no such element")
                 return None
 
@@ -324,53 +358,151 @@ class AndroidActions(ActionsParent):
             # If the element is not found or there's a timeout, return False
             return False
 
-    def click_button(self, locator_type, locator_value):
+    def is_session_active(self):
+        """Returns True if the current Appium session is still active and UiAutomator2 is responsive."""  # noqa:E501
+        if not getattr(self.driver, 'session_id', None):
+            return False
+        try:
+            # Test actual connectivity by checking current activity
+            self.driver.current_activity
+            return True
+        except WebDriverException as e:
+            # Check for UiAutomator2 crash specifically
+            error_msg = str(e).lower()
+            if ("instrumentation process is not running" in error_msg or  # noqa: E501, W504
+                    "uiautomator2 server" in error_msg or  # noqa: E501, W504
+                    "cannot be proxied" in error_msg):
+                return False
+            return False
+        except Exception:
+            return False
+
+    def _recover_session(self):
+        """
+        Attempts to recover the Appium session by restarting UiAutomator2 and the app.  # noqa:E501
+        """
+        try:
+            self.log.warning("Attempting full session recovery...")
+            # Kill existing UiAutomator2 processes
+            os.system("adb shell am force-stop io.appium.uiautomator2.server")
+            os.system("adb shell am force-stop io.appium.uiautomator2.server.test")  # noqa:E501
+            time.sleep(2)
+
+            # Restart the app
+            self.driver.terminate_app(self.app_package)
+            time.sleep(2)
+            self.driver.activate_app(self.app_package)
+            time.sleep(5)  # Give more time for UiAutomator2 to restart
+
+            self.log.info("Full session recovery completed")
+            return True
+        except Exception as e:
+            self.log.error(f"Session recovery failed: {e}")
+            return False
+
+    def _find_clickable_element(self, locator_type, locator_value):
+        element = self.wait_for_element(
+            locator_type, locator_value, timeout=30
+        )
+        if element is None:
+            return None
+        if not element.is_displayed():
+            self.wait.until(EC.visibility_of(element))
+        return element
+
+    def click_button(self, locator_type, locator_value):  # noqa: C901
         """
         Clicks a button identified by the locator.
         Arguments:
         locator_type - Locator strategy.
         locator_value - Locator value.
         """
-        self.log.info(f"Starting click_button method for locator: {locator_type} with value: {locator_value}")    # noqa:E501
+        self.log.info(
+            "Starting click_button method for locator: "
+            f"{locator_type} with value: {locator_value}"
+        )    # noqa:E501
         print("Passing locator_type:", locator_type)
 
         try_count = 1
+        session_recovered = False
         while try_count < 5:
+            if not self.is_session_active():
+                if not session_recovered and try_count > 2:
+                    # Try session recovery once after a few failed attempts
+                    if self._recover_session():
+                        session_recovered = True
+                        try_count = 1  # Reset counter after recovery
+                        continue
+                    else:
+                        self.log.error("Session recovery failed, aborting click")  # noqa:E501
+                        break
+                else:
+                    self.log.error("Appium session is not active. Aborting click.")  # noqa:E501
+                    break
+
             try:
                 # Log the attempt to click the element
-                self.log.info(f"Attempt {try_count}: Trying to find and click the element.")      # noqa:E501
+                self.log.info(
+                    "Attempt {try_count}: Trying to find "
+                    "and click the element."
+                )      # noqa:E501
 
-                # Wait until the element is clickable
-                element = self.wait.until(
-                    EC.element_to_be_clickable(self.driver.find_element(locator_type, locator_value))     # noqa:E501
+                element = self._find_clickable_element(
+                    locator_type, locator_value
                 )
-                self.log.info(f"Element found and clickable: {locator_type} = {locator_value}. Clicking now.")    # noqa:E501
+                if element is None:
+                    raise NoSuchElementException(
+                        f"Element not found: {locator_type} = {locator_value}"
+                    )
 
-                # Perform the click action
+                self.log.info(
+                    "Element found and clickable: "
+                    f"{locator_type} = {locator_value}. Clicking now."
+                )    # noqa:E501
                 element.click()
                 self.log.info(f"Successfully clicked on the element: {locator_value}")    # noqa:E501
                 print("Clicked successfully on the element:", locator_value)
-                break  # Exit the loop after a successful click
+                return True
 
             except TimeoutException:
                 self.log.error(
-                    f"TimeoutException: Element not clickable after waiting. Retrying... (Attempt {try_count}/4)")    # noqa:E501
+                    "TimeoutException: Element not clickable after waiting. "
+                    f"Retrying... (Attempt {try_count}/4)"
+                )    # noqa:E501
             except NoSuchElementException:
                 self.log.error(
-                    f"NoSuchElementException: Could not find the element. Retrying... (Attempt {try_count}/4)")   # noqa:E501
+                    "NoSuchElementException: Could not find the element. "
+                    f"Retrying... (Attempt {try_count}/4)"
+                )   # noqa:E501
             except ElementClickInterceptedException:
                 self.log.error(
-                    f"ElementClickInterceptedException: Click intercepted. Retrying... (Attempt {try_count}/4)")      # noqa:E501
+                    "ElementClickInterceptedException: Click intercepted. "
+                    f"Retrying... (Attempt {try_count}/4)"
+                )      # noqa:E501
             except StaleElementReferenceException:
                 self.log.error(
-                    f"StaleElementReferenceException: Stale reference for the element. Retrying... (Attempt {try_count}/4)")      # noqa:E501
+                    "StaleElementReferenceException: Stale reference "
+                    "for the element. "
+                    f"Retrying... (Attempt {try_count}/4)"
+                )      # noqa:E501
+            except WebDriverException as e:
+                self.log.error(
+                    "WebDriverException during click_button: "
+                    f"{str(e)}. Stopping retries."
+                )      # noqa:E501
+                break
 
             try_count += 1  # Increment the retry counter
 
-        if try_count == 5:
-            self.log.error(f"Failed to click the element {locator_value} after {try_count - 1} attempts.")    # noqa:E501
-            self.screenshotAttachment(f"ClickButtonError_{locator_type}_{locator_value}")     # noqa:E501
-            print(f"Failed to click the element after {try_count - 1} attempts.")     # noqa:E501
+        self.log.error(
+            "Failed to click the element "
+            f"{locator_value} after {try_count - 1} attempts."
+        )    # noqa:E501
+        self.screenshotAttachment(f"ClickButtonError_{locator_type}_{locator_value}")     # noqa:E501
+        print(
+            f"Failed to click the element after {try_count - 1} attempts."
+        )     # noqa:E501
+        return False
 
     def is_element_displayed(self, locator_type, locator_value):
         """
@@ -384,7 +516,7 @@ class AndroidActions(ActionsParent):
         try:
             # Wait until the element is visible
             self.log.info(f"Waiting for element to be visible: {locator_type} = {locator_value}")     # noqa:E501
-            WebDriverWait(self.driver, 30).until(
+            WebDriverWait(self.driver, 10).until(
                 EC.visibility_of_element_located((locator_type, locator_value))
             )
             self.log.info(f"Element is visible: {locator_type} = {locator_value}")    # noqa:E501
@@ -396,27 +528,62 @@ class AndroidActions(ActionsParent):
             return False
 
         except Exception as e:
-            self.log.error(f"Exception occurred: {type(e).__name__} - {str(e)}")      # noqa:E501
-            self.log.error(f"Failed to check visibility of element: {locator_type} = {locator_value}")    # noqa:E501
-            # Capture a screenshot only when the method fails
-            self.screenshotAttachment(f"ElementDisplayFailure_{locator_type}_{locator_value}")    # noqa:E501
-            return False
+            error_msg = str(e).lower()
+            if ("instrumentation process is not running" in error_msg or  # noqa: E501, W504
+                    "uiautomator2 server" in error_msg or  # noqa: E501, W504
+                    "cannot be proxied" in error_msg):
+                self.log.error(f"UiAutomator2 crash detected in is_element_displayed: {e}")  # noqa:E501
+                # Don't take screenshot or return False - let the caller handle recovery  # noqa:E501
+                raise e
+            else:
+                self.log.error(f"Exception occurred: {type(e).__name__} - {str(e)}")      # noqa:E501
+                self.log.error(f"Failed to check visibility of element: {locator_type} = {locator_value}")    # noqa:E501
+                if self.is_session_active():
+                    self.screenshotAttachment(
+                        f"ElementDisplayFailure_{locator_type}_{locator_value}"
+                    )    # noqa:E501
+                return False
+
+    def scroll_to_text(self, text):
+        """Scroll to an element containing the text and return it."""
+        try:
+            locator = (
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                (
+                    'new UiScrollable(new UiSelector().scrollable(true)).'
+                    f'scrollIntoView(new UiSelector().textContains("{text}"))'
+                ),
+            )
+            self.log.info(f"Scrolling to text: {text}")
+            return self.driver.find_element(*locator)
+        except Exception as e:
+            self.log.error(f"Failed to scroll to text '{text}': {e}")    # noqa:E501
+            return None
 
     def screenshotAttachment(self, description):
         """
         Takes a screenshot based on a condition, saves it with a unique name,
         and attaches it to the Allure report.
         """
+        if not self.is_session_active():
+            self.log.warning(
+                "Skipping screenshot because Appium session is not active."
+            )
+            return
+
         # Condition to check whether screenshots are needed
         doIneedScreenshot = readConstants("NEED_SCREENSHOTS_FOR_PASS")
-        print(f"Want to take screenshot after sending values: {doIneedScreenshot}")   # noqa:E501
+        print(
+            "Want to take screenshot after sending values: "
+            f"{doIneedScreenshot}"
+        )   # noqa:E501
 
         # Check if the condition allows taking screenshots
         if str(doIneedScreenshot).lower() == 'true':
-            # Ensure the screenshot directory exists (but do not clear it here)
-            screenshotDirectory = "D:\\shopvi-automation\\reports\\screenshot"   # noqa:E501
+            # Ensure the screenshot directory exists under the framework root       # noqa:E501
+            screenshotDirectory = SCREENSHOT_DIR    # noqa:E501
             if not os.path.exists(screenshotDirectory):
-                os.makedirs(screenshotDirectory)
+                os.makedirs(screenshotDirectory, exist_ok=True)
 
             # Increment screenshot counter and create a unique filename
             self.__class__.screenshot_counter += 1
@@ -427,8 +594,11 @@ class AndroidActions(ActionsParent):
                 # Take and save the screenshot
                 self.driver.save_screenshot(screenshotPath)
 
-                # Attach the screenshot to Allure report
-                allure.attach(self.driver.get_screenshot_as_png(), name=description, attachment_type=AttachmentType.PNG)      # noqa:E501
+                # Attach the screenshot to Allure report - only if session is stable  # noqa:E501
+                if self.is_session_active():
+                    allure.attach(self.driver.get_screenshot_as_png(), name=description, attachment_type=AttachmentType.PNG)      # noqa:E501
+                else:
+                    self.log.warning("Session became unstable, skipping Allure attachment")  # noqa:E501
 
                 # Log the screenshot path
                 self.log.info(f"Screenshot taken and saved at '{screenshotPath}'")    # noqa:E501
