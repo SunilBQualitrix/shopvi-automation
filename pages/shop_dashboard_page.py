@@ -5,14 +5,12 @@ from utils.custom_logger import allureLogs
 from pages.actions.android_actions import AndroidActions
 
 locators_sd = {
-    "CATEGORIES_TAB": (AppiumBy.XPATH, "//*[@resource-id='DSFooter_Pressable_DSDashboard_categories_"tab_name2"']"),    # noqa:E501
-    "OFFERS_TAB": (AppiumBy.ID, 'DSFooter_Pressable_DSDashboard_offers_"tab_name2"'),  # noqa:E501
-    "MY_ORDERS_TAB": (AppiumBy.ID, 'DSFooter_Pressable_DSDashboard_my orders_"tab_name2"'),  # noqa:E501
-    "VI_SHOP_BUTTON": (AppiumBy.ID, 'DSFooter_Pressable_DSDashboard_shop_"tab_name2"'),    # noqa:E501
-    "VI_APP_HOME_BUTTON": (AppiumBy.ID, 'DSFooter_Pressable_DSDashboard_home_"tab_name1"'),  # noqa:E501
+    "CATEGORIES_TAB": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("categories")'),    # noqa:E501
+    "OFFERS_TAB": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("offers")'),  # noqa:E501
+    "MY_ORDERS_TAB": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("my orders")'),  # noqa:E501
+    "VI_SHOP_BUTTON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("shop")'),    # noqa:E501
+    "VI_APP_HOME_BUTTON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("home")'),  # noqa:E501
     "DB_SEARCH_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/search.png")'),  # noqa:E501
-    "DB_ACCOUNTS_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOPshop-account-icon.webp")'),  # noqa:E501
-    "DB_ACCOUNTS_ICON1": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(0)'),  # noqa:E501
     "DB_CART_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/Cart.webp")'),  # noqa:E501
 
     "ALL_SEARCH_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(1)'),  # noqa:E501
@@ -21,7 +19,7 @@ locators_sd = {
     "ACCOUNT_ICON": (AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="DS_SHOPshop-account-icon.webp"]'),    # noqa:E501
     "SEARCH_ICON": (AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="DS_SHOP_https://vishop.myvi.in/documents/35161/38258/search.png"]'),   # noqa:E501
     "CART_ICON": (AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="DS_SHOP_https://vishop.myvi.in/documents/35161/38258/Cart.webp"]'),  # noqa:E501
-    "ACCOUNTS_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(0)'),  # noqa:E501
+    "ACCOUNTS_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().resourceId("DSHeader_Pressable_ds_header_my_account_customer_name_initial__click")'),  # noqa:E501
     "CART_ICON1": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(2)'),     # noqa:E501
     "DEALS_PAGE_TITLE": (AppiumBy.XPATH, '//android.widget.TextView[@text="offers"]'),  # noqa:E501
     "DEALS_BACK_BUTTON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOP_https://vishop.myvi.in/documents/35161/38258/back-arrow.webp")'),    # noqa:E501
@@ -196,9 +194,9 @@ class ShopDashboardPage(BasePage):
         locators = {
             "VI App Home Button": [locators_sd["VI_APP_HOME_BUTTON"]],
             "Offers": [locators_sd["OFFERS_TAB"]],
-            "My Orders": [locators_sd["MY_ORDERS_TAB"], locators_sd["MY_ORDER_P"]],     # noqa:E501
+            "My Orders": [locators_sd["MY_ORDERS_TAB"]],     # noqa:E501
             "Vi Shop Dashboard": [locators_sd["VI_SHOP_BUTTON"]],
-            "Accounts Icon": [locators_sd["DB_ACCOUNTS_ICON"], locators_sd["DB_ACCOUNTS_ICON1"]],   # noqa:E501
+            "Accounts Icon": [locators_sd["ACCOUNTS_ICON"]],   # noqa:E501
         }
         for element_name, locator_list in locators.items():
             element_found = False

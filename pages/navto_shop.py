@@ -113,10 +113,13 @@ class NavtoShop(BasePage):
         """
         Navigates to the shop page by clicking the shop button.
         """
+        import time
         allureLogs("Navigating to the shop page.")
         if self.actions.is_element_displayed(*locators_ns["SHOP_BUTTON"]):
             allureLogs("Shop button is displayed. Clicking it.")
             self.actions.click_button(*locators_ns["SHOP_BUTTON"])
+            time.sleep(3)  # Wait for shop dashboard to load and stabilize
+            allureLogs("Successfully navigated to shop dashboard.")
         else:
             allureLogs("Shop button is not displayed.")
         self.actions.screenshotAttachment("navto_shop")

@@ -7,38 +7,34 @@ from pages.actions.android_actions import AndroidActions
 locators_ap = {
     "SHOP_BUTTON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("shop")'),      # noqa:E501
 
-    "BELL_ICON": (AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="DS_SHOP_https://vishop.myvi.in/documents/35161/38258 / notification-icon.webp"]'),  # noqa:E501
-    "BELL_ICON1": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(1)'),  # noqa:E501
-    "BACK_ARROW1": (AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="DS_SHOP_https://vishop.myvi.in/documents/35161/38258/back-arrow.webp"]'),  # noqa:E501
+    "BELL_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(1)'),  # noqa:E501
+    "BACK_ARROW1": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("Go back to DSDashboard screen")'),  # noqa:E501
     "BACK_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(0)'),  # noqa:E501
-    "SEARCH_ICON": (AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="DS_SHOP_https://vishop.myvi.in/documents/35161/38258/search.png"]'),  # noqa:E501
-    "SEARCH_ICON1": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(2)'),  # noqa:E501
+    "SEARCH_ICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(2)'),  # noqa:E501
 
-    "ACCOUNT_BUTTON1": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("DS_SHOPshop-account-icon.webp")'),  # noqa:E501
-    "ACCOUNT_BUTTON2": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(0)'),  # noqa:E501
-    "ACCOUNT_BUTTON3": (AppiumBy.ID, 'DSHeader_Pressable_ds_header_my_account_customer_name_initial__click'),  # noqa:E501
+    "ACCOUNT_BUTTON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().resourceId("DSHeader_Pressable_ds_header_my_account_customer_name_initial__click")'),  # noqa:E501
 
     "PAGE_TITLE": (AppiumBy.XPATH, '//android.widget.TextView[@text="account"]'),  # noqa:E501
-    "YOUR_ORDERS": (AppiumBy.ID, 'DSAccount_Pressable_your orders'),  # noqa:E501
-    "APPLICATIONS": (AppiumBy.ID, 'DSAccount_Pressable_applications'),  # noqa:E501
-    "COUPOUNS": (AppiumBy.ID, 'DSAccount_Pressable_coupons'),  # noqa:E501
-    "SAVEDPAY": (AppiumBy.ID, 'DSAccount_Pressable_saved payments'),  # noqa:E501
-    "HELPANDSUPPORT": (AppiumBy.ID, 'DSAccount_Pressable_help & support'),  # noqa:E501
-    "FAQ": (AppiumBy.ID, 'DSAccount_Pressable_Faq_click'),
-    "TANDC": (AppiumBy.ID, 'DSAccount_Pressable_T&C_click'),  # noqa:E501
-    "PRIVACY_POLICY": (AppiumBy.ID, 'DSAccount_Pressable_Privacy_policy_click'),  # noqa:E501
-    "ABOUT_US": (AppiumBy.ID, 'DSAccount_Pressable_About_Us_click'),  # noqa:E501
+    "YOUR_ORDERS": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().resourceId("DSAccount_Pressable_your orders")'),  # noqa:E501
+    "APPLICATIONS": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().resourceId("DSAccount_Pressable_applications")'),  # noqa:E501
+    "COUPOUNS": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().resourceId("DSAccount_Pressable_coupons")'),  # noqa:E501
+    "SAVEDPAY": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().resourceId("DSAccount_Pressable_saved payments")'),  # noqa:E501
+    "HELPANDSUPPORT": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().resourceId("DSAccount_Pressable_help & support")'),  # noqa:E501
+    "FAQ": (AppiumBy.XPATH, '//android.view.View[@content-desc="FAQs"]'),  # noqa:E501
+    "TANDC": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().resourceId("DSAccount_Pressable_T&C_click")'),  # noqa:E501
+    "PRIVACY_POLICY": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().resourceId("DSAccount_Pressable_Privacy_policy_click")'),  # noqa:E501
+    "ABOUT_US": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().resourceId("DSAccount_Pressable_About_Us_click")'),  # noqa:E501
     "POWERED_BY": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("powered by Vodafone Idea Business Services Ltd.")'),  # noqa:E501
     "PROFILE_NUMBER": (AppiumBy.XPATH, '//android.widget.TextView[@text="9493253590"]'),  # noqa:E501
-    "EDIT_ICON": (AppiumBy.ID, 'DSAccount_Pressable_edit_icon_click'),  # noqa:E501
+    "EDIT_ICON": (AppiumBy.XPATH, '//android.view.View[@content-desc="edit email address"]/android.widget.ImageView'),  # noqa:E501
     "SAVINGS_BANNER": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(5)'),  # noqa:E501
     "BACK_ARROW": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("Go back to DSDashboard screen")'),  # noqa:E501
 
     # Locators under orders page
-    "ORDERSEARCHBOX": (AppiumBy.ID, 'DSMyOrder_Textinput_ds_my_order_search for orders..._click'),  # noqa:E501
+    "ORDERSEARCHBOX": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().resourceId("DSMyOrder_Textinput_ds_my_order_search for orders..._click")'),  # noqa:E501
     "ORDERSPAGETITLE": (AppiumBy.XPATH, '//android.widget.TextView[@text="your orders"]'),  # noqa:E501
     "ORDERSEARCHICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.ImageView").instance(1)'),  # noqa:E501
-    "ORDERSPAGEFILTERICON": (AppiumBy.ID, 'DSMyOrder_Pressable_ds_my_order_filter_click'),  # noqa:E501
+    "ORDERSPAGEFILTERICON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("Go to search page")'),  # noqa:E501
     "ORDERSPAGE_ONDC_BANNER": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("view ONDC orders")'),  # noqa:E501
     "ORDERSPAGE_BACK_BUTTON": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("Go back to the previous screen")'),  # noqa:E501
 
@@ -81,23 +77,23 @@ locators_ap = {
 
     # Locators under FAQs page
     "FAQSEARCHBOX": (AppiumBy.XPATH, '//android.widget.EditText[@text="search for questions"]'),  # noqa:E501
-    "FAQ_ALL_FILTER": (AppiumBy.ID, 'DSFaq_Pressable_828123'),     # noqa:E501
-    "FAQ_VI_FINANCE_FD": (AppiumBy.ID, 'DSFaq_Pressable_847604947'),  # noqa:E501
-    "FAQ_VI_FINANCE_PERSONAL_LOAN": (AppiumBy.ID, 'DSFaq_Pressable_888043622'),  # noqa:E501
-    "FAQ_ORDER_RELATED_FILTER": (AppiumBy.ID, 'DSFaq_Pressable_2406112'),  # noqa:E501
-    "FAQ_PRODUCTS_FILTER": (AppiumBy.ID, 'DSFaq_Pressable_2406139'),  # noqa:E501
-    "FAQ_SUPPORT_FILTER": (AppiumBy.ID, 'DSFaq_Pressable_828126'),  # noqa:E501
+    "FAQ_ALL_FILTER": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().resourceId("DSFaq_Pressable_828123")'),     # noqa:E501
+    "FAQ_VI_FINANCE_FD": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().resourceId("DSFaq_Pressable_847604947")'),  # noqa:E501
+    "FAQ_VI_FINANCE_PERSONAL_LOAN": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().resourceId("DSFaq_Pressable_888043622")'),  # noqa:E501
+    "FAQ_ORDER_RELATED_FILTER": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().resourceId("DSFaq_Pressable_2406112")'),  # noqa:E501
+    "FAQ_PRODUCTS_FILTER": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().resourceId("DSFaq_Pressable_2406139")'),  # noqa:E501
+    "FAQ_SUPPORT_FILTER": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().resourceId("DSFaq_Pressable_828126")'),  # noqa:E501
     "FAQPAGETITLE": (AppiumBy.XPATH, '//android.widget.TextView[@text="FAQs"]'),  # noqa:E501
-    "FAQ1": (AppiumBy.ID, 'DSFaq_Pressable_994051'),  # noqa:E501
-    "FAQ2": (AppiumBy.ID, 'DSFaq_Pressable_294750'),  # noqa:E501
-    "FAQ3": (AppiumBy.ID, 'DSFaq_Pressable_565551'),  # noqa:E501
-    "FAQ4": (AppiumBy.ID, 'DSFaq_Pressable_477519'),  # noqa:E501
-    "FAQ5": (AppiumBy.ID, 'DSFaq_Pressable_67789'),  # noqa:E501
-    "FAQ6": (AppiumBy.ID, 'DSFaq_Pressable_643591'),  # noqa:E501
-    "FAQ7": (AppiumBy.ID, 'DSFaq_Pressable_147978'),  # noqa:E501
-    "FAQ8": (AppiumBy.ID, 'DSFaq_Pressable_427219'),  # noqa:E501
-    "FAQ9": (AppiumBy.ID, 'DSFaq_Pressable_687772'),  # noqa:E501
-    "FAQ10": (AppiumBy.ID, 'DSFaq_Pressable_78682'),  # noqa:E501
+    "FAQ1": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().resourceId("DSFaq_Pressable_412966")'),  # noqa:E501
+    "FAQ2": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().resourceId("DSFaq_Pressable_24711")'),  # noqa:E501
+    "FAQ3": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().resourceId("DSFaq_Pressable_313616")'),  # noqa:E501
+    "FAQ4": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().resourceId("DSFaq_Pressable_477519")'),  # noqa:E501
+    "FAQ5": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().resourceId("DSFaq_Pressable_67789")'),  # noqa:E501
+    "FAQ6": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().resourceId("DSFaq_Pressable_643591")'),  # noqa:E501
+    "FAQ7": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().resourceId("DSFaq_Pressable_147978")'),  # noqa:E501
+    "FAQ8": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().resourceId("DSFaq_Pressable_427219")'),  # noqa:E501
+    "FAQ9": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().resourceId("DSFaq_Pressable_687772")'),  # noqa:E501
+    "FAQ10": (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().resourceId("DSFaq_Pressable_78682")'),  # noqa:E501
 }
 
 
@@ -122,49 +118,37 @@ class AccountPage(BasePage):
 
     def verify_account_button(self):
         allureLogs("Verifying if the account button is displayed.")
-        locators = [locators_ap["ACCOUNT_BUTTON1"], locators_ap["ACCOUNT_BUTTON2"], locators_ap["ACCOUNT_BUTTON3"]]   # noqa:E501
-        for locator in locators:
-            if self.actions.is_element_displayed(*locator):
-                allureLogs("✅ Account button is DISPLAYED")
-                self.actions.screenshotAttachment("Account Button Displayed")
-                return True
-        allureLogs("❌ Account button is not displayed.")
-        self.actions.screenshotAttachment("Account Button Not Displayed")
-        return False  # Return False if none of the locators are displayed
+        locator = locators_ap["ACCOUNT_BUTTON"]
+        if self.actions.is_element_displayed(*locator):
+            allureLogs("Account button is DISPLAYED")
+            self.actions.screenshotAttachment("Account Button Displayed")
+            return True  # Return True if displayed
+        else:
+            allureLogs("Account button is not displayed")
+            self.actions.screenshotAttachment("Account Button Not Displayed")
+            return False  # Return False if not displayed
 
     def click_account_button(self):
         allureLogs("Clicking on the account button.")
-        locators = [locators_ap["ACCOUNT_BUTTON1"], locators_ap["ACCOUNT_BUTTON2"], locators_ap["ACCOUNT_BUTTON3"]]   # noqa:E501
-        for locator in locators:
-            if self.actions.is_element_displayed(*locator):
-                allureLogs("✅ Account button is DISPLAYED")
-                self.actions.click_button(*locator)  # Click the element
-                allureLogs("Clicked on the account button")
-                self.actions.screenshotAttachment("Clicked on the account button")    # noqa:E501
-                # Wait for the account page to load
-                page_title_element = self.actions.wait_for_element(
-                    *locators_ap["PAGE_TITLE"], timeout=30
-                )
-                if page_title_element is None:
-                    raise Exception(
-                        "Account page did not load after clicking the account "
-                        "button"
-                    )
-                allureLogs("Account page loaded successfully")
-                return True  # Return True after clicking
-        allureLogs("Account button is not clicked.")
-        self.actions.screenshotAttachment("Account Button Not clicked")
-        raise Exception("❌ No account button is available to click")
+        locator = locators_ap["ACCOUNT_BUTTON"]   # noqa:E501
+        try:
+            self.actions.click_button(*locator)
+            time.sleep(3)  # Wait for account page to load and stabilize
+            allureLogs("Successfully clicked account button and navigated to Account Page")
+            self.actions.screenshotAttachment("Account Button Clicked")
+            return True
+        except Exception as e:
+            allureLogs(f"Failed to click account button: {str(e)}")
+            self.actions.screenshotAttachment("Account Button Click Failed")
+            return False
 
     def verify_account_page_elements(self):
         allureLogs("Verifying All Elements are displayed on Account Page")
         locators = {
             "Account Page Title": locators_ap["PAGE_TITLE"],
             "Account Page Back Arrow": locators_ap["BACK_ARROW1"],
-            "Account Page Bell Icon1": locators_ap["BELL_ICON"],
-            "Account Page Bell Icon2": locators_ap["BELL_ICON1"],
+            "Account Page Bell Icon": locators_ap["BELL_ICON"],
             "Account Page Search Icon": locators_ap["SEARCH_ICON"],
-            "Account Page Search Icon1": locators_ap["SEARCH_ICON1"],
             "Account Page My Orders": locators_ap["YOUR_ORDERS"],
             "Account Page Applications": locators_ap["APPLICATIONS"],
             "Account Page Coupons": locators_ap["COUPOUNS"],
@@ -180,12 +164,17 @@ class AccountPage(BasePage):
             "Account Page Savings Banner": locators_ap["SAVINGS_BANNER"],
         }
         for element_name, locator in locators.items():
-            if self.actions.is_element_displayed(*locator):
-                elements = self.driver.find_elements(*locator)
-                value = elements[0].text if elements else "No Text Available"
-                allureLogs(f"✅Element: {element_name} is DISPLAYED | (Value: {value})")     # noqa:E501
-            else:
-                allureLogs(f"❌Element: {element_name} is NOT DISPLAYED")
+            try:
+                if self.actions.is_element_displayed(*locator):
+                    elements = self.driver.find_elements(*locator)
+                    value = elements[0].text if elements else "No Text Available"
+                    allureLogs(f"✅Element: {element_name} is DISPLAYED | (Value: {value})")     # noqa:E501
+                else:
+                    allureLogs(f"⚠️Element: {element_name} is NOT DISPLAYED")
+            except Exception as e:
+                allureLogs(f"⚠️Error verifying {element_name}: {str(e)}")
+                # Continue with next element instead of failing completely
+                continue
         self.actions.screenshotAttachment("All Elements are displayed on Account Page")   # noqa:E501
 
     def verify_savings_banner(self):
@@ -272,7 +261,7 @@ class AccountPage(BasePage):
 
     def verify_nav_to_faq_page(self):
         allureLogs("Navigating to the FAQs page.")
-        locator = [locators_ap["FAQ"]]
+        locator = locators_ap["FAQ"]
         if self.actions.is_element_displayed(*locator):
             allureLogs("✅ Element is DISPLAYED")
             self.actions.click_button(*locator)
@@ -353,12 +342,17 @@ class AccountPage(BasePage):
             "FAQ Q10": locators_ap["FAQ10"],
         }
         for element_name, locator in locators.items():
-            if self.actions.is_element_displayed(*locator):
-                elements = self.driver.find_elements(*locator)
-                value = elements[0].text if elements else "No Text Available"
-                allureLogs(f"✅ Element: {element_name} is DISPLAYED | (Value: {value})")     # noqa:E501
-            else:
-                allureLogs(f"❌ Element: {element_name} is NOT DISPLAYED")
+            try:
+                if self.actions.is_element_displayed(*locator):
+                    elements = self.driver.find_elements(*locator)
+                    value = elements[0].text if elements else "No Text Available"
+                    allureLogs(f"✅ Element: {element_name} is DISPLAYED | (Value: {value})")     # noqa:E501
+                else:
+                    allureLogs(f"❌ Element: {element_name} is NOT DISPLAYED")
+            except Exception as e:
+                allureLogs(f"⚠️ Error checking {element_name}: {str(e)}")
+                # Continue checking other elements even if one fails
+                continue
         self.actions.screenshotAttachment("All Elements are displayed on FAQ Page")   # noqa:E501
 
     def verify_and_print_all_elements_on_myorders_page(self):

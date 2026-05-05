@@ -185,7 +185,7 @@ def verify_all_elements_on_faq_page(accountpage_instance):
         except Exception as e:
             print(f"Failed to navigate back from the FAQ page: {e}")
     except Exception as e:
-        allureLogs(f"WARNING: Failed to verify FAQ page elements: {e}, continuing test")
+        allureLogs(f"WARNING: Failed to verify FAQ page elements: {e}, continuing test")    # noqa:E501
 
 
 @when("I navigate to the Credit Card (CC) page")
